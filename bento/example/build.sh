@@ -1,0 +1,3 @@
+bento build 
+
+# bento watch 
