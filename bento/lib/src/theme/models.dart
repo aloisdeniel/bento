@@ -10,15 +10,15 @@ part 'models.freezed.dart';
 part 'models.g.dart';
 
 @freezed
-class DesignLibrary with _$DesignLibrary {
-  const DesignLibrary._();
+class BentoTheme with _$BentoTheme {
+  const BentoTheme._();
 
-  const factory DesignLibrary({
+  const factory BentoTheme({
     required List<DesignToken> tokens,
-    @Default(<String, DesignLibrary>{}) Map<String, DesignLibrary> children,
-  }) = _DesignLibrary;
+    @Default(<String, BentoTheme>{}) Map<String, BentoTheme> children,
+  }) = _BentoTheme;
 
-  DesignLibrary? getChildLibrary(Iterable<String> path) {
+  BentoTheme? getChildLibrary(Iterable<String> path) {
     if (path.isEmpty) return this;
     final childKey = path.first;
 

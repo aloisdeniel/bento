@@ -7,18 +7,18 @@ import 'models.dart';
 
 class DesignLibraryParser {
   const DesignLibraryParser();
-  DesignLibrary parseJson(String source) {
+  BentoTheme parseJson(String source) {
     final json = jsonDecode(source);
     return const DesignLibraryConverter().fromJson(json);
   }
 }
 
 class DesignLibraryConverter
-    implements JsonConverter<DesignLibrary, Map<String, Object?>> {
+    implements JsonConverter<BentoTheme, Map<String, Object?>> {
   const DesignLibraryConverter();
 
   @override
-  DesignLibrary fromJson(Map<String, Object?> json) {
+  BentoTheme fromJson(Map<String, Object?> json) {
     final entries = json.map((key, value) {
       if (value is Map<String, Object?>) {
         return MapEntry(
@@ -32,7 +32,7 @@ class DesignLibraryConverter
       );
     });
 
-    return DesignLibrary(
+    return BentoTheme(
       children: Map.fromEntries(
         entries.entries.where((e) => !e.value.containsKey('type')).map(
               (e) => MapEntry(
@@ -50,7 +50,7 @@ class DesignLibraryConverter
   }
 
   @override
-  Map<String, Object?> toJson(DesignLibrary value) {
+  Map<String, Object?> toJson(BentoTheme value) {
     return {
       ...value.children.map((key, value) => MapEntry(key, toJson(value))),
       ...Map.fromEntries(

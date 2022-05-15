@@ -1,6 +1,8 @@
+import 'models.dart';
+
 class ThemeDartEmitter {
   const ThemeDartEmitter();
-  String emitDart(String source) {
+  String emitDart(BentoTheme theme) {
     throw UnimplementedError();
   }
 }

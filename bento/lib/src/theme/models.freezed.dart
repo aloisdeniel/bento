@@ -15,31 +15,30 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DesignLibrary {
+mixin _$BentoTheme {
   List<DesignToken> get tokens => throw _privateConstructorUsedError;
-  Map<String, DesignLibrary> get children => throw _privateConstructorUsedError;
+  Map<String, BentoTheme> get children => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DesignLibraryCopyWith<DesignLibrary> get copyWith =>
+  $BentoThemeCopyWith<BentoTheme> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DesignLibraryCopyWith<$Res> {
-  factory $DesignLibraryCopyWith(
-          DesignLibrary value, $Res Function(DesignLibrary) then) =
-      _$DesignLibraryCopyWithImpl<$Res>;
-  $Res call({List<DesignToken> tokens, Map<String, DesignLibrary> children});
+abstract class $BentoThemeCopyWith<$Res> {
+  factory $BentoThemeCopyWith(
+          BentoTheme value, $Res Function(BentoTheme) then) =
+      _$BentoThemeCopyWithImpl<$Res>;
+  $Res call({List<DesignToken> tokens, Map<String, BentoTheme> children});
 }
 
 /// @nodoc
-class _$DesignLibraryCopyWithImpl<$Res>
-    implements $DesignLibraryCopyWith<$Res> {
-  _$DesignLibraryCopyWithImpl(this._value, this._then);
+class _$BentoThemeCopyWithImpl<$Res> implements $BentoThemeCopyWith<$Res> {
+  _$BentoThemeCopyWithImpl(this._value, this._then);
 
-  final DesignLibrary _value;
+  final BentoTheme _value;
   // ignore: unused_field
-  final $Res Function(DesignLibrary) _then;
+  final $Res Function(BentoTheme) _then;
 
   @override
   $Res call({
@@ -54,38 +53,37 @@ class _$DesignLibraryCopyWithImpl<$Res>
       children: children == freezed
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
-              as Map<String, DesignLibrary>,
+              as Map<String, BentoTheme>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_DesignLibraryCopyWith<$Res>
-    implements $DesignLibraryCopyWith<$Res> {
-  factory _$$_DesignLibraryCopyWith(
-          _$_DesignLibrary value, $Res Function(_$_DesignLibrary) then) =
-      __$$_DesignLibraryCopyWithImpl<$Res>;
+abstract class _$$_BentoThemeCopyWith<$Res>
+    implements $BentoThemeCopyWith<$Res> {
+  factory _$$_BentoThemeCopyWith(
+          _$_BentoTheme value, $Res Function(_$_BentoTheme) then) =
+      __$$_BentoThemeCopyWithImpl<$Res>;
   @override
-  $Res call({List<DesignToken> tokens, Map<String, DesignLibrary> children});
+  $Res call({List<DesignToken> tokens, Map<String, BentoTheme> children});
 }
 
 /// @nodoc
-class __$$_DesignLibraryCopyWithImpl<$Res>
-    extends _$DesignLibraryCopyWithImpl<$Res>
-    implements _$$_DesignLibraryCopyWith<$Res> {
-  __$$_DesignLibraryCopyWithImpl(
-      _$_DesignLibrary _value, $Res Function(_$_DesignLibrary) _then)
-      : super(_value, (v) => _then(v as _$_DesignLibrary));
+class __$$_BentoThemeCopyWithImpl<$Res> extends _$BentoThemeCopyWithImpl<$Res>
+    implements _$$_BentoThemeCopyWith<$Res> {
+  __$$_BentoThemeCopyWithImpl(
+      _$_BentoTheme _value, $Res Function(_$_BentoTheme) _then)
+      : super(_value, (v) => _then(v as _$_BentoTheme));
 
   @override
-  _$_DesignLibrary get _value => super._value as _$_DesignLibrary;
+  _$_BentoTheme get _value => super._value as _$_BentoTheme;
 
   @override
   $Res call({
     Object? tokens = freezed,
     Object? children = freezed,
   }) {
-    return _then(_$_DesignLibrary(
+    return _then(_$_BentoTheme(
       tokens: tokens == freezed
           ? _value._tokens
           : tokens // ignore: cast_nullable_to_non_nullable
@@ -93,18 +91,17 @@ class __$$_DesignLibraryCopyWithImpl<$Res>
       children: children == freezed
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
-              as Map<String, DesignLibrary>,
+              as Map<String, BentoTheme>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_DesignLibrary extends _DesignLibrary with DiagnosticableTreeMixin {
-  const _$_DesignLibrary(
+class _$_BentoTheme extends _BentoTheme with DiagnosticableTreeMixin {
+  const _$_BentoTheme(
       {required final List<DesignToken> tokens,
-      final Map<String, DesignLibrary> children =
-          const <String, DesignLibrary>{}})
+      final Map<String, BentoTheme> children = const <String, BentoTheme>{}})
       : _tokens = tokens,
         _children = children,
         super._();
@@ -116,24 +113,24 @@ class _$_DesignLibrary extends _DesignLibrary with DiagnosticableTreeMixin {
     return EqualUnmodifiableListView(_tokens);
   }
 
-  final Map<String, DesignLibrary> _children;
+  final Map<String, BentoTheme> _children;
   @override
   @JsonKey()
-  Map<String, DesignLibrary> get children {
+  Map<String, BentoTheme> get children {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_children);
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DesignLibrary(tokens: $tokens, children: $children)';
+    return 'BentoTheme(tokens: $tokens, children: $children)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'DesignLibrary'))
+      ..add(DiagnosticsProperty('type', 'BentoTheme'))
       ..add(DiagnosticsProperty('tokens', tokens))
       ..add(DiagnosticsProperty('children', children));
   }
@@ -142,7 +139,7 @@ class _$_DesignLibrary extends _DesignLibrary with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DesignLibrary &&
+            other is _$_BentoTheme &&
             const DeepCollectionEquality().equals(other._tokens, _tokens) &&
             const DeepCollectionEquality().equals(other._children, _children));
   }
@@ -155,23 +152,23 @@ class _$_DesignLibrary extends _DesignLibrary with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  _$$_DesignLibraryCopyWith<_$_DesignLibrary> get copyWith =>
-      __$$_DesignLibraryCopyWithImpl<_$_DesignLibrary>(this, _$identity);
+  _$$_BentoThemeCopyWith<_$_BentoTheme> get copyWith =>
+      __$$_BentoThemeCopyWithImpl<_$_BentoTheme>(this, _$identity);
 }
 
-abstract class _DesignLibrary extends DesignLibrary {
-  const factory _DesignLibrary(
+abstract class _BentoTheme extends BentoTheme {
+  const factory _BentoTheme(
       {required final List<DesignToken> tokens,
-      final Map<String, DesignLibrary> children}) = _$_DesignLibrary;
-  const _DesignLibrary._() : super._();
+      final Map<String, BentoTheme> children}) = _$_BentoTheme;
+  const _BentoTheme._() : super._();
 
   @override
   List<DesignToken> get tokens => throw _privateConstructorUsedError;
   @override
-  Map<String, DesignLibrary> get children => throw _privateConstructorUsedError;
+  Map<String, BentoTheme> get children => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_DesignLibraryCopyWith<_$_DesignLibrary> get copyWith =>
+  _$$_BentoThemeCopyWith<_$_BentoTheme> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
