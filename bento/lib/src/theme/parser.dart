@@ -1,21 +1,22 @@
 import 'dart:convert';
 
-import 'package:flutter/painting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'models.dart';
 
-class DesignLibraryParser {
-  const DesignLibraryParser();
-  BentoTheme parseJson(String source) {
+class BentoThemeParser {
+  const BentoThemeParser();
+  BentoTheme parseJson(String name, String source) {
     final json = jsonDecode(source);
-    return const DesignLibraryConverter().fromJson(json);
+    return BentoThemeConverter(name).fromJson(json);
   }
 }
 
-class DesignLibraryConverter
+class BentoThemeConverter
     implements JsonConverter<BentoTheme, Map<String, Object?>> {
-  const DesignLibraryConverter();
+  const BentoThemeConverter(this.name);
+
+  final String name;
 
   @override
   BentoTheme fromJson(Map<String, Object?> json) {
@@ -33,16 +34,20 @@ class DesignLibraryConverter
     });
 
     return BentoTheme(
-      children: Map.fromEntries(
-        entries.entries.where((e) => !e.value.containsKey('type')).map(
-              (e) => MapEntry(
-                e.key,
-                const DesignLibraryConverter().fromJson(e.value),
-              ),
+      name: name,
+      children: [
+        ...entries.entries
+            .where((e) => e.value.isNotEmpty && !e.value.containsKey('type'))
+            .map(
+              (e) => BentoThemeConverter(e.key).fromJson({
+                ...e.value,
+              }),
             ),
-      ),
+      ],
       tokens: [
-        ...entries.entries.where((e) => e.value.containsKey('type')).map(
+        ...entries.entries
+            .where((e) => e.value.isNotEmpty && e.value.containsKey('type'))
+            .map(
               (e) => const DesignTokenConverter().fromJson(e),
             ),
       ],
@@ -52,7 +57,8 @@ class DesignLibraryConverter
   @override
   Map<String, Object?> toJson(BentoTheme value) {
     return {
-      ...value.children.map((key, value) => MapEntry(key, toJson(value))),
+      ...Map.fromEntries(
+          value.children.map((child) => MapEntry(child.name, toJson(value)))),
       ...Map.fromEntries(
         value.tokens.map(
           (token) => const DesignTokenConverter().toJson(token),
@@ -126,6 +132,78 @@ class DesignTokenConverter
   }
 }
 
+class OffsetConverter implements JsonConverter<Offset, Object?> {
+  const OffsetConverter();
+
+  @override
+  Offset fromJson(Object? json) {
+    if (json is Map<String, dynamic>) {
+      final x = json['x'];
+      final y = json['y'];
+      return Offset(
+        x is num ? x.toDouble() : 0.0,
+        y is num ? y.toDouble() : 0.0,
+      );
+    }
+    return Offset.zero;
+  }
+
+  @override
+  Object? toJson(Offset value) {
+    return {
+      'x': value.dx,
+      'y': value.dy,
+    };
+  }
+}
+
+class SizeConverter implements JsonConverter<Size, Object?> {
+  const SizeConverter();
+
+  @override
+  Size fromJson(Object? json) {
+    if (json is Map<String, dynamic>) {
+      final width = json['width'];
+      final height = json['height'];
+      return Size(
+        width is num ? width.toDouble() : 0.0,
+        height is num ? height.toDouble() : 0.0,
+      );
+    }
+    return Size.zero;
+  }
+
+  @override
+  Object? toJson(Size value) {
+    return {
+      'width': value.width,
+      'height': value.height,
+    };
+  }
+}
+
+class WindingRuleConverter implements JsonConverter<PathFillType, Object?> {
+  const WindingRuleConverter();
+
+  @override
+  PathFillType fromJson(Object? json) {
+    if (json is String && json.toLowerCase() == 'evenodd') {
+      return PathFillType.evenOdd;
+    }
+    return PathFillType.evenOdd;
+  }
+
+  @override
+  Object? toJson(PathFillType value) {
+    switch (value) {
+      case PathFillType.evenOdd:
+        return 'EVENODD';
+      case PathFillType.nonZero:
+        return 'NONZERO';
+    }
+  }
+}
+
 class ColorTokenValueConverter
     implements JsonConverter<ColorTokenValue, Object?> {
   const ColorTokenValueConverter();
@@ -162,31 +240,30 @@ class IconTokenValueConverter
   @override
   IconTokenValue fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      final paths = json['path'];
+      final paths = json['paths'];
       final size = json['size'];
-      final width = size is Map<String, dynamic> ? size['width'] : 0;
-      final height = size is Map<String, dynamic> ? size['height'] : 0;
+      final offset = json['offset'];
       return IconTokenValue(
         paths: [
           if (paths is List<dynamic>)
             ...paths.map((path) => IconPath.fromJson(path)),
         ],
-        size: Size(width, height),
+        size: const SizeConverter().fromJson(size),
+        offset: const OffsetConverter().fromJson(offset),
       );
     }
     return const IconTokenValue(
       paths: <IconPath>[],
       size: Size.zero,
+      offset: Offset.zero,
     );
   }
 
   @override
   Object? toJson(IconTokenValue value) {
     return {
-      'size': {
-        'width': value.size.width,
-        'height': value.size.height,
-      },
+      'size': const SizeConverter().toJson(value.size),
+      'offset': const OffsetConverter().toJson(value.offset),
       'paths': [
         ...value.paths.map((e) => e.toJson()),
       ],
@@ -226,7 +303,7 @@ class RadiusTokenValueConverter
     }
     return const RadiusTokenValue(
       smoothing: 0.0,
-      radius: BorderRadius.all(Radius.zero),
+      radius: BorderRadius.zero,
     );
   }
 

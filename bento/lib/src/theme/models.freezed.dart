@@ -16,8 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BentoTheme {
+  String get name => throw _privateConstructorUsedError;
   List<DesignToken> get tokens => throw _privateConstructorUsedError;
-  Map<String, BentoTheme> get children => throw _privateConstructorUsedError;
+  List<BentoTheme> get children => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BentoThemeCopyWith<BentoTheme> get copyWith =>
@@ -29,7 +31,11 @@ abstract class $BentoThemeCopyWith<$Res> {
   factory $BentoThemeCopyWith(
           BentoTheme value, $Res Function(BentoTheme) then) =
       _$BentoThemeCopyWithImpl<$Res>;
-  $Res call({List<DesignToken> tokens, Map<String, BentoTheme> children});
+  $Res call(
+      {String name,
+      List<DesignToken> tokens,
+      List<BentoTheme> children,
+      String? description});
 }
 
 /// @nodoc
@@ -42,10 +48,16 @@ class _$BentoThemeCopyWithImpl<$Res> implements $BentoThemeCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? name = freezed,
     Object? tokens = freezed,
     Object? children = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       tokens: tokens == freezed
           ? _value.tokens
           : tokens // ignore: cast_nullable_to_non_nullable
@@ -53,7 +65,11 @@ class _$BentoThemeCopyWithImpl<$Res> implements $BentoThemeCopyWith<$Res> {
       children: children == freezed
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
-              as Map<String, BentoTheme>,
+              as List<BentoTheme>,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -65,7 +81,11 @@ abstract class _$$_BentoThemeCopyWith<$Res>
           _$_BentoTheme value, $Res Function(_$_BentoTheme) then) =
       __$$_BentoThemeCopyWithImpl<$Res>;
   @override
-  $Res call({List<DesignToken> tokens, Map<String, BentoTheme> children});
+  $Res call(
+      {String name,
+      List<DesignToken> tokens,
+      List<BentoTheme> children,
+      String? description});
 }
 
 /// @nodoc
@@ -80,10 +100,16 @@ class __$$_BentoThemeCopyWithImpl<$Res> extends _$BentoThemeCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? name = freezed,
     Object? tokens = freezed,
     Object? children = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$_BentoTheme(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       tokens: tokens == freezed
           ? _value._tokens
           : tokens // ignore: cast_nullable_to_non_nullable
@@ -91,21 +117,29 @@ class __$$_BentoThemeCopyWithImpl<$Res> extends _$BentoThemeCopyWithImpl<$Res>
       children: children == freezed
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
-              as Map<String, BentoTheme>,
+              as List<BentoTheme>,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_BentoTheme extends _BentoTheme with DiagnosticableTreeMixin {
+class _$_BentoTheme extends _BentoTheme {
   const _$_BentoTheme(
-      {required final List<DesignToken> tokens,
-      final Map<String, BentoTheme> children = const <String, BentoTheme>{}})
+      {required this.name,
+      required final List<DesignToken> tokens,
+      final List<BentoTheme> children = const <BentoTheme>[],
+      this.description})
       : _tokens = tokens,
         _children = children,
         super._();
 
+  @override
+  final String name;
   final List<DesignToken> _tokens;
   @override
   List<DesignToken> get tokens {
@@ -113,26 +147,20 @@ class _$_BentoTheme extends _BentoTheme with DiagnosticableTreeMixin {
     return EqualUnmodifiableListView(_tokens);
   }
 
-  final Map<String, BentoTheme> _children;
+  final List<BentoTheme> _children;
   @override
   @JsonKey()
-  Map<String, BentoTheme> get children {
+  List<BentoTheme> get children {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_children);
+    return EqualUnmodifiableListView(_children);
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BentoTheme(tokens: $tokens, children: $children)';
-  }
+  final String? description;
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'BentoTheme'))
-      ..add(DiagnosticsProperty('tokens', tokens))
-      ..add(DiagnosticsProperty('children', children));
+  String toString() {
+    return 'BentoTheme(name: $name, tokens: $tokens, children: $children, description: $description)';
   }
 
   @override
@@ -140,15 +168,20 @@ class _$_BentoTheme extends _BentoTheme with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BentoTheme &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other._tokens, _tokens) &&
-            const DeepCollectionEquality().equals(other._children, _children));
+            const DeepCollectionEquality().equals(other._children, _children) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(_tokens),
-      const DeepCollectionEquality().hash(_children));
+      const DeepCollectionEquality().hash(_children),
+      const DeepCollectionEquality().hash(description));
 
   @JsonKey(ignore: true)
   @override
@@ -158,14 +191,20 @@ class _$_BentoTheme extends _BentoTheme with DiagnosticableTreeMixin {
 
 abstract class _BentoTheme extends BentoTheme {
   const factory _BentoTheme(
-      {required final List<DesignToken> tokens,
-      final Map<String, BentoTheme> children}) = _$_BentoTheme;
+      {required final String name,
+      required final List<DesignToken> tokens,
+      final List<BentoTheme> children,
+      final String? description}) = _$_BentoTheme;
   const _BentoTheme._() : super._();
 
   @override
+  String get name => throw _privateConstructorUsedError;
+  @override
   List<DesignToken> get tokens => throw _privateConstructorUsedError;
   @override
-  Map<String, BentoTheme> get children => throw _privateConstructorUsedError;
+  List<BentoTheme> get children => throw _privateConstructorUsedError;
+  @override
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_BentoThemeCopyWith<_$_BentoTheme> get copyWith =>
@@ -279,7 +318,7 @@ class __$$_DesignTokenCopyWithImpl<$Res> extends _$DesignTokenCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DesignToken with DiagnosticableTreeMixin implements _DesignToken {
+class _$_DesignToken implements _DesignToken {
   const _$_DesignToken(
       {required this.name, required this.value, this.description});
 
@@ -291,18 +330,8 @@ class _$_DesignToken with DiagnosticableTreeMixin implements _DesignToken {
   final String? description;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DesignToken(name: $name, value: $value, description: $description)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DesignToken'))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('value', value))
-      ..add(DiagnosticsProperty('description', description));
   }
 
   @override
@@ -357,7 +386,8 @@ mixin _$DesignTokenValue {
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -368,7 +398,7 @@ mixin _$DesignTokenValue {
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -379,7 +409,7 @@ mixin _$DesignTokenValue {
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -457,20 +487,12 @@ class __$$UnknownTokenValueCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnknownTokenValue
-    with DiagnosticableTreeMixin
-    implements UnknownTokenValue {
+class _$UnknownTokenValue implements UnknownTokenValue {
   const _$UnknownTokenValue();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DesignTokenValue.unknown()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'DesignTokenValue.unknown'));
   }
 
   @override
@@ -491,7 +513,8 @@ class _$UnknownTokenValue
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) {
     return unknown();
   }
@@ -505,7 +528,7 @@ class _$UnknownTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) {
     return unknown?.call();
   }
@@ -519,7 +542,7 @@ class _$UnknownTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -613,23 +636,15 @@ class __$$SizeTokenValueCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SizeTokenValue with DiagnosticableTreeMixin implements SizeTokenValue {
+class _$SizeTokenValue implements SizeTokenValue {
   const _$SizeTokenValue(this.value);
 
   @override
   final double value;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DesignTokenValue.dimension(value: $value)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DesignTokenValue.dimension'))
-      ..add(DiagnosticsProperty('value', value));
   }
 
   @override
@@ -658,7 +673,8 @@ class _$SizeTokenValue with DiagnosticableTreeMixin implements SizeTokenValue {
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) {
     return dimension(value);
   }
@@ -672,7 +688,7 @@ class _$SizeTokenValue with DiagnosticableTreeMixin implements SizeTokenValue {
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) {
     return dimension?.call(value);
   }
@@ -686,7 +702,7 @@ class _$SizeTokenValue with DiagnosticableTreeMixin implements SizeTokenValue {
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) {
     if (dimension != null) {
@@ -785,9 +801,7 @@ class __$$ColorTokenValueCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ColorTokenValue
-    with DiagnosticableTreeMixin
-    implements ColorTokenValue {
+class _$ColorTokenValue implements ColorTokenValue {
   const _$ColorTokenValue(
       [@ColorTokenValueConverter() this.value = const Color(0xFF000000)]);
 
@@ -797,16 +811,8 @@ class _$ColorTokenValue
   final Color value;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DesignTokenValue.color(value: $value)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DesignTokenValue.color'))
-      ..add(DiagnosticsProperty('value', value));
   }
 
   @override
@@ -835,7 +841,8 @@ class _$ColorTokenValue
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) {
     return color(value);
   }
@@ -849,7 +856,7 @@ class _$ColorTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) {
     return color?.call(value);
   }
@@ -863,7 +870,7 @@ class _$ColorTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) {
     if (color != null) {
@@ -969,9 +976,7 @@ class __$$RadiusTokenValueCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RadiusTokenValue
-    with DiagnosticableTreeMixin
-    implements RadiusTokenValue {
+class _$RadiusTokenValue implements RadiusTokenValue {
   const _$RadiusTokenValue(
       {this.smoothing = 0.0, this.radius = BorderRadius.zero});
 
@@ -983,17 +988,8 @@ class _$RadiusTokenValue
   final BorderRadius radius;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DesignTokenValue.radius(smoothing: $smoothing, radius: $radius)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DesignTokenValue.radius'))
-      ..add(DiagnosticsProperty('smoothing', smoothing))
-      ..add(DiagnosticsProperty('radius', radius));
   }
 
   @override
@@ -1025,7 +1021,8 @@ class _$RadiusTokenValue
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) {
     return radius(smoothing, this.radius);
   }
@@ -1039,7 +1036,7 @@ class _$RadiusTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) {
     return radius?.call(smoothing, this.radius);
   }
@@ -1053,7 +1050,7 @@ class _$RadiusTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) {
     if (radius != null) {
@@ -1154,25 +1151,15 @@ class __$$SpacingTokenValueCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SpacingTokenValue
-    with DiagnosticableTreeMixin
-    implements SpacingTokenValue {
+class _$SpacingTokenValue implements SpacingTokenValue {
   const _$SpacingTokenValue(this.value);
 
   @override
   final EdgeInsets value;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DesignTokenValue.spacing(value: $value)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DesignTokenValue.spacing'))
-      ..add(DiagnosticsProperty('value', value));
   }
 
   @override
@@ -1201,7 +1188,8 @@ class _$SpacingTokenValue
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) {
     return spacing(value);
   }
@@ -1215,7 +1203,7 @@ class _$SpacingTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) {
     return spacing?.call(value);
   }
@@ -1229,7 +1217,7 @@ class _$SpacingTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) {
     if (spacing != null) {
@@ -1328,25 +1316,15 @@ class __$$FontStyleTokenValueCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FontStyleTokenValue
-    with DiagnosticableTreeMixin
-    implements FontStyleTokenValue {
+class _$FontStyleTokenValue implements FontStyleTokenValue {
   const _$FontStyleTokenValue({required this.textStyle});
 
   @override
   final TextStyle textStyle;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DesignTokenValue.fontStyle(textStyle: $textStyle)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DesignTokenValue.fontStyle'))
-      ..add(DiagnosticsProperty('textStyle', textStyle));
   }
 
   @override
@@ -1376,7 +1354,8 @@ class _$FontStyleTokenValue
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) {
     return fontStyle(textStyle);
   }
@@ -1390,7 +1369,7 @@ class _$FontStyleTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) {
     return fontStyle?.call(textStyle);
   }
@@ -1404,7 +1383,7 @@ class _$FontStyleTokenValue
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) {
     if (fontStyle != null) {
@@ -1475,7 +1454,7 @@ abstract class _$$IconTokenValueCopyWith<$Res> {
   factory _$$IconTokenValueCopyWith(
           _$IconTokenValue value, $Res Function(_$IconTokenValue) then) =
       __$$IconTokenValueCopyWithImpl<$Res>;
-  $Res call({List<IconPath> paths, Size size});
+  $Res call({List<IconPath> paths, Size size, Offset offset});
 }
 
 /// @nodoc
@@ -1493,6 +1472,7 @@ class __$$IconTokenValueCopyWithImpl<$Res>
   $Res call({
     Object? paths = freezed,
     Object? size = freezed,
+    Object? offset = freezed,
   }) {
     return _then(_$IconTokenValue(
       paths: paths == freezed
@@ -1503,15 +1483,21 @@ class __$$IconTokenValueCopyWithImpl<$Res>
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as Size,
+      offset: offset == freezed
+          ? _value.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as Offset,
     ));
   }
 }
 
 /// @nodoc
 
-class _$IconTokenValue with DiagnosticableTreeMixin implements IconTokenValue {
+class _$IconTokenValue implements IconTokenValue {
   const _$IconTokenValue(
-      {required final List<IconPath> paths, required this.size})
+      {required final List<IconPath> paths,
+      required this.size,
+      required this.offset})
       : _paths = paths;
 
   final List<IconPath> _paths;
@@ -1523,19 +1509,12 @@ class _$IconTokenValue with DiagnosticableTreeMixin implements IconTokenValue {
 
   @override
   final Size size;
+  @override
+  final Offset offset;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DesignTokenValue.icon(paths: $paths, size: $size)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DesignTokenValue.icon'))
-      ..add(DiagnosticsProperty('paths', paths))
-      ..add(DiagnosticsProperty('size', size));
+  String toString() {
+    return 'DesignTokenValue.icon(paths: $paths, size: $size, offset: $offset)';
   }
 
   @override
@@ -1544,14 +1523,16 @@ class _$IconTokenValue with DiagnosticableTreeMixin implements IconTokenValue {
         (other.runtimeType == runtimeType &&
             other is _$IconTokenValue &&
             const DeepCollectionEquality().equals(other._paths, _paths) &&
-            const DeepCollectionEquality().equals(other.size, size));
+            const DeepCollectionEquality().equals(other.size, size) &&
+            const DeepCollectionEquality().equals(other.offset, offset));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_paths),
-      const DeepCollectionEquality().hash(size));
+      const DeepCollectionEquality().hash(size),
+      const DeepCollectionEquality().hash(offset));
 
   @JsonKey(ignore: true)
   @override
@@ -1567,9 +1548,10 @@ class _$IconTokenValue with DiagnosticableTreeMixin implements IconTokenValue {
     required TResult Function(double smoothing, BorderRadius radius) radius,
     required TResult Function(EdgeInsets value) spacing,
     required TResult Function(TextStyle textStyle) fontStyle,
-    required TResult Function(List<IconPath> paths, Size size) icon,
+    required TResult Function(List<IconPath> paths, Size size, Offset offset)
+        icon,
   }) {
-    return icon(paths, size);
+    return icon(paths, size, offset);
   }
 
   @override
@@ -1581,9 +1563,9 @@ class _$IconTokenValue with DiagnosticableTreeMixin implements IconTokenValue {
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
   }) {
-    return icon?.call(paths, size);
+    return icon?.call(paths, size, offset);
   }
 
   @override
@@ -1595,11 +1577,11 @@ class _$IconTokenValue with DiagnosticableTreeMixin implements IconTokenValue {
     TResult Function(double smoothing, BorderRadius radius)? radius,
     TResult Function(EdgeInsets value)? spacing,
     TResult Function(TextStyle textStyle)? fontStyle,
-    TResult Function(List<IconPath> paths, Size size)? icon,
+    TResult Function(List<IconPath> paths, Size size, Offset offset)? icon,
     required TResult orElse(),
   }) {
     if (icon != null) {
-      return icon(paths, size);
+      return icon(paths, size, offset);
     }
     return orElse();
   }
@@ -1654,10 +1636,12 @@ class _$IconTokenValue with DiagnosticableTreeMixin implements IconTokenValue {
 abstract class IconTokenValue implements DesignTokenValue {
   const factory IconTokenValue(
       {required final List<IconPath> paths,
-      required final Size size}) = _$IconTokenValue;
+      required final Size size,
+      required final Offset offset}) = _$IconTokenValue;
 
   List<IconPath> get paths => throw _privateConstructorUsedError;
   Size get size => throw _privateConstructorUsedError;
+  Offset get offset => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$IconTokenValueCopyWith<_$IconTokenValue> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1670,6 +1654,7 @@ IconPath _$IconPathFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$IconPath {
   String get data => throw _privateConstructorUsedError;
+  @WindingRuleConverter()
   PathFillType get windingRule => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1682,7 +1667,7 @@ mixin _$IconPath {
 abstract class $IconPathCopyWith<$Res> {
   factory $IconPathCopyWith(IconPath value, $Res Function(IconPath) then) =
       _$IconPathCopyWithImpl<$Res>;
-  $Res call({String data, PathFillType windingRule});
+  $Res call({String data, @WindingRuleConverter() PathFillType windingRule});
 }
 
 /// @nodoc
@@ -1717,7 +1702,7 @@ abstract class _$$_IconPathCopyWith<$Res> implements $IconPathCopyWith<$Res> {
           _$_IconPath value, $Res Function(_$_IconPath) then) =
       __$$_IconPathCopyWithImpl<$Res>;
   @override
-  $Res call({String data, PathFillType windingRule});
+  $Res call({String data, @WindingRuleConverter() PathFillType windingRule});
 }
 
 /// @nodoc
@@ -1750,9 +1735,10 @@ class __$$_IconPathCopyWithImpl<$Res> extends _$IconPathCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IconPath extends _IconPath with DiagnosticableTreeMixin {
+class _$_IconPath extends _IconPath {
   const _$_IconPath(
-      {required this.data, this.windingRule = PathFillType.nonZero})
+      {required this.data,
+      @WindingRuleConverter() this.windingRule = PathFillType.nonZero})
       : super._();
 
   factory _$_IconPath.fromJson(Map<String, dynamic> json) =>
@@ -1762,20 +1748,12 @@ class _$_IconPath extends _IconPath with DiagnosticableTreeMixin {
   final String data;
   @override
   @JsonKey()
+  @WindingRuleConverter()
   final PathFillType windingRule;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'IconPath(data: $data, windingRule: $windingRule)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'IconPath'))
-      ..add(DiagnosticsProperty('data', data))
-      ..add(DiagnosticsProperty('windingRule', windingRule));
   }
 
   @override
@@ -1809,7 +1787,7 @@ class _$_IconPath extends _IconPath with DiagnosticableTreeMixin {
 abstract class _IconPath extends IconPath {
   const factory _IconPath(
       {required final String data,
-      final PathFillType windingRule}) = _$_IconPath;
+      @WindingRuleConverter() final PathFillType windingRule}) = _$_IconPath;
   const _IconPath._() : super._();
 
   factory _IconPath.fromJson(Map<String, dynamic> json) = _$_IconPath.fromJson;
@@ -1817,6 +1795,7 @@ abstract class _IconPath extends IconPath {
   @override
   String get data => throw _privateConstructorUsedError;
   @override
+  @WindingRuleConverter()
   PathFillType get windingRule => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

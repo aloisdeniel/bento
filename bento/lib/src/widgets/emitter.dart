@@ -1,8 +1,8 @@
 import 'models.dart';
 
-class WidgetEmitter {
-  const WidgetEmitter();
+class BentoWidgetDartEmitter {
+  const BentoWidgetDartEmitter();
   String emitDart(BentoWidget widget) {
-    throw Exception();
+    return '//TODO';
   }
 }

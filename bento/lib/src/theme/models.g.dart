@@ -8,18 +8,13 @@ part of 'models.dart';
 
 _$_IconPath _$$_IconPathFromJson(Map<String, dynamic> json) => _$_IconPath(
       data: json['data'] as String,
-      windingRule:
-          $enumDecodeNullable(_$PathFillTypeEnumMap, json['windingRule']) ??
-              PathFillType.nonZero,
+      windingRule: json['windingRule'] == null
+          ? PathFillType.nonZero
+          : const WindingRuleConverter().fromJson(json['windingRule']),
     );
 
 Map<String, dynamic> _$$_IconPathToJson(_$_IconPath instance) =>
     <String, dynamic>{
       'data': instance.data,
-      'windingRule': _$PathFillTypeEnumMap[instance.windingRule],
+      'windingRule': const WindingRuleConverter().toJson(instance.windingRule),
     };
-
-const _$PathFillTypeEnumMap = {
-  PathFillType.nonZero: 'nonZero',
-  PathFillType.evenOdd: 'evenOdd',
-};

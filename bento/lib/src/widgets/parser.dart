@@ -4,8 +4,8 @@ import 'package:bento/src/errors.dart';
 
 import 'models.dart';
 
-class WidgetParser {
-  const WidgetParser();
+class BentoWidgetParser {
+  const BentoWidgetParser();
   BentoWidget parseDart(String name, String source) {
     final parsed = parseString(content: source);
 

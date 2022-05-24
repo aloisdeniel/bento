@@ -1,13 +1,12 @@
 import 'dart:io';
 
-import 'package:flutter/painting.dart';
 import 'package:bento/bento.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('Parsing the example token file', () async {
-    final data = await File('example/lib/theme/AppTheme.json').readAsString();
-    final library = const DesignLibraryParser().parseJson(data);
+    final data = await File('example/bento/theme/AppTheme.json').readAsString();
+    final library = const BentoThemeParser().parseJson('AppTheme', data);
     expect(library.children, isNotEmpty);
 
     // Size
