@@ -43,8 +43,7 @@ class BentoProjectLoader {
   }
 
 /*
-
-  // Introduce compiler bug
+  // Introduces a compiler bug
 
   Future<List<BentoItem<T>>> _loadFiles<T>(
     Directory directory,

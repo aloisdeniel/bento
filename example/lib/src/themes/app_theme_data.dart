@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:path_icon/path_icon.dart';
 import 'package:equatable/equatable.dart';
 
 class AppThemeData extends Equatable {
@@ -234,7 +235,8 @@ class AppThemeBordersData extends Equatable {
 class AppThemeBordersUnsupportedData extends Equatable {
   const AppThemeBordersUnsupportedData();
 
-  static AppThemeBordersUnsupportedData fallback;
+  static AppThemeBordersUnsupportedData fallback =
+      AppThemeBordersUnsupportedData();
 
   @override
   List<Object?> get props => [];
@@ -292,7 +294,7 @@ class AppThemeRadiiData extends Equatable {
 class AppThemeMotionData extends Equatable {
   const AppThemeMotionData();
 
-  static AppThemeMotionData fallback;
+  static AppThemeMotionData fallback = AppThemeMotionData();
 
   @override
   List<Object?> get props => [];
@@ -347,7 +349,8 @@ class AppThemeGradientGradientMultiplegradData extends Equatable {
 class AppThemeGradientGradientMultiplegradExtensionsData extends Equatable {
   const AppThemeGradientGradientMultiplegradExtensionsData();
 
-  static AppThemeGradientGradientMultiplegradExtensionsData fallback;
+  static AppThemeGradientGradientMultiplegradExtensionsData fallback =
+      AppThemeGradientGradientMultiplegradExtensionsData();
 
   @override
   List<Object?> get props => [];
@@ -358,7 +361,8 @@ class AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesign
   const AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   static AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback;
+      fallback =
+      AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   @override
   List<Object?> get props => [];
@@ -454,7 +458,8 @@ class AppThemeColorColorsMultipleFillsData extends Equatable {
 class AppThemeColorColorsMultipleFillsExtensionsData extends Equatable {
   const AppThemeColorColorsMultipleFillsExtensionsData();
 
-  static AppThemeColorColorsMultipleFillsExtensionsData fallback;
+  static AppThemeColorColorsMultipleFillsExtensionsData fallback =
+      AppThemeColorColorsMultipleFillsExtensionsData();
 
   @override
   List<Object?> get props => [];
@@ -465,7 +470,8 @@ class AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignToke
   const AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   static AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback;
+      fallback =
+      AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   @override
   List<Object?> get props => [];
@@ -570,7 +576,8 @@ class AppThemeGridMultipleData extends Equatable {
 class AppThemeGridMultipleExtensionsData extends Equatable {
   const AppThemeGridMultipleExtensionsData();
 
-  static AppThemeGridMultipleExtensionsData fallback;
+  static AppThemeGridMultipleExtensionsData fallback =
+      AppThemeGridMultipleExtensionsData();
 
   @override
   List<Object?> get props => [];
@@ -581,7 +588,8 @@ class AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData
   const AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   static AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback;
+      fallback =
+      AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   @override
   List<Object?> get props => [];
@@ -713,7 +721,8 @@ class AppThemeEffectInnerShadowc40multiplec41Data extends Equatable {
 class AppThemeEffectInnerShadowc40multiplec41ExtensionsData extends Equatable {
   const AppThemeEffectInnerShadowc40multiplec41ExtensionsData();
 
-  static AppThemeEffectInnerShadowc40multiplec41ExtensionsData fallback;
+  static AppThemeEffectInnerShadowc40multiplec41ExtensionsData fallback =
+      AppThemeEffectInnerShadowc40multiplec41ExtensionsData();
 
   @override
   List<Object?> get props => [];
@@ -724,7 +733,8 @@ class AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDes
   const AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   static AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback;
+      fallback =
+      AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   @override
   List<Object?> get props => [];
@@ -748,7 +758,8 @@ class AppThemeEffectLayerBlurData extends Equatable {
 class AppThemeEffectLayerBlurExtensionsData extends Equatable {
   const AppThemeEffectLayerBlurExtensionsData();
 
-  static AppThemeEffectLayerBlurExtensionsData fallback;
+  static AppThemeEffectLayerBlurExtensionsData fallback =
+      AppThemeEffectLayerBlurExtensionsData();
 
   @override
   List<Object?> get props => [];
@@ -759,7 +770,8 @@ class AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
   const AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   static AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback;
+      fallback =
+      AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   @override
   List<Object?> get props => [];
@@ -784,7 +796,8 @@ class AppThemeEffectBackgroundBlurData extends Equatable {
 class AppThemeEffectBackgroundBlurExtensionsData extends Equatable {
   const AppThemeEffectBackgroundBlurExtensionsData();
 
-  static AppThemeEffectBackgroundBlurExtensionsData fallback;
+  static AppThemeEffectBackgroundBlurExtensionsData fallback =
+      AppThemeEffectBackgroundBlurExtensionsData();
 
   @override
   List<Object?> get props => [];
@@ -795,7 +808,8 @@ class AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensDa
   const AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   static AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback;
+      fallback =
+      AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
 
   @override
   List<Object?> get props => [];
@@ -1091,7 +1105,7 @@ class AppThemeIconsData extends Equatable {
       required this.phone});
 
   static AppThemeIconsData fallback = AppThemeIconsData(
-    propagation: Vector(
+    propagation: PathIconData(
       path: Path()
         ..addPath(
           Path()
@@ -1183,9 +1197,9 @@ class AppThemeIconsData extends Equatable {
             ..close(),
           Offset.zero,
         ),
-      size: Size(15.999679565429688, 15.998395919799805),
+      viewBox: Offset.zero & Size(15.999679565429688, 15.998395919799805),
     ),
-    productMenuClosed: Vector(
+    productMenuClosed: PathIconData(
       path: Path()
         ..addPath(
           Path()
@@ -1223,9 +1237,9 @@ class AppThemeIconsData extends Equatable {
             ..close(),
           Offset.zero,
         ),
-      size: Size(16.0, 16.0),
+      viewBox: Offset.zero & Size(16.0, 16.0),
     ),
-    pasteWord: Vector(
+    pasteWord: PathIconData(
       path: Path()
         ..fillType = PathFillType.evenOdd
         ..moveTo(13.0, 6.0)
@@ -1276,9 +1290,9 @@ class AppThemeIconsData extends Equatable {
         ..lineTo(13.063437461853027, 9.0)
         ..lineTo(12.063437461853027, 13.0)
         ..close(),
-      size: Size(16.0, 16.0),
+      viewBox: Offset.zero & Size(16.0, 16.0),
     ),
-    paperclip: Vector(
+    paperclip: PathIconData(
       path: Path()
         ..fillType = PathFillType.evenOdd
         ..moveTo(15.070035994052887, 1.912181556224823)
@@ -1333,9 +1347,9 @@ class AppThemeIconsData extends Equatable {
         ..cubicTo(16.26739627122879, 5.056328058242798, 16.267461597919464,
             3.109639823436737, 15.070035994052887, 1.912181556224823)
         ..close(),
-      size: Size(16.0, 16.0),
+      viewBox: Offset.zero & Size(16.0, 16.0),
     ),
-    pageTree: Vector(
+    pageTree: PathIconData(
       path: Path()
         ..fillType = PathFillType.evenOdd
         ..moveTo(5.012578725814819, 9.0)
@@ -1380,9 +1394,9 @@ class AppThemeIconsData extends Equatable {
         ..lineTo(5.012578725814819, 14.0)
         ..lineTo(5.012578725814819, 9.0)
         ..close(),
-      size: Size(16.0, 16.0),
+      viewBox: Offset.zero & Size(16.0, 16.0),
     ),
-    phone: Vector(
+    phone: PathIconData(
       path: Path()
         ..fillType = PathFillType.evenOdd
         ..moveTo(15.265635505318642, 11.19683837890625)
@@ -1463,21 +1477,21 @@ class AppThemeIconsData extends Equatable {
         ..cubicTo(12.430674567818642, 14.1781005859375, 12.552744880318642,
             14.16558837890625, 12.599619880318642, 14.15936279296875)
         ..close(),
-      size: Size(16.0, 16.0),
+      viewBox: Offset.zero & Size(16.0, 16.0),
     ),
   );
 
-  final Vector propagation;
+  final PathIconData propagation;
 
-  final Vector productMenuClosed;
+  final PathIconData productMenuClosed;
 
-  final Vector pasteWord;
+  final PathIconData pasteWord;
 
-  final Vector paperclip;
+  final PathIconData paperclip;
 
-  final Vector pageTree;
+  final PathIconData pageTree;
 
-  final Vector phone;
+  final PathIconData phone;
 
   @override
   List<Object?> get props => [

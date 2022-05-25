@@ -6,8 +6,8 @@ import 'package:dart_style/dart_style.dart';
 
 import 'models.dart';
 
-class BentoThemeDartEmitter {
-  const BentoThemeDartEmitter({
+class BentoThemeDataDartEmitter {
+  const BentoThemeDataDartEmitter({
     this.equatable = true,
   });
 
@@ -19,6 +19,7 @@ class BentoThemeDartEmitter {
 
     library.directives.addAll([
       Directive.import('package:flutter/widgets.dart'),
+      Directive.import('package:path_icon/path_icon.dart'),
       if (equatable) Directive.import('package:equatable/equatable.dart'),
     ]);
 
@@ -102,7 +103,7 @@ class BentoThemeDartEmitter {
         radius: (radius) => 'BorderRadius',
         spacing: (spacing) => 'EdgeInsets',
         fontStyle: (fontStyle) => 'TextStyle',
-        icon: (icon) => 'Vector',
+        icon: (icon) => 'PathIconData',
       );
 
   String _tokenDartValue(DesignToken token) => token.value.map(
@@ -165,9 +166,9 @@ class BentoThemeDartEmitter {
           result.write(')');
           return result.toString();
         },
-        icon: (icon) => ' Vector('
+        icon: (icon) => ' PathIconData('
             'path: ${emitPathData(icon.offset, icon.paths)},'
-            'size: Size(${icon.size.width}, ${icon.size.height}),'
+            'viewBox: Offset.zero & Size(${icon.size.width}, ${icon.size.height}),'
             ')',
       );
 }

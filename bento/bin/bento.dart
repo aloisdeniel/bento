@@ -37,5 +37,14 @@ class BuildCommand extends Command<void> {
     print('Building project...');
     const builder = BentoProjectDartBuilder();
     await builder.build(project, Directory(output));
+
+    print('Formatting project...');
+    await Process.run(
+      'dart',
+      [
+        'format',
+        'lib',
+      ],
+    );
   }
 }

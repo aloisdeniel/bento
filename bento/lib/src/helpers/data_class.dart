@@ -47,9 +47,8 @@ class DataClassBuilder {
         parameters.add(
           '${property.key}:  ${instance.propertyValues[property.key]},',
         );
-
-        field.assignment = Code('${builder.name}(${parameters.join()})');
       }
+      field.assignment = Code('${builder.name}(${parameters.join()})');
       builder.fields.add(field.build());
     }
 
