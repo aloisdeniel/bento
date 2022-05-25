@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bento/src/theme/emitter.dart';
+import 'package:bento/src/theme/emitters/data.dart';
 import 'package:bento/bento.dart';
 import 'package:test/test.dart';
 

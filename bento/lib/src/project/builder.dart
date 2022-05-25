@@ -1,6 +1,8 @@
 import 'dart:io';
 
-import 'package:bento/src/theme/emitter.dart';
+import 'package:bento/src/project/emitters/exports.dart';
+import 'package:bento/src/theme/emitters/data.dart';
+import 'package:bento/src/theme/emitters/theme.dart';
 import 'package:bento/src/theme/models.dart';
 import 'package:bento/src/widgets/emitter.dart';
 import 'package:bento/src/widgets/models.dart';
@@ -13,15 +15,16 @@ class BentoProjectDartBuilder {
   const BentoProjectDartBuilder();
 
   final themeDataEmitter = const BentoThemeDataDartEmitter();
+  final themeEmitter = const BentoThemeDartEmitter();
   final widgetEmitter = const BentoWidgetDartEmitter();
+  final exportEmitter = const BentoProjectExportEmitter();
+
   Future<void> build(BentoProject project, Directory output) async {
     final lib = Directory(join(output.path, 'lib'));
 
-    if (lib.existsSync()) {
-      await lib.delete(recursive: true);
+    if (!lib.existsSync()) {
+      await lib.create(recursive: true);
     }
-
-    await lib.create(recursive: true);
 
     final src = Directory(join(lib.path, 'src'));
 
@@ -45,6 +48,19 @@ class BentoProjectDartBuilder {
           return themeDataEmitter.emitDart(theme);
         },
       );
+
+      await _generate<BentoTheme>(
+        themes,
+        project.themes,
+        (name) => '${name}.dart',
+        (theme) {
+          return themeEmitter.emitDart(theme);
+        },
+      );
+
+      final exports = exportEmitter.emitThemes(project);
+      final exportFile = File(join(lib.path, 'themes.dart'));
+      await exportFile.writeAsString(exports);
     }
 
     // Widgets
@@ -63,6 +79,10 @@ class BentoProjectDartBuilder {
           return widgetEmitter.emitDart(theme);
         },
       );
+
+      final exports = exportEmitter.emitWidgets(project);
+      final exportFile = File(join(lib.path, 'widgets.dart'));
+      await exportFile.writeAsString(exports);
     }
   }
 
