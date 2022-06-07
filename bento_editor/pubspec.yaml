@@ -28,7 +28,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bento:
-    path: ../bento
   flutter:
     sdk: flutter
 

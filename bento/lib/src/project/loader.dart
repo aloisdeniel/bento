@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bento/src/helpers/yaml.dart';
 import 'package:bento/src/project/models.dart';
 import 'package:bento/src/theme/models.dart';
 import 'package:bento/src/theme/parser.dart';
@@ -24,11 +25,16 @@ class BentoProjectLoader {
       throw Exception('No "bento.yaml" project file in directory.');
     }
     final yaml = await manifest.readAsString();
-    var doc = loadYaml(yaml);
-    final name = doc['name'];
+    var configurationMap = loadYaml(yaml);
+    final name = configurationMap['name'];
     if (name is! String) {
       throw Exception('Missing "name" in project file');
     }
+
+    final configuration = BentoProjectConfiguration.fromJson(
+        configurationMap is YamlNode
+            ? configurationMap.toJson()
+            : configurationMap);
 
     final themes = await _loadThemes(Directory(join(directory.path, 'themes')));
 
@@ -36,7 +42,7 @@ class BentoProjectLoader {
         await _loadWidgets(Directory(join(directory.path, 'widgets')));
 
     return BentoProject(
-      name: name,
+      configuration: configuration,
       themes: themes,
       widgets: widgets,
     );

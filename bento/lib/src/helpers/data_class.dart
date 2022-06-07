@@ -1,3 +1,4 @@
+import 'package:bento/src/helpers/naming.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:recase/recase.dart';
 
@@ -11,11 +12,15 @@ class DataClassBuilder {
   final Map<String, String> properties;
   final List<DataClassInstance> instances;
 
-  Class build({
+  List<Class> build({
     bool equatable = true,
+    bool lazyInstances = true,
   }) {
+    final result = <ClassBuilder>[];
+
     final name = ReCase(this.name);
     final builder = ClassBuilder()..name = name.pascalCase;
+    result.add(builder);
 
     if (equatable) {
       builder.extend = refer('Equatable');
@@ -42,13 +47,39 @@ class DataClassBuilder {
         ..type = refer(builder.name!)
         ..static = true;
 
-      final parameters = <String>[];
-      for (var property in properties.entries) {
-        parameters.add(
-          '${property.key}:  ${instance.propertyValues[property.key]},',
-        );
+      if (equatable || !lazyInstances) {
+        // Inline instance
+        final parameters = <String>[];
+        for (var property in properties.entries) {
+          parameters.add(
+            '${property.key}:  ${instance.propertyValues[property.key]},',
+          );
+        }
+        field.assignment = Code('${builder.name}(${parameters.join()})');
+      } else {
+        // Lazy instance
+        final instanceBuilder = ClassBuilder()
+          ..implements.add(refer(builder.name!))
+          ..name = '_' + '${builder.name}_instance'.asClassname();
+        result.add(instanceBuilder);
+
+        final constructor = ConstructorBuilder();
+        instanceBuilder.constructors.add(constructor.build());
+
+        for (var property in properties.entries) {
+          final propertyName = ReCase(property.key);
+          final field = FieldBuilder()
+            ..modifier = FieldModifier.final$
+            ..late = true
+            ..name = propertyName.camelCase
+            ..annotations.add(const CodeExpression(Code("override")))
+            ..assignment = Code(instance.propertyValues[property.key]!);
+
+          instanceBuilder.fields.add(field.build());
+        }
+
+        field.assignment = Code('${instanceBuilder.name}()');
       }
-      field.assignment = Code('${builder.name}(${parameters.join()})');
       builder.fields.add(field.build());
     }
 
@@ -76,7 +107,9 @@ class DataClassBuilder {
       builder.methods.add(propsGetter.build());
     }
 
-    return builder.build();
+    return [
+      ...result.map((e) => e.build()),
+    ];
   }
 }
 

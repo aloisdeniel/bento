@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bento/src/project/emitters/exports.dart';
 import 'package:bento/src/theme/emitters/data.dart';
+import 'package:bento/src/theme/emitters/golden_test.dart';
 import 'package:bento/src/theme/emitters/theme.dart';
 import 'package:bento/src/theme/models.dart';
 import 'package:bento/src/widgets/emitter.dart';
@@ -14,12 +15,14 @@ import 'models.dart';
 class BentoProjectDartBuilder {
   const BentoProjectDartBuilder();
 
-  final themeDataEmitter = const BentoThemeDataDartEmitter();
-  final themeEmitter = const BentoThemeDartEmitter();
-  final widgetEmitter = const BentoWidgetDartEmitter();
-  final exportEmitter = const BentoProjectExportEmitter();
-
   Future<void> build(BentoProject project, Directory output) async {
+    final themeDataEmitter =
+        BentoThemeDataDartEmitter(options: project.configuration.dart);
+    final themeEmitter = const BentoThemeDartEmitter();
+    final widgetEmitter = const BentoWidgetDartEmitter();
+    final exportEmitter = const BentoProjectExportEmitter();
+    final goldens = const BentoThemeGoldenTestEmitter();
+
     final lib = Directory(join(output.path, 'lib'));
 
     if (!lib.existsSync()) {
@@ -32,9 +35,16 @@ class BentoProjectDartBuilder {
       await src.create(recursive: true);
     }
 
+    final test = Directory(join(output.path, 'test'));
+
+    if (!test.existsSync()) {
+      await test.create(recursive: true);
+    }
+
     // Themes
     if (project.themes.isNotEmpty) {
       final themes = Directory(join(src.path, 'themes'));
+      final testThemes = Directory(join(test.path, 'themes'));
 
       if (!themes.existsSync()) {
         await themes.create(recursive: true);
@@ -57,6 +67,19 @@ class BentoProjectDartBuilder {
           return themeEmitter.emitDart(theme);
         },
       );
+
+      await _generate<BentoTheme>(
+        testThemes,
+        project.themes,
+        (name) => '${name}_test.dart',
+        (theme) {
+          return goldens.emitDart(theme);
+        },
+      );
+
+      final galleryFile = File(join(testThemes.path, 'gallery.dart'));
+      if (!galleryFile.existsSync())
+        await galleryFile.writeAsString(BentoThemeGoldenTestEmitter.gallery);
 
       final exports = exportEmitter.emitThemes(project);
       final exportFile = File(join(lib.path, 'themes.dart'));

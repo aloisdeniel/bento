@@ -1,8 +1,18 @@
 import 'package:recase/recase.dart';
 
+var _index = 0;
+
+final _specialFieldChars = RegExp(r'[,-.()[\]{}*|&%$#]');
+
 extension NamingExtensions on String {
   String asFieldname() {
-    var result = ReCase(this).camelCase._removeSpecialCharacters();
+    var result = this;
+
+    result = result.replaceAll(' ', '_');
+
+    result = result.replaceAll(_specialFieldChars, '_');
+
+    result = ReCase(result).camelCase._removeSpecialCharacters();
 
     if (result.startsWith(RegExp('[0-9]'))) {
       result = 'v$result';
@@ -11,11 +21,21 @@ extension NamingExtensions on String {
     if (_dartKeywords.contains(result)) {
       return '$result\$';
     }
+    if (result.isEmpty) {
+      print('Invalid name : $this');
+      return 'invalid${_index++}';
+    }
+
     return result;
   }
 
   String asClassname() {
-    var result = ReCase(this).pascalCase._removeSpecialCharacters();
+    var result = this;
+    result = result.replaceAll(' ', '_');
+
+    result = result.replaceAll(_specialFieldChars, '_');
+
+    result = ReCase(result).pascalCase._removeSpecialCharacters();
 
     if (result.startsWith(RegExp('[0-9]'))) {
       result = 'V$result';

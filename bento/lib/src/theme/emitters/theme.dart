@@ -60,6 +60,23 @@ class BentoThemeDartEmitter {
       ..type = refer('${builder.name}Data');
     builder.fields.add(field.build());
 
+    // Method of
+    final of = MethodBuilder()
+      ..static = true
+      ..name = 'of'
+      ..returns = refer('${builder.name}Data');
+
+    final context = ParameterBuilder()
+      ..type = refer('BuildContext')
+      ..name = 'context';
+    of.requiredParameters.add(context.build());
+
+    of.body = Code(
+        ' return context.dependOnInheritedWidgetOfExactType<${builder.name}>()?.data'
+        ' ?? '
+        '${builder.name}Data.fallback;');
+    builder.methods.add(of.build());
+
     // Method updateShouldNotify
     final updateShouldNotify = MethodBuilder()
       ..name = 'updateShouldNotify'

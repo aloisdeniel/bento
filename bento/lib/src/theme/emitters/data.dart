@@ -1,6 +1,7 @@
 import 'package:bento/src/helpers/data_class.dart';
 import 'package:bento/src/helpers/naming.dart';
 import 'package:bento/src/helpers/path.dart';
+import 'package:bento/src/project/models.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
@@ -8,23 +9,26 @@ import '../models.dart';
 
 class BentoThemeDataDartEmitter {
   const BentoThemeDataDartEmitter({
-    this.equatable = true,
+    this.options = const BentoDartOptions(),
   });
 
-  final bool equatable;
+  final BentoDartOptions options;
+
   String emitDart(BentoTheme theme) {
     final library = LibraryBuilder();
-
     library.body.addAll(_emitDataClasses('', theme));
 
     library.directives.addAll([
       Directive.import('package:flutter/widgets.dart'),
       Directive.import('package:path_icon/path_icon.dart'),
-      if (equatable) Directive.import('package:equatable/equatable.dart'),
+      if (options.equatable)
+        Directive.import('package:equatable/equatable.dart'),
     ]);
 
     final emitter = DartEmitter();
-    final source = '${library.build().accept(emitter)}'; //.fixTrailingCommas();
+    final source =
+        '// ignore_for_file: prefer_const_constructors, unused_import\n'
+        '${library.build().accept(emitter)}'; //.fixTrailingCommas();
     return DartFormatter().format(source);
   }
 
@@ -36,10 +40,12 @@ class BentoThemeDataDartEmitter {
   List<Class> _emitDataClasses(String parentName, BentoTheme theme) {
     final validTokens = theme.tokens.where((x) => x.value.maybeMap(
           unknown: (value) => false,
-          orElse: () => true,
+          orElse: () => x.name.isNotEmpty,
         ));
     final validChildren = theme.children.where(
-      (child) => child.children.isNotEmpty || child.tokens.isNotEmpty,
+      (child) =>
+          child.name.isNotEmpty &&
+          (child.children.isNotEmpty || child.tokens.isNotEmpty),
     );
     final childParentName = _dataClassName(parentName, theme);
 
@@ -89,7 +95,10 @@ class BentoThemeDataDartEmitter {
     );
 
     return [
-      builder.build(),
+      ...builder.build(
+        equatable: options.equatable,
+        lazyInstances: options.lazyInstances,
+      ),
       ...theme.children
           .map((child) => _emitDataClasses(childParentName, child))
           .expand((children) => children)
@@ -151,9 +160,17 @@ class BentoThemeDataDartEmitter {
           final fontFamily = fontStyle.textStyle.fontFamily;
           final fontSize = fontStyle.textStyle.fontSize;
           final fontWeight = fontStyle.textStyle.fontWeight;
+          final letterSpacing = fontStyle.textStyle.letterSpacing;
+          final height = fontStyle.textStyle.height;
+          final decoration = fontStyle.textStyle.decoration;
+          final style = fontStyle.textStyle.fontStyle;
           final result = StringBuffer('const TextStyle(');
           if (fontFamily != null) {
             result.write('fontFamily: \'$fontFamily\',');
+          }
+          final assetPackage = options.assetPackage;
+          if (assetPackage != null) {
+            result.write('package: \'$assetPackage\',');
           }
           if (fontSize != null) {
             result.write('fontSize: $fontSize,');
@@ -161,6 +178,22 @@ class BentoThemeDataDartEmitter {
           if (fontWeight != null) {
             result.write(
                 'fontWeight: FontWeight.w${(fontWeight.index + 1) * 100},');
+          }
+
+          if (letterSpacing != null) {
+            result.write('letterSpacing: $letterSpacing,');
+          }
+
+          if (height != null) {
+            result.write('height: $height,');
+          }
+
+          if (decoration != null) {
+            result.write('decoration: $decoration,');
+          }
+
+          if (style != null) {
+            result.write('fontStyle: $style,');
           }
 
           result.write(')');
