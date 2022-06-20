@@ -11,7 +11,7 @@ class BentoProjectConfiguration with _$BentoProjectConfiguration {
 
   const factory BentoProjectConfiguration({
     required String name,
-    required BentoDartOptions dart,
+    @Default(const BentoDartOptions()) BentoDartOptions dart,
   }) = _BentoProjectConfiguration;
 
   factory BentoProjectConfiguration.fromJson(Map<String, Object?> json) =>

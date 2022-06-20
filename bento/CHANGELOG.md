@@ -1,3 +1,9 @@
+## 0.0.19+alpha
+
+* Fixed path combine.
+* Fixed default dart config.
+* Fixing missing theme test directory.
+
 ## 0.0.18+alpha
 
 * Fixed winding rule parsing.

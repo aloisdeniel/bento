@@ -44,7 +44,6 @@ class BentoProjectDartBuilder {
     // Themes
     if (project.themes.isNotEmpty) {
       final themes = Directory(join(src.path, 'themes'));
-      final testThemes = Directory(join(test.path, 'themes'));
 
       if (!themes.existsSync()) {
         await themes.create(recursive: true);
@@ -67,6 +66,13 @@ class BentoProjectDartBuilder {
           return themeEmitter.emitDart(theme);
         },
       );
+
+      // Tests
+      final testThemes = Directory(join(test.path, 'themes'));
+
+      if (!testThemes.existsSync()) {
+        await testThemes.create(recursive: true);
+      }
 
       await _generate<BentoTheme>(
         testThemes,

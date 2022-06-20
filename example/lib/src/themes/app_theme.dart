@@ -7,6 +7,11 @@ class AppTheme extends InheritedWidget {
 
   final AppThemeData data;
 
+  static AppThemeData of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<AppTheme>()?.data ??
+        AppThemeData.fallback;
+  }
+
   @override
   bool updateShouldNotify(covariant AppTheme oldWidget) {
     return data != oldWidget.data;

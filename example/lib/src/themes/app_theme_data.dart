@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors, unused_import
 import 'package:flutter/widgets.dart';
 import 'package:path_icon/path_icon.dart';
 import 'package:equatable/equatable.dart';
@@ -331,38 +332,10 @@ class AppThemeGradientGradientData extends Equatable {
 }
 
 class AppThemeGradientGradientMultiplegradData extends Equatable {
-  const AppThemeGradientGradientMultiplegradData({required this.extensions});
+  const AppThemeGradientGradientMultiplegradData();
 
   static AppThemeGradientGradientMultiplegradData fallback =
-      AppThemeGradientGradientMultiplegradData(
-    extensions: AppThemeGradientGradientMultiplegradExtensionsData.fallback,
-  );
-
-  final AppThemeGradientGradientMultiplegradExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        extensions,
-      ];
-}
-
-class AppThemeGradientGradientMultiplegradExtensionsData extends Equatable {
-  const AppThemeGradientGradientMultiplegradExtensionsData();
-
-  static AppThemeGradientGradientMultiplegradExtensionsData fallback =
-      AppThemeGradientGradientMultiplegradExtensionsData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData();
+      AppThemeGradientGradientMultiplegradData();
 
   @override
   List<Object?> get props => [];
@@ -432,49 +405,23 @@ class AppThemeColorColorsData extends Equatable {
 
 class AppThemeColorColorsMultipleFillsData extends Equatable {
   const AppThemeColorColorsMultipleFillsData(
-      {required this.v0, required this.v1, required this.extensions});
+      {required this.v0, required this.v1});
 
   static AppThemeColorColorsMultipleFillsData fallback =
       AppThemeColorColorsMultipleFillsData(
     v0: const Color(0xff40ffba),
     v1: const Color(0x1a000000),
-    extensions: AppThemeColorColorsMultipleFillsExtensionsData.fallback,
   );
 
   final Color v0;
 
   final Color v1;
 
-  final AppThemeColorColorsMultipleFillsExtensionsData extensions;
-
   @override
   List<Object?> get props => [
         v0,
         v1,
-        extensions,
       ];
-}
-
-class AppThemeColorColorsMultipleFillsExtensionsData extends Equatable {
-  const AppThemeColorColorsMultipleFillsExtensionsData();
-
-  static AppThemeColorColorsMultipleFillsExtensionsData fallback =
-      AppThemeColorColorsMultipleFillsExtensionsData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  @override
-  List<Object?> get props => [];
 }
 
 class AppThemeColorColorsSpecialCharactersData extends Equatable {
@@ -559,37 +506,9 @@ class AppThemeGridData extends Equatable {
 }
 
 class AppThemeGridMultipleData extends Equatable {
-  const AppThemeGridMultipleData({required this.extensions});
+  const AppThemeGridMultipleData();
 
-  static AppThemeGridMultipleData fallback = AppThemeGridMultipleData(
-    extensions: AppThemeGridMultipleExtensionsData.fallback,
-  );
-
-  final AppThemeGridMultipleExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        extensions,
-      ];
-}
-
-class AppThemeGridMultipleExtensionsData extends Equatable {
-  const AppThemeGridMultipleExtensionsData();
-
-  static AppThemeGridMultipleExtensionsData fallback =
-      AppThemeGridMultipleExtensionsData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData();
+  static AppThemeGridMultipleData fallback = AppThemeGridMultipleData();
 
   @override
   List<Object?> get props => [];
@@ -624,31 +543,49 @@ class AppThemeFontBodyData extends Equatable {
       fontFamily: 'Akzidenz-Grotesk Pro',
       fontSize: 20.0,
       fontWeight: FontWeight.w700,
+      letterSpacing: 0.4,
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
     ),
     h4StrikeThrough: const TextStyle(
       fontFamily: 'Roboto',
       fontSize: 16.0,
       fontWeight: FontWeight.w500,
+      letterSpacing: 0.0,
+      decoration: TextDecoration.lineThrough,
+      fontStyle: FontStyle.italic,
     ),
     italic: const TextStyle(
       fontFamily: 'Roboto',
       fontSize: 12.0,
       fontWeight: FontWeight.w400,
+      letterSpacing: 0.0,
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.italic,
     ),
     extraBoldCondensedItalic: const TextStyle(
       fontFamily: 'Akzidenz-Grotesk Pro',
       fontSize: 12.0,
       fontWeight: FontWeight.w800,
+      letterSpacing: 0.0,
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.italic,
     ),
     mediumExtendedItalic: const TextStyle(
       fontFamily: 'Akzidenz-Grotesk Pro',
       fontSize: 20.0,
       fontWeight: FontWeight.w500,
+      letterSpacing: 0.0,
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.italic,
     ),
     super$: const TextStyle(
       fontFamily: 'Akzidenz-Grotesk Pro',
       fontSize: 22.0,
       fontWeight: FontWeight.w900,
+      letterSpacing: 0.0,
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
     ),
   );
 
@@ -676,140 +613,44 @@ class AppThemeFontBodyData extends Equatable {
 }
 
 class AppThemeEffectData extends Equatable {
-  const AppThemeEffectData(
-      {required this.innerShadowc40multiplec41,
-      required this.layerBlur,
-      required this.backgroundBlur});
+  const AppThemeEffectData({required this.innerShadowMultiple});
 
   static AppThemeEffectData fallback = AppThemeEffectData(
-    innerShadowc40multiplec41:
-        AppThemeEffectInnerShadowc40multiplec41Data.fallback,
-    layerBlur: AppThemeEffectLayerBlurData.fallback,
-    backgroundBlur: AppThemeEffectBackgroundBlurData.fallback,
+    innerShadowMultiple: AppThemeEffectInnerShadowMultipleData.fallback,
   );
 
-  final AppThemeEffectInnerShadowc40multiplec41Data innerShadowc40multiplec41;
-
-  final AppThemeEffectLayerBlurData layerBlur;
-
-  final AppThemeEffectBackgroundBlurData backgroundBlur;
+  final AppThemeEffectInnerShadowMultipleData innerShadowMultiple;
 
   @override
   List<Object?> get props => [
-        innerShadowc40multiplec41,
-        layerBlur,
-        backgroundBlur,
+        innerShadowMultiple,
       ];
 }
 
-class AppThemeEffectInnerShadowc40multiplec41Data extends Equatable {
-  const AppThemeEffectInnerShadowc40multiplec41Data({required this.extensions});
+class AppThemeEffectInnerShadowMultipleData extends Equatable {
+  const AppThemeEffectInnerShadowMultipleData();
 
-  static AppThemeEffectInnerShadowc40multiplec41Data fallback =
-      AppThemeEffectInnerShadowc40multiplec41Data(
-    extensions: AppThemeEffectInnerShadowc40multiplec41ExtensionsData.fallback,
-  );
-
-  final AppThemeEffectInnerShadowc40multiplec41ExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        extensions,
-      ];
-}
-
-class AppThemeEffectInnerShadowc40multiplec41ExtensionsData extends Equatable {
-  const AppThemeEffectInnerShadowc40multiplec41ExtensionsData();
-
-  static AppThemeEffectInnerShadowc40multiplec41ExtensionsData fallback =
-      AppThemeEffectInnerShadowc40multiplec41ExtensionsData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData();
+  static AppThemeEffectInnerShadowMultipleData fallback =
+      AppThemeEffectInnerShadowMultipleData();
 
   @override
   List<Object?> get props => [];
 }
 
 class AppThemeEffectLayerBlurData extends Equatable {
-  const AppThemeEffectLayerBlurData({required this.extensions});
+  const AppThemeEffectLayerBlurData();
 
-  static AppThemeEffectLayerBlurData fallback = AppThemeEffectLayerBlurData(
-    extensions: AppThemeEffectLayerBlurExtensionsData.fallback,
-  );
-
-  final AppThemeEffectLayerBlurExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        extensions,
-      ];
-}
-
-class AppThemeEffectLayerBlurExtensionsData extends Equatable {
-  const AppThemeEffectLayerBlurExtensionsData();
-
-  static AppThemeEffectLayerBlurExtensionsData fallback =
-      AppThemeEffectLayerBlurExtensionsData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
+  static AppThemeEffectLayerBlurData fallback = AppThemeEffectLayerBlurData();
 
   @override
   List<Object?> get props => [];
 }
 
 class AppThemeEffectBackgroundBlurData extends Equatable {
-  const AppThemeEffectBackgroundBlurData({required this.extensions});
+  const AppThemeEffectBackgroundBlurData();
 
   static AppThemeEffectBackgroundBlurData fallback =
-      AppThemeEffectBackgroundBlurData(
-    extensions: AppThemeEffectBackgroundBlurExtensionsData.fallback,
-  );
-
-  final AppThemeEffectBackgroundBlurExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        extensions,
-      ];
-}
-
-class AppThemeEffectBackgroundBlurExtensionsData extends Equatable {
-  const AppThemeEffectBackgroundBlurExtensionsData();
-
-  static AppThemeEffectBackgroundBlurExtensionsData fallback =
-      AppThemeEffectBackgroundBlurExtensionsData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
+      AppThemeEffectBackgroundBlurData();
 
   @override
   List<Object?> get props => [];
@@ -1106,48 +947,48 @@ class AppThemeIconsData extends Equatable {
 
   static AppThemeIconsData fallback = AppThemeIconsData(
     propagation: PathIconData(
-      path: Path()
-        ..addPath(
+      path: Path.combine(
+        PathOperation.union,
+        Path.combine(
+          PathOperation.union,
+          Path.combine(
+            PathOperation.union,
+            Path()
+              ..fillType = PathFillType.nonZero
+              ..moveTo(11.5, 3.5)
+              ..cubicTo(11.5, 5.43299674987793, 9.93299674987793, 7.0, 8.0, 7.0)
+              ..cubicTo(6.06700325012207, 7.0, 4.5, 5.43299674987793, 4.5, 3.5)
+              ..cubicTo(
+                  4.5, 1.5670033693313599, 6.06700325012207, 0.0, 8.0, 0.0)
+              ..cubicTo(
+                  9.93299674987793, 0.0, 11.5, 1.5670033693313599, 11.5, 3.5)
+              ..close(),
+            Path()
+              ..fillType = PathFillType.nonZero
+              ..moveTo(1.0, 10.299994468688965)
+              ..lineTo(4.143750190734863, 7.159369468688965)
+              ..cubicTo(4.596875190734863, 6.712494373321533, 5.3125,
+                  7.331244468688965, 4.849999904632568, 7.86561918258667)
+              ..lineTo(1.7156250476837158, 10.999994277954102)
+              ..lineTo(2.075000047683716, 10.999994277954102)
+              ..cubicTo(
+                  2.7218751907348633,
+                  11.006244659423828,
+                  2.7531251907348633,
+                  11.974994659423828,
+                  2.075000047683716,
+                  11.999994277954102)
+              ..lineTo(0.5, 11.999994277954102)
+              ..cubicTo(0.22499999403953552, 11.999994277954102, 0.0,
+                  11.774993896484375, 0.0, 11.499994277954102)
+              ..lineTo(0.0, 9.924994468688965)
+              ..cubicTo(0.015625, 9.262495040893555, 1.0, 9.265619277954102,
+                  1.0, 9.924994468688965)
+              ..lineTo(1.0, 10.299994468688965)
+              ..close(),
+          ),
           Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(11.5, 3.5)
-            ..cubicTo(11.5, 5.43299674987793, 9.93299674987793, 7.0, 8.0, 7.0)
-            ..cubicTo(6.06700325012207, 7.0, 4.5, 5.43299674987793, 4.5, 3.5)
-            ..cubicTo(4.5, 1.5670033693313599, 6.06700325012207, 0.0, 8.0, 0.0)
-            ..cubicTo(
-                9.93299674987793, 0.0, 11.5, 1.5670033693313599, 11.5, 3.5)
-            ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(1.0, 10.299994468688965)
-            ..lineTo(4.143750190734863, 7.159369468688965)
-            ..cubicTo(4.596875190734863, 6.712494373321533, 5.3125,
-                7.331244468688965, 4.849999904632568, 7.86561918258667)
-            ..lineTo(1.7156250476837158, 10.999994277954102)
-            ..lineTo(2.075000047683716, 10.999994277954102)
-            ..cubicTo(
-                2.7218751907348633,
-                11.006244659423828,
-                2.7531251907348633,
-                11.974994659423828,
-                2.075000047683716,
-                11.999994277954102)
-            ..lineTo(0.5, 11.999994277954102)
-            ..cubicTo(0.22499999403953552, 11.999994277954102, 0.0,
-                11.774993896484375, 0.0, 11.499994277954102)
-            ..lineTo(0.0, 9.924994468688965)
-            ..cubicTo(0.015625, 9.262495040893555, 1.0, 9.265619277954102, 1.0,
-                9.924994468688965)
-            ..lineTo(1.0, 10.299994468688965)
-            ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
+            ..fillType = PathFillType.nonZero
             ..moveTo(14.999682426452637, 10.299994468688965)
             ..lineTo(11.855941772460938, 7.159369468688965)
             ..cubicTo(11.402817726135254, 6.712494373321533, 10.68719482421875,
@@ -1174,74 +1015,67 @@ class AppThemeIconsData extends Equatable {
                 9.265619277954102, 14.999682426452637, 9.924994468688965)
             ..lineTo(14.999682426452637, 10.299994468688965)
             ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(7.5065741539001465, 9.506209373474121)
-            ..lineTo(7.5065741539001465, 14.299959182739258)
-            ..lineTo(7.2409491539001465, 14.034334182739258)
-            ..cubicTo(6.775323867797852, 13.568708419799805, 6.075324535369873,
-                14.262458801269531, 6.534699440002441, 14.740583419799805)
-            ..lineTo(7.6471991539001465, 15.853082656860352)
-            ..cubicTo(7.840949058532715, 16.046833038330078, 8.159698486328125,
-                16.046833038330078, 8.353448867797852, 15.853082656860352)
-            ..lineTo(9.465949058532715, 14.740583419799805)
-            ..cubicTo(9.928448677062988, 14.243708610534668, 9.222198486328125,
-                13.581209182739258, 8.759698867797852, 14.034334182739258)
-            ..lineTo(8.506574630737305, 14.287458419799805)
-            ..lineTo(8.506574630737305, 9.506209373474121)
-            ..cubicTo(8.453449249267578, 8.803084373474121, 7.50969934463501,
-                8.868708610534668, 7.5065741539001465, 9.506209373474121)
-            ..close(),
-          Offset.zero,
         ),
+        Path()
+          ..fillType = PathFillType.nonZero
+          ..moveTo(7.5065741539001465, 9.506209373474121)
+          ..lineTo(7.5065741539001465, 14.299959182739258)
+          ..lineTo(7.2409491539001465, 14.034334182739258)
+          ..cubicTo(6.775323867797852, 13.568708419799805, 6.075324535369873,
+              14.262458801269531, 6.534699440002441, 14.740583419799805)
+          ..lineTo(7.6471991539001465, 15.853082656860352)
+          ..cubicTo(7.840949058532715, 16.046833038330078, 8.159698486328125,
+              16.046833038330078, 8.353448867797852, 15.853082656860352)
+          ..lineTo(9.465949058532715, 14.740583419799805)
+          ..cubicTo(9.928448677062988, 14.243708610534668, 9.222198486328125,
+              13.581209182739258, 8.759698867797852, 14.034334182739258)
+          ..lineTo(8.506574630737305, 14.287458419799805)
+          ..lineTo(8.506574630737305, 9.506209373474121)
+          ..cubicTo(8.453449249267578, 8.803084373474121, 7.50969934463501,
+              8.868708610534668, 7.5065741539001465, 9.506209373474121)
+          ..close(),
+      ),
       viewBox: Offset.zero & Size(15.999679565429688, 15.998395919799805),
     ),
     productMenuClosed: PathIconData(
-      path: Path()
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(0.0, 0.96875)
-            ..cubicTo(0.0, 0.43438720703125, 0.4345703125, 0.0, 0.96875, 0.0)
-            ..cubicTo(1.505859375, 0.0, 1.9404296875, 0.43438720703125, 1.9375,
-                0.96875)
-            ..lineTo(1.9375, 15.03125)
-            ..cubicTo(
-                1.9375, 15.56561279296875, 1.5029296875, 16.0, 0.96875, 16.0)
-            ..cubicTo(0.4345703125, 16.0, 0.0, 15.56561279296875, 0.0, 15.03125)
-            ..lineTo(0.0, 0.96875)
-            ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(14.5, 16.0)
-            ..lineTo(4.5, 16.0)
-            ..cubicTo(3.671875, 16.0, 3.0, 15.328125, 3.0, 14.5)
-            ..lineTo(3.0, 1.5)
-            ..cubicTo(3.0, 0.67498779296875, 3.671875, 0.0, 4.5, 0.0)
-            ..lineTo(14.5, 0.0)
-            ..cubicTo(15.328125, 0.0, 16.0, 0.671875, 16.0, 1.5)
-            ..lineTo(16.0, 14.5)
-            ..cubicTo(16.0, 15.32501220703125, 15.3251953125, 16.0, 14.5, 16.0)
-            ..close()
-            ..moveTo(5.0, 14.0)
-            ..lineTo(14.0, 14.0)
-            ..lineTo(14.0, 2.0)
-            ..lineTo(5.0, 2.0)
-            ..lineTo(5.0, 14.0)
-            ..close(),
-          Offset.zero,
-        ),
+      path: Path.combine(
+        PathOperation.union,
+        Path()
+          ..fillType = PathFillType.nonZero
+          ..moveTo(0.0, 0.96875)
+          ..cubicTo(0.0, 0.43438720703125, 0.4345703125, 0.0, 0.96875, 0.0)
+          ..cubicTo(
+              1.505859375, 0.0, 1.9404296875, 0.43438720703125, 1.9375, 0.96875)
+          ..lineTo(1.9375, 15.03125)
+          ..cubicTo(
+              1.9375, 15.56561279296875, 1.5029296875, 16.0, 0.96875, 16.0)
+          ..cubicTo(0.4345703125, 16.0, 0.0, 15.56561279296875, 0.0, 15.03125)
+          ..lineTo(0.0, 0.96875)
+          ..close(),
+        Path()
+          ..fillType = PathFillType.evenOdd
+          ..moveTo(14.5, 16.0)
+          ..lineTo(4.5, 16.0)
+          ..cubicTo(3.671875, 16.0, 3.0, 15.328125, 3.0, 14.5)
+          ..lineTo(3.0, 1.5)
+          ..cubicTo(3.0, 0.67498779296875, 3.671875, 0.0, 4.5, 0.0)
+          ..lineTo(14.5, 0.0)
+          ..cubicTo(15.328125, 0.0, 16.0, 0.671875, 16.0, 1.5)
+          ..lineTo(16.0, 14.5)
+          ..cubicTo(16.0, 15.32501220703125, 15.3251953125, 16.0, 14.5, 16.0)
+          ..close()
+          ..moveTo(5.0, 14.0)
+          ..lineTo(14.0, 14.0)
+          ..lineTo(14.0, 2.0)
+          ..lineTo(5.0, 2.0)
+          ..lineTo(5.0, 14.0)
+          ..close(),
+      ),
       viewBox: Offset.zero & Size(16.0, 16.0),
     ),
     pasteWord: PathIconData(
       path: Path()
-        ..fillType = PathFillType.evenOdd
+        ..fillType = PathFillType.nonZero
         ..moveTo(13.0, 6.0)
         ..lineTo(11.0, 6.0)
         ..lineTo(11.0, 2.8709375858306885)
@@ -1294,7 +1128,7 @@ class AppThemeIconsData extends Equatable {
     ),
     paperclip: PathIconData(
       path: Path()
-        ..fillType = PathFillType.evenOdd
+        ..fillType = PathFillType.nonZero
         ..moveTo(15.070035994052887, 1.912181556224823)
         ..cubicTo(14.489995241165161, 1.3321734070777893, 13.719322443008423,
             1.01318359375, 12.899640142917633, 1.01318359375)
@@ -1351,7 +1185,7 @@ class AppThemeIconsData extends Equatable {
     ),
     pageTree: PathIconData(
       path: Path()
-        ..fillType = PathFillType.evenOdd
+        ..fillType = PathFillType.nonZero
         ..moveTo(5.012578725814819, 9.0)
         ..lineTo(8.974842548370361, 9.0)
         ..cubicTo(8.974842548370361, 9.550000011920929, 9.427672922611237, 10.0,

@@ -10,7 +10,9 @@ _$_BentoProjectConfiguration _$$_BentoProjectConfigurationFromJson(
         Map<String, dynamic> json) =>
     _$_BentoProjectConfiguration(
       name: json['name'] as String,
-      dart: BentoDartOptions.fromJson(json['dart'] as Map<String, dynamic>),
+      dart: json['dart'] == null
+          ? const BentoDartOptions()
+          : BentoDartOptions.fromJson(json['dart'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_BentoProjectConfigurationToJson(

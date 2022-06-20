@@ -122,7 +122,8 @@ class __$$_BentoProjectConfigurationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_BentoProjectConfiguration extends _BentoProjectConfiguration {
-  const _$_BentoProjectConfiguration({required this.name, required this.dart})
+  const _$_BentoProjectConfiguration(
+      {required this.name, this.dart = const BentoDartOptions()})
       : super._();
 
   factory _$_BentoProjectConfiguration.fromJson(Map<String, dynamic> json) =>
@@ -131,6 +132,7 @@ class _$_BentoProjectConfiguration extends _BentoProjectConfiguration {
   @override
   final String name;
   @override
+  @JsonKey()
   final BentoDartOptions dart;
 
   @override
@@ -169,7 +171,7 @@ class _$_BentoProjectConfiguration extends _BentoProjectConfiguration {
 abstract class _BentoProjectConfiguration extends BentoProjectConfiguration {
   const factory _BentoProjectConfiguration(
       {required final String name,
-      required final BentoDartOptions dart}) = _$_BentoProjectConfiguration;
+      final BentoDartOptions dart}) = _$_BentoProjectConfiguration;
   const _BentoProjectConfiguration._() : super._();
 
   factory _BentoProjectConfiguration.fromJson(Map<String, dynamic> json) =
