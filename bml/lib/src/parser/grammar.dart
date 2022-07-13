@@ -2,7 +2,7 @@ import 'package:petitparser/petitparser.dart';
 
 class FigmaWidgetGrammarDefinition extends GrammarDefinition {
   @override
-  Parser start() => ref0(tagNode).end();
+  Parser start() => ref0(value).end();
 
   Parser token(Object source, [String? name]) {
     if (source is String) {
@@ -80,6 +80,11 @@ class FigmaWidgetGrammarDefinition extends GrammarDefinition {
   // Values --------------------------------------------------------------------
 
   Parser value() => [
+        ref0(wrappedValue),
+        ref0(rawValue),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined);
+
+  Parser rawValue() => [
         ref0(stringValue),
         ref0(numberValue),
         ref0(objectValue),
@@ -90,11 +95,22 @@ class FigmaWidgetGrammarDefinition extends GrammarDefinition {
         ref0(referenceValue),
       ].toChoiceParser(failureJoiner: selectFarthestJoined);
 
+  Parser wrappedValue() =>
+      ref1(token, '(') &
+      [
+        ref0(nodeValue),
+        ref0(rawValue),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined) &
+      ref1(token, ')');
+
   Parser arrayValue() =>
       ref1(token, '[') &
       ref0(elements).optional() &
       ref1(token, ',').optional() &
       ref1(token, ']');
+
+  Parser nodeValue() => ref0(tagNode);
+
   Parser elements() =>
       ref0(value).separatedBy(ref1(token, ','), includeSeparators: false);
   Parser members() => ref0(objectValueMember)
@@ -122,7 +138,7 @@ class FigmaWidgetGrammarDefinition extends GrammarDefinition {
   Parser characterPrimitive() =>
       ref0(characterNormal) | ref0(characterEscape) | ref0(characterUnicode);
   Parser characterNormal() => pattern('^"\\');
-  Parser characterEscape() => char('\\') & pattern(jsonEscapeChars.keys.join());
+  Parser characterEscape() => char('\\') & pattern(escapeChars.keys.join());
   Parser characterUnicode() => string('\\u') & pattern('0-9A-Fa-f').times(4);
   Parser numberPrimitive() =>
       char('-').optional() &
@@ -151,7 +167,7 @@ class FigmaWidgetGrammarDefinition extends GrammarDefinition {
       ref0(identifierStartLexicalToken) | ref0(digitLexicalToken);
 }
 
-const Map<String, String> jsonEscapeChars = {
+const Map<String, String> escapeChars = {
   '\\': '\\',
   '/': '/',
   '"': '"',

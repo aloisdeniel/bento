@@ -4,6 +4,6 @@ export 'src/formatter/formatter.dart';
 
 export 'src/parser/parser.dart';
 
-export 'src/serializer/serializer.dart';
-export 'src/serializer/binary_serializer.dart';
-export 'src/serializer/source_serializer.dart';
+export 'src/serializers/serializer.dart';
+export 'src/serializers/binary/serializer.dart';
+export 'src/serializers/source/serializer.dart';

@@ -12,7 +12,7 @@ final _parser = FigmaWidgetParserDefinition().build();
 class FigmaWidgetParserDefinition extends FigmaWidgetGrammarDefinition {
   @override
   Parser start() {
-    return super.start().map((x) => BmlDocument(x as BmlNode));
+    return super.start().map((x) => BmlDocument(x as BmlValue));
   }
   // Nodes ---------------------------------------------------------------------
 
@@ -144,6 +144,9 @@ class FigmaWidgetParserDefinition extends FigmaWidgetGrammarDefinition {
       super.referenceValue().map((each) => BmlValue.reference(each));
 
   @override
+  Parser nodeValue() => super.nodeValue().map((each) => BmlValue.node(each));
+
+  @override
   Parser identifier() =>
       super.identifier().map((each) => each[0] + each[1].join());
 
@@ -153,7 +156,7 @@ class FigmaWidgetParserDefinition extends FigmaWidgetGrammarDefinition {
 
   @override
   Parser characterEscape() =>
-      super.characterEscape().map((each) => jsonEscapeChars[each[1]]);
+      super.characterEscape().map((each) => escapeChars[each[1]]);
 
   @override
   Parser characterUnicode() => super.characterUnicode().map((each) {

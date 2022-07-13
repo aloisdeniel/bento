@@ -30,6 +30,13 @@ class FigmaWidgetFormatterDefinition extends FigmaWidgetGrammarDefinition {
   }
 
   @override
+  Parser wrappedValue() {
+    return super.wrappedValue().map(
+          (value) => value[1]?.expand((e) => e as Iterable) ?? const [],
+        );
+  }
+
+  @override
   Parser falseValue() {
     return super.falseValue().token().map((value) => [
           FormattedToken(

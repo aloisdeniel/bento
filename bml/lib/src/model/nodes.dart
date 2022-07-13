@@ -9,8 +9,8 @@ abstract class BmlNode extends Equatable {
     String identifier, {
     List<BmlProperty> properties,
     List<BmlNode> children,
-  }) = _TagBmlNode;
-  const factory BmlNode.text(String text) = _TextBmlNode;
+  }) = BmlTagNode;
+  const factory BmlNode.text(String text) = BmlTextNode;
 
   T map<T>({
     required T Function(
@@ -22,10 +22,10 @@ abstract class BmlNode extends Equatable {
     required T Function(String text) text,
   }) {
     final value = this;
-    if (value is _TextBmlNode) {
+    if (value is BmlTextNode) {
       return text(value._text);
     }
-    if (value is _TagBmlNode) {
+    if (value is BmlTagNode) {
       return tag(
         value.name,
         value.properties,
@@ -49,12 +49,12 @@ abstract class BmlNode extends Equatable {
 
   String get text => map(
         tag: (name, properties, children) =>
-            children.whereType<_TextBmlNode>().map((e) => e.text).join().trim(),
+            children.whereType<BmlTextNode>().map((e) => e.text).join().trim(),
         text: (text) => text,
       );
 
   Iterable<BmlNode> get tags => map(
-        tag: (name, properties, children) => children.whereType<_TagBmlNode>(),
+        tag: (name, properties, children) => children.whereType<BmlTagNode>(),
         text: (text) => const <BmlNode>[],
       );
 
@@ -71,8 +71,8 @@ abstract class BmlNode extends Equatable {
       );
 }
 
-class _TextBmlNode extends BmlNode {
-  const _TextBmlNode(this._text);
+class BmlTextNode extends BmlNode {
+  const BmlTextNode(this._text);
 
   final String _text;
 
@@ -80,8 +80,8 @@ class _TextBmlNode extends BmlNode {
   List<Object?> get props => [_text];
 }
 
-class _TagBmlNode extends BmlNode {
-  const _TagBmlNode(
+class BmlTagNode extends BmlNode {
+  const BmlTagNode(
     this.name, {
     this.properties = const <BmlProperty>[],
     this.children = const <BmlNode>[],

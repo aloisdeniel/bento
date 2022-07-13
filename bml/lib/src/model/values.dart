@@ -1,3 +1,4 @@
+import 'package:bml/bml.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class BmlValue extends Equatable {
@@ -6,6 +7,7 @@ abstract class BmlValue extends Equatable {
   const factory BmlValue.boolean(bool value) = _RawBmlValue<bool>;
   const factory BmlValue.string(String value) = _RawBmlValue<String>;
   const factory BmlValue.number(num value) = _RawBmlValue<num>;
+  const factory BmlValue.node(BmlNode value) = _BmlNodeValue;
   const factory BmlValue.reference(String name) = _ReferenceValue;
   const factory BmlValue.array(List<BmlValue> items) = _ArrayValue;
   const factory BmlValue.object(Map<String, BmlValue> items) = _ObjectValue;
@@ -16,6 +18,7 @@ abstract class BmlValue extends Equatable {
     required T Function(bool value) boolean,
     required T Function(String value) string,
     required T Function(num value) number,
+    required T Function(BmlNode node) node,
     required T Function(List<BmlValue> items) array,
     required T Function(Map<String, BmlValue> items) object,
   }) {
@@ -38,6 +41,9 @@ abstract class BmlValue extends Equatable {
     if (value is _ObjectValue) {
       return object(value.items);
     }
+    if (value is _BmlNodeValue) {
+      return node(value.node);
+    }
 
     throw Exception();
   }
@@ -49,6 +55,7 @@ abstract class BmlValue extends Equatable {
     T Function(bool value)? boolean,
     T Function(String value)? string,
     T Function(num value)? number,
+    T Function(BmlNode node)? node,
     T Function(List<BmlValue> items)? array,
     T Function(Map<String, BmlValue> items)? object,
   }) {
@@ -60,6 +67,7 @@ abstract class BmlValue extends Equatable {
       number: (value) => number != null ? number(value) : orElse(),
       array: (items) => array != null ? array(items) : orElse(),
       object: (items) => object != null ? object(items) : orElse(),
+      node: (value) => node != null ? node(value) : orElse(),
     );
   }
 }
@@ -104,4 +112,13 @@ class _ObjectValue extends BmlValue {
   int get length => items.length;
   @override
   List<Object?> get props => [items];
+}
+
+class _BmlNodeValue extends BmlValue {
+  const _BmlNodeValue(this.node);
+
+  final BmlNode node;
+
+  @override
+  List<Object?> get props => [node];
 }
