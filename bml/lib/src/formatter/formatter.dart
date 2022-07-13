@@ -3,6 +3,8 @@ import 'package:petitparser/petitparser.dart';
 
 import '../parser/grammar.dart';
 
+export 'formatted.dart';
+
 Result<FormattedSource> formatFigmaWidgetSource(String input) {
   {}
   return _parser.parse(input).map(
