@@ -25,6 +25,8 @@ class BentoDartOptions with _$BentoDartOptions {
   const factory BentoDartOptions({
     @Default(true) bool equatable,
     @Default(false) bool lazyInstances,
+    @Default(true) bool reflect,
+    @Default(true) bool tests,
     String? assetPackage,
   }) = _BentoDartOptions;
 

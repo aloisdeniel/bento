@@ -1,6 +1,6 @@
 name: bento
 description: A new way of defining widgets.
-version: 0.0.19+alpha
+version: 0.0.22+alpha
 homepage: https://github.com/aloisdeniel/bento
 
 executables:

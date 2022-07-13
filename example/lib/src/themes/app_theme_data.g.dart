@@ -20,7 +20,7 @@ class AppThemeData extends Equatable {
       required this.typography,
       required this.icons});
 
-  static AppThemeData fallback = AppThemeData(
+  static final AppThemeData fallback = AppThemeData(
     sizes: AppThemeSizesData.fallback,
     breakpoints: AppThemeBreakpointsData.fallback,
     spacing: AppThemeSpacingData.fallback,
@@ -65,6 +65,22 @@ class AppThemeData extends Equatable {
 
   final AppThemeIconsData icons;
 
+  Map<String, Object?> reflect() => {
+        'sizes': sizes,
+        'breakpoints': breakpoints,
+        'spacing': spacing,
+        'borders': borders,
+        'radius': radius,
+        'radii': radii,
+        'motion': motion,
+        'gradient': gradient,
+        'color': color,
+        'grid': grid,
+        'font': font,
+        'effect': effect,
+        'typography': typography,
+        'icons': icons,
+      };
   @override
   List<Object?> get props => [
         sizes,
@@ -100,7 +116,7 @@ class AppThemeSizesData extends Equatable {
       required this.rect,
       required this.shapeInComponent});
 
-  static AppThemeSizesData fallback = AppThemeSizesData(
+  static final AppThemeSizesData fallback = AppThemeSizesData(
     v32: 32.72,
     v40: 40.0,
     v60: 60.0,
@@ -142,6 +158,21 @@ class AppThemeSizesData extends Equatable {
 
   final double shapeInComponent;
 
+  Map<String, double> reflect() => {
+        'v32': v32,
+        'v40': v40,
+        'v60': v60,
+        'v80': v80,
+        'plainToken': plainToken,
+        'tokenInFrame': tokenInFrame,
+        'tokenInGroup': tokenInGroup,
+        'inVariant60': inVariant60,
+        'inVariant90': inVariant90,
+        'inVariant120': inVariant120,
+        'frame': frame,
+        'rect': rect,
+        'shapeInComponent': shapeInComponent,
+      };
   @override
   List<Object?> get props => [
         v32,
@@ -164,7 +195,7 @@ class AppThemeBreakpointsData extends Equatable {
   const AppThemeBreakpointsData(
       {required this.lg, required this.sm, required this.md});
 
-  static AppThemeBreakpointsData fallback = AppThemeBreakpointsData(
+  static final AppThemeBreakpointsData fallback = AppThemeBreakpointsData(
     lg: 1280.0,
     sm: 768.0,
     md: 1024.0,
@@ -176,6 +207,11 @@ class AppThemeBreakpointsData extends Equatable {
 
   final double md;
 
+  Map<String, double> reflect() => {
+        'lg': lg,
+        'sm': sm,
+        'md': md,
+      };
   @override
   List<Object?> get props => [
         lg,
@@ -188,7 +224,7 @@ class AppThemeSpacingData extends Equatable {
   const AppThemeSpacingData(
       {required this.v10, required this.mixed, required this.top});
 
-  static AppThemeSpacingData fallback = AppThemeSpacingData(
+  static final AppThemeSpacingData fallback = AppThemeSpacingData(
     v10: const EdgeInsets.all(10.0),
     mixed: const EdgeInsets.only(
       top: 10.0,
@@ -210,6 +246,11 @@ class AppThemeSpacingData extends Equatable {
 
   final EdgeInsets top;
 
+  Map<String, EdgeInsets> reflect() => {
+        'v10': v10,
+        'mixed': mixed,
+        'top': top,
+      };
   @override
   List<Object?> get props => [
         v10,
@@ -221,12 +262,15 @@ class AppThemeSpacingData extends Equatable {
 class AppThemeBordersData extends Equatable {
   const AppThemeBordersData({required this.unsupported});
 
-  static AppThemeBordersData fallback = AppThemeBordersData(
+  static final AppThemeBordersData fallback = AppThemeBordersData(
     unsupported: AppThemeBordersUnsupportedData.fallback,
   );
 
   final AppThemeBordersUnsupportedData unsupported;
 
+  Map<String, AppThemeBordersUnsupportedData> reflect() => {
+        'unsupported': unsupported,
+      };
   @override
   List<Object?> get props => [
         unsupported,
@@ -236,9 +280,10 @@ class AppThemeBordersData extends Equatable {
 class AppThemeBordersUnsupportedData extends Equatable {
   const AppThemeBordersUnsupportedData();
 
-  static AppThemeBordersUnsupportedData fallback =
+  static final AppThemeBordersUnsupportedData fallback =
       AppThemeBordersUnsupportedData();
 
+  Map<String, Object?> reflect() => {};
   @override
   List<Object?> get props => [];
 }
@@ -246,7 +291,7 @@ class AppThemeBordersUnsupportedData extends Equatable {
 class AppThemeRadiusData extends Equatable {
   const AppThemeRadiusData({required this.v5});
 
-  static AppThemeRadiusData fallback = AppThemeRadiusData(
+  static final AppThemeRadiusData fallback = AppThemeRadiusData(
     v5: const BorderRadius.only(
       topLeft: Radius.circular(5.0),
       topRight: Radius.circular(5.0),
@@ -257,6 +302,9 @@ class AppThemeRadiusData extends Equatable {
 
   final BorderRadius v5;
 
+  Map<String, BorderRadius> reflect() => {
+        'v5': v5,
+      };
   @override
   List<Object?> get props => [
         v5,
@@ -266,7 +314,7 @@ class AppThemeRadiusData extends Equatable {
 class AppThemeRadiiData extends Equatable {
   const AppThemeRadiiData({required this.smoothing, required this.mixed});
 
-  static AppThemeRadiiData fallback = AppThemeRadiiData(
+  static final AppThemeRadiiData fallback = AppThemeRadiiData(
     smoothing: const BorderRadius.only(
       topLeft: Radius.circular(10.0),
       topRight: Radius.circular(10.0),
@@ -285,6 +333,10 @@ class AppThemeRadiiData extends Equatable {
 
   final BorderRadius mixed;
 
+  Map<String, BorderRadius> reflect() => {
+        'smoothing': smoothing,
+        'mixed': mixed,
+      };
   @override
   List<Object?> get props => [
         smoothing,
@@ -295,8 +347,9 @@ class AppThemeRadiiData extends Equatable {
 class AppThemeMotionData extends Equatable {
   const AppThemeMotionData();
 
-  static AppThemeMotionData fallback = AppThemeMotionData();
+  static final AppThemeMotionData fallback = AppThemeMotionData();
 
+  Map<String, Object?> reflect() => {};
   @override
   List<Object?> get props => [];
 }
@@ -304,12 +357,15 @@ class AppThemeMotionData extends Equatable {
 class AppThemeGradientData extends Equatable {
   const AppThemeGradientData({required this.gradient});
 
-  static AppThemeGradientData fallback = AppThemeGradientData(
+  static final AppThemeGradientData fallback = AppThemeGradientData(
     gradient: AppThemeGradientGradientData.fallback,
   );
 
   final AppThemeGradientGradientData gradient;
 
+  Map<String, AppThemeGradientGradientData> reflect() => {
+        'gradient': gradient,
+      };
   @override
   List<Object?> get props => [
         gradient,
@@ -319,12 +375,16 @@ class AppThemeGradientData extends Equatable {
 class AppThemeGradientGradientData extends Equatable {
   const AppThemeGradientGradientData({required this.multiplegrad});
 
-  static AppThemeGradientGradientData fallback = AppThemeGradientGradientData(
+  static final AppThemeGradientGradientData fallback =
+      AppThemeGradientGradientData(
     multiplegrad: AppThemeGradientGradientMultiplegradData.fallback,
   );
 
   final AppThemeGradientGradientMultiplegradData multiplegrad;
 
+  Map<String, AppThemeGradientGradientMultiplegradData> reflect() => {
+        'multiplegrad': multiplegrad,
+      };
   @override
   List<Object?> get props => [
         multiplegrad,
@@ -334,9 +394,10 @@ class AppThemeGradientGradientData extends Equatable {
 class AppThemeGradientGradientMultiplegradData extends Equatable {
   const AppThemeGradientGradientMultiplegradData();
 
-  static AppThemeGradientGradientMultiplegradData fallback =
+  static final AppThemeGradientGradientMultiplegradData fallback =
       AppThemeGradientGradientMultiplegradData();
 
+  Map<String, Object?> reflect() => {};
   @override
   List<Object?> get props => [];
 }
@@ -348,7 +409,7 @@ class AppThemeColorData extends Equatable {
       required this.light,
       required this.dark});
 
-  static AppThemeColorData fallback = AppThemeColorData(
+  static final AppThemeColorData fallback = AppThemeColorData(
     colors: AppThemeColorColorsData.fallback,
     invalid: AppThemeColorInvalidData.fallback,
     light: AppThemeColorLightData.fallback,
@@ -363,6 +424,12 @@ class AppThemeColorData extends Equatable {
 
   final AppThemeColorDarkData dark;
 
+  Map<String, Object?> reflect() => {
+        'colors': colors,
+        'invalid': invalid,
+        'light': light,
+        'dark': dark,
+      };
   @override
   List<Object?> get props => [
         colors,
@@ -379,7 +446,7 @@ class AppThemeColorColorsData extends Equatable {
       required this.multipleFills,
       required this.specialCharacters});
 
-  static AppThemeColorColorsData fallback = AppThemeColorColorsData(
+  static final AppThemeColorColorsData fallback = AppThemeColorColorsData(
     singleBlue: const Color(0xff044aff),
     refBlue: const Color(0x0),
     multipleFills: AppThemeColorColorsMultipleFillsData.fallback,
@@ -394,6 +461,12 @@ class AppThemeColorColorsData extends Equatable {
 
   final AppThemeColorColorsSpecialCharactersData specialCharacters;
 
+  Map<String, Object?> reflect() => {
+        'singleBlue': singleBlue,
+        'refBlue': refBlue,
+        'multipleFills': multipleFills,
+        'specialCharacters': specialCharacters,
+      };
   @override
   List<Object?> get props => [
         singleBlue,
@@ -407,7 +480,7 @@ class AppThemeColorColorsMultipleFillsData extends Equatable {
   const AppThemeColorColorsMultipleFillsData(
       {required this.v0, required this.v1});
 
-  static AppThemeColorColorsMultipleFillsData fallback =
+  static final AppThemeColorColorsMultipleFillsData fallback =
       AppThemeColorColorsMultipleFillsData(
     v0: const Color(0xff40ffba),
     v1: const Color(0x1a000000),
@@ -417,6 +490,10 @@ class AppThemeColorColorsMultipleFillsData extends Equatable {
 
   final Color v1;
 
+  Map<String, Color> reflect() => {
+        'v0': v0,
+        'v1': v1,
+      };
   @override
   List<Object?> get props => [
         v0,
@@ -428,7 +505,7 @@ class AppThemeColorColorsSpecialCharactersData extends Equatable {
   const AppThemeColorColorsSpecialCharactersData(
       {required this.c55357c56837, required this.c228nderung});
 
-  static AppThemeColorColorsSpecialCharactersData fallback =
+  static final AppThemeColorColorsSpecialCharactersData fallback =
       AppThemeColorColorsSpecialCharactersData(
     c55357c56837: const Color(0xff40df50),
     c228nderung: const Color(0xff3456af),
@@ -438,6 +515,10 @@ class AppThemeColorColorsSpecialCharactersData extends Equatable {
 
   final Color c228nderung;
 
+  Map<String, Color> reflect() => {
+        'c55357c56837': c55357c56837,
+        'c228nderung': c228nderung,
+      };
   @override
   List<Object?> get props => [
         c55357c56837,
@@ -448,12 +529,15 @@ class AppThemeColorColorsSpecialCharactersData extends Equatable {
 class AppThemeColorInvalidData extends Equatable {
   const AppThemeColorInvalidData({required this.empty});
 
-  static AppThemeColorInvalidData fallback = AppThemeColorInvalidData(
+  static final AppThemeColorInvalidData fallback = AppThemeColorInvalidData(
     empty: const Color(0x0),
   );
 
   final Color empty;
 
+  Map<String, Color> reflect() => {
+        'empty': empty,
+      };
   @override
   List<Object?> get props => [
         empty,
@@ -463,12 +547,15 @@ class AppThemeColorInvalidData extends Equatable {
 class AppThemeColorLightData extends Equatable {
   const AppThemeColorLightData({required this.background});
 
-  static AppThemeColorLightData fallback = AppThemeColorLightData(
+  static final AppThemeColorLightData fallback = AppThemeColorLightData(
     background: const Color(0xffffffff),
   );
 
   final Color background;
 
+  Map<String, Color> reflect() => {
+        'background': background,
+      };
   @override
   List<Object?> get props => [
         background,
@@ -478,12 +565,15 @@ class AppThemeColorLightData extends Equatable {
 class AppThemeColorDarkData extends Equatable {
   const AppThemeColorDarkData({required this.background});
 
-  static AppThemeColorDarkData fallback = AppThemeColorDarkData(
+  static final AppThemeColorDarkData fallback = AppThemeColorDarkData(
     background: const Color(0xff000000),
   );
 
   final Color background;
 
+  Map<String, Color> reflect() => {
+        'background': background,
+      };
   @override
   List<Object?> get props => [
         background,
@@ -493,12 +583,15 @@ class AppThemeColorDarkData extends Equatable {
 class AppThemeGridData extends Equatable {
   const AppThemeGridData({required this.multiple});
 
-  static AppThemeGridData fallback = AppThemeGridData(
+  static final AppThemeGridData fallback = AppThemeGridData(
     multiple: AppThemeGridMultipleData.fallback,
   );
 
   final AppThemeGridMultipleData multiple;
 
+  Map<String, AppThemeGridMultipleData> reflect() => {
+        'multiple': multiple,
+      };
   @override
   List<Object?> get props => [
         multiple,
@@ -508,8 +601,9 @@ class AppThemeGridData extends Equatable {
 class AppThemeGridMultipleData extends Equatable {
   const AppThemeGridMultipleData();
 
-  static AppThemeGridMultipleData fallback = AppThemeGridMultipleData();
+  static final AppThemeGridMultipleData fallback = AppThemeGridMultipleData();
 
+  Map<String, Object?> reflect() => {};
   @override
   List<Object?> get props => [];
 }
@@ -517,12 +611,15 @@ class AppThemeGridMultipleData extends Equatable {
 class AppThemeFontData extends Equatable {
   const AppThemeFontData({required this.body});
 
-  static AppThemeFontData fallback = AppThemeFontData(
+  static final AppThemeFontData fallback = AppThemeFontData(
     body: AppThemeFontBodyData.fallback,
   );
 
   final AppThemeFontBodyData body;
 
+  Map<String, AppThemeFontBodyData> reflect() => {
+        'body': body,
+      };
   @override
   List<Object?> get props => [
         body,
@@ -538,7 +635,7 @@ class AppThemeFontBodyData extends Equatable {
       required this.mediumExtendedItalic,
       required this.super$});
 
-  static AppThemeFontBodyData fallback = AppThemeFontBodyData(
+  static final AppThemeFontBodyData fallback = AppThemeFontBodyData(
     h3: const TextStyle(
       fontFamily: 'Akzidenz-Grotesk Pro',
       fontSize: 20.0,
@@ -601,6 +698,14 @@ class AppThemeFontBodyData extends Equatable {
 
   final TextStyle super$;
 
+  Map<String, TextStyle> reflect() => {
+        'h3': h3,
+        'h4StrikeThrough': h4StrikeThrough,
+        'italic': italic,
+        'extraBoldCondensedItalic': extraBoldCondensedItalic,
+        'mediumExtendedItalic': mediumExtendedItalic,
+        'super\$': super$,
+      };
   @override
   List<Object?> get props => [
         h3,
@@ -615,12 +720,15 @@ class AppThemeFontBodyData extends Equatable {
 class AppThemeEffectData extends Equatable {
   const AppThemeEffectData({required this.innerShadowMultiple});
 
-  static AppThemeEffectData fallback = AppThemeEffectData(
+  static final AppThemeEffectData fallback = AppThemeEffectData(
     innerShadowMultiple: AppThemeEffectInnerShadowMultipleData.fallback,
   );
 
   final AppThemeEffectInnerShadowMultipleData innerShadowMultiple;
 
+  Map<String, AppThemeEffectInnerShadowMultipleData> reflect() => {
+        'innerShadowMultiple': innerShadowMultiple,
+      };
   @override
   List<Object?> get props => [
         innerShadowMultiple,
@@ -630,9 +738,10 @@ class AppThemeEffectData extends Equatable {
 class AppThemeEffectInnerShadowMultipleData extends Equatable {
   const AppThemeEffectInnerShadowMultipleData();
 
-  static AppThemeEffectInnerShadowMultipleData fallback =
+  static final AppThemeEffectInnerShadowMultipleData fallback =
       AppThemeEffectInnerShadowMultipleData();
 
+  Map<String, Object?> reflect() => {};
   @override
   List<Object?> get props => [];
 }
@@ -640,8 +749,10 @@ class AppThemeEffectInnerShadowMultipleData extends Equatable {
 class AppThemeEffectLayerBlurData extends Equatable {
   const AppThemeEffectLayerBlurData();
 
-  static AppThemeEffectLayerBlurData fallback = AppThemeEffectLayerBlurData();
+  static final AppThemeEffectLayerBlurData fallback =
+      AppThemeEffectLayerBlurData();
 
+  Map<String, Object?> reflect() => {};
   @override
   List<Object?> get props => [];
 }
@@ -649,9 +760,10 @@ class AppThemeEffectLayerBlurData extends Equatable {
 class AppThemeEffectBackgroundBlurData extends Equatable {
   const AppThemeEffectBackgroundBlurData();
 
-  static AppThemeEffectBackgroundBlurData fallback =
+  static final AppThemeEffectBackgroundBlurData fallback =
       AppThemeEffectBackgroundBlurData();
 
+  Map<String, Object?> reflect() => {};
   @override
   List<Object?> get props => [];
 }
@@ -659,12 +771,15 @@ class AppThemeEffectBackgroundBlurData extends Equatable {
 class AppThemeTypographyData extends Equatable {
   const AppThemeTypographyData({required this.body});
 
-  static AppThemeTypographyData fallback = AppThemeTypographyData(
+  static final AppThemeTypographyData fallback = AppThemeTypographyData(
     body: AppThemeTypographyBodyData.fallback,
   );
 
   final AppThemeTypographyBodyData body;
 
+  Map<String, AppThemeTypographyBodyData> reflect() => {
+        'body': body,
+      };
   @override
   List<Object?> get props => [
         body,
@@ -680,7 +795,7 @@ class AppThemeTypographyBodyData extends Equatable {
       required this.mediumExtendedItalic,
       required this.super$});
 
-  static AppThemeTypographyBodyData fallback = AppThemeTypographyBodyData(
+  static final AppThemeTypographyBodyData fallback = AppThemeTypographyBodyData(
     h3: AppThemeTypographyBodyH3Data.fallback,
     h4StrikeThrough: AppThemeTypographyBodyH4StrikeThroughData.fallback,
     italic: AppThemeTypographyBodyItalicData.fallback,
@@ -704,6 +819,14 @@ class AppThemeTypographyBodyData extends Equatable {
 
   final AppThemeTypographyBodySuperData super$;
 
+  Map<String, Object?> reflect() => {
+        'h3': h3,
+        'h4StrikeThrough': h4StrikeThrough,
+        'italic': italic,
+        'extraBoldCondensedItalic': extraBoldCondensedItalic,
+        'mediumExtendedItalic': mediumExtendedItalic,
+        'super\$': super$,
+      };
   @override
   List<Object?> get props => [
         h3,
@@ -723,7 +846,8 @@ class AppThemeTypographyBodyH3Data extends Equatable {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyH3Data fallback = AppThemeTypographyBodyH3Data(
+  static final AppThemeTypographyBodyH3Data fallback =
+      AppThemeTypographyBodyH3Data(
     fontSize: 20.0,
     letterSpacing: 0.4,
     lineHeight: 32.0,
@@ -741,6 +865,13 @@ class AppThemeTypographyBodyH3Data extends Equatable {
 
   final double paragraphSpacing;
 
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
   @override
   List<Object?> get props => [
         fontSize,
@@ -759,7 +890,7 @@ class AppThemeTypographyBodyH4StrikeThroughData extends Equatable {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyH4StrikeThroughData fallback =
+  static final AppThemeTypographyBodyH4StrikeThroughData fallback =
       AppThemeTypographyBodyH4StrikeThroughData(
     fontSize: 16.0,
     letterSpacing: 0.0,
@@ -778,6 +909,13 @@ class AppThemeTypographyBodyH4StrikeThroughData extends Equatable {
 
   final double paragraphSpacing;
 
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
   @override
   List<Object?> get props => [
         fontSize,
@@ -796,7 +934,7 @@ class AppThemeTypographyBodyItalicData extends Equatable {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyItalicData fallback =
+  static final AppThemeTypographyBodyItalicData fallback =
       AppThemeTypographyBodyItalicData(
     fontSize: 12.0,
     letterSpacing: 0.0,
@@ -815,6 +953,13 @@ class AppThemeTypographyBodyItalicData extends Equatable {
 
   final double paragraphSpacing;
 
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
   @override
   List<Object?> get props => [
         fontSize,
@@ -833,7 +978,7 @@ class AppThemeTypographyBodyExtraBoldCondensedItalicData extends Equatable {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyExtraBoldCondensedItalicData fallback =
+  static final AppThemeTypographyBodyExtraBoldCondensedItalicData fallback =
       AppThemeTypographyBodyExtraBoldCondensedItalicData(
     fontSize: 12.0,
     letterSpacing: 0.0,
@@ -852,6 +997,13 @@ class AppThemeTypographyBodyExtraBoldCondensedItalicData extends Equatable {
 
   final double paragraphSpacing;
 
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
   @override
   List<Object?> get props => [
         fontSize,
@@ -870,7 +1022,7 @@ class AppThemeTypographyBodyMediumExtendedItalicData extends Equatable {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyMediumExtendedItalicData fallback =
+  static final AppThemeTypographyBodyMediumExtendedItalicData fallback =
       AppThemeTypographyBodyMediumExtendedItalicData(
     fontSize: 20.0,
     letterSpacing: 0.0,
@@ -889,6 +1041,13 @@ class AppThemeTypographyBodyMediumExtendedItalicData extends Equatable {
 
   final double paragraphSpacing;
 
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
   @override
   List<Object?> get props => [
         fontSize,
@@ -907,7 +1066,7 @@ class AppThemeTypographyBodySuperData extends Equatable {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodySuperData fallback =
+  static final AppThemeTypographyBodySuperData fallback =
       AppThemeTypographyBodySuperData(
     fontSize: 22.0,
     letterSpacing: 0.0,
@@ -926,6 +1085,13 @@ class AppThemeTypographyBodySuperData extends Equatable {
 
   final double paragraphSpacing;
 
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
   @override
   List<Object?> get props => [
         fontSize,
@@ -945,7 +1111,7 @@ class AppThemeIconsData extends Equatable {
       required this.pageTree,
       required this.phone});
 
-  static AppThemeIconsData fallback = AppThemeIconsData(
+  static final AppThemeIconsData fallback = AppThemeIconsData(
     propagation: PathIconData(
       path: Path.combine(
         PathOperation.union,
@@ -1327,6 +1493,14 @@ class AppThemeIconsData extends Equatable {
 
   final PathIconData phone;
 
+  Map<String, PathIconData> reflect() => {
+        'propagation': propagation,
+        'productMenuClosed': productMenuClosed,
+        'pasteWord': pasteWord,
+        'paperclip': paperclip,
+        'pageTree': pageTree,
+        'phone': phone,
+      };
   @override
   List<Object?> get props => [
         propagation,

@@ -7,10 +7,12 @@ class DataClassBuilder {
     required this.name,
     required this.properties,
     required this.instances,
+    this.reflection = true,
   });
   final String name;
   final Map<String, String> properties;
   final List<DataClassInstance> instances;
+  final bool reflection;
 
   List<Class> build({
     bool equatable = true,
@@ -44,6 +46,7 @@ class DataClassBuilder {
     for (var instance in instances) {
       final field = FieldBuilder()
         ..name = instance.name
+        ..modifier = FieldModifier.final$
         ..type = refer(builder.name!)
         ..static = true;
 
@@ -79,6 +82,28 @@ class DataClassBuilder {
         }
 
         field.assignment = Code('${instanceBuilder.name}()');
+
+        if (reflection) {
+          final valueBuffer = StringBuffer('{');
+          String? propertyType;
+          for (var property in properties.entries) {
+            if (propertyType == null)
+              propertyType = property.value;
+            else if (propertyType != property.value) propertyType = 'Object?';
+            final propertyName = ReCase(property.key).camelCase;
+            valueBuffer.writeln(
+                "'${propertyName.replaceAll(r'$', r'\$')}': $propertyName,");
+          }
+          valueBuffer.write('}');
+
+          final method = MethodBuilder()
+            ..name = 'reflect'
+            ..returns = refer('Map<String, ${propertyType ?? 'Object?'}>')
+            ..lambda = true
+            ..body = Code(valueBuffer.toString());
+
+          instanceBuilder.methods.add(method.build());
+        }
       }
       builder.fields.add(field.build());
     }
@@ -92,6 +117,29 @@ class DataClassBuilder {
         ..type = refer(property.value);
 
       builder.fields.add(field.build());
+    }
+
+    // Reflection
+    if (reflection) {
+      final valueBuffer = StringBuffer('{');
+      String? propertyType;
+      for (var property in properties.entries) {
+        if (propertyType == null)
+          propertyType = property.value;
+        else if (propertyType != property.value) propertyType = 'Object?';
+        final propertyName = ReCase(property.key).camelCase;
+        valueBuffer.writeln(
+            "'${propertyName.replaceAll(r'$', r'\$')}': $propertyName,");
+      }
+      valueBuffer.write('}');
+
+      final method = MethodBuilder()
+        ..name = 'reflect'
+        ..returns = refer('Map<String, ${propertyType ?? 'Object?'}>')
+        ..lambda = true
+        ..body = Code(valueBuffer.toString());
+
+      builder.methods.add(method.build());
     }
 
     // Equality

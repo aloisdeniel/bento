@@ -51,6 +51,7 @@ class BentoThemeDataDartEmitter {
 
     final builder = DataClassBuilder(
       name: '${childParentName}Data',
+      reflection: options.reflect,
       instances: [
         DataClassInstance(
           name: 'fallback',

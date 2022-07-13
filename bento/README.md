@@ -8,6 +8,3 @@ Generate code from Design tokens.
 flutter pub global activate bento  
 flutter pub global run bento build
 '''
-
-
-
