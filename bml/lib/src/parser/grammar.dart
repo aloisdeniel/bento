@@ -1,6 +1,6 @@
 import 'package:petitparser/petitparser.dart';
 
-class FigmaWidgetGrammarDefinition extends GrammarDefinition {
+class BmlGrammarDefinition extends GrammarDefinition {
   @override
   Parser start() => ref0(value).end();
 

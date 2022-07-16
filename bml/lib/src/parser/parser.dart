@@ -3,13 +3,15 @@ import 'package:petitparser/petitparser.dart';
 import '../model/model.dart';
 import 'grammar.dart';
 
+export 'package:petitparser/petitparser.dart' show Result;
+
 Result<BmlDocument> parseBml(String input) {
   return _parser.parse(input).map((r) => r as BmlDocument);
 }
 
-final _parser = FigmaWidgetParserDefinition().build();
+final _parser = BmlParserDefinition().build();
 
-class FigmaWidgetParserDefinition extends FigmaWidgetGrammarDefinition {
+class BmlParserDefinition extends BmlGrammarDefinition {
   @override
   Parser start() {
     return super.start().map((x) => BmlDocument(x as BmlValue));
@@ -100,6 +102,11 @@ class FigmaWidgetParserDefinition extends FigmaWidgetGrammarDefinition {
   }
 
   // Values --------------------------------------------------------------------
+
+  @override
+  Parser wrappedValue() {
+    return super.wrappedValue().map((each) => each[1]);
+  }
 
   @override
   Parser objectValue() => super.objectValue().map((each) {

@@ -35,7 +35,7 @@ packages:
       path: "../bento"
       relative: true
     source: path
-    version: "0.0.2+alpha"
+    version: "0.0.22+alpha"
   boolean_selector:
     dependency: transitive
     description:

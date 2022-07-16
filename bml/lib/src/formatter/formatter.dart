@@ -19,9 +19,9 @@ Result<FormattedSource> formatFigmaWidgetSource(String input) {
       );
 }
 
-final _parser = FigmaWidgetFormatterDefinition().build();
+final _parser = BmlFormatterDefinition().build();
 
-class FigmaWidgetFormatterDefinition extends FigmaWidgetGrammarDefinition {
+class BmlFormatterDefinition extends BmlGrammarDefinition {
   @override
   Parser arrayValue() {
     return super.arrayValue().map(
