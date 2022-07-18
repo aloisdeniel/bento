@@ -69,13 +69,21 @@ class BmlBinaryWriter {
         writeValue(value);
       },
       aggregate: (reference) {
-        _write(BmlBinaryProperty.member.flag);
-        _writeString(reference);
+        if (reference.length == 1) {
+          _write(BmlBinaryProperty.aggregateOne.flag);
+          _writeString(reference.first);
+        } else {
+          _write(BmlBinaryProperty.aggregateMultiple.flag);
+          _write(reference.length);
+          for (var element in reference) {
+            _writeString(element);
+          }
+        }
       },
     );
   }
 
-  void writeValue(BmlValue value) {
+  void writeValue(BmlLiteral value) {
     value.map(
       empty: () {
         _write(BmlBinaryValue.empty.flag);
@@ -84,9 +92,34 @@ class BmlBinaryWriter {
         _write(BmlBinaryValue.node.flag);
         writeNode(node);
       },
+      invocation: (value, args) {
+        if (args.isEmpty) {
+          _write(BmlBinaryValue.invocationNoArgs.flag);
+          writeValue(value);
+        } else if (args.length == 1) {
+          _write(BmlBinaryValue.invocationOneArg.flag);
+          writeValue(value);
+          writeValue(args.first);
+        } else {
+          _write(BmlBinaryValue.invocationOneArg.flag);
+          writeValue(value);
+          _write(args.length);
+          for (var element in args) {
+            writeValue(element);
+          }
+        }
+      },
       reference: (ref) {
-        _write(BmlBinaryValue.reference.flag);
-        _writeString(ref);
+        if (ref.length == 1) {
+          _write(BmlBinaryValue.referenceOne.flag);
+          _writeString(ref.first);
+        } else {
+          _write(BmlBinaryValue.referenceMultiple.flag);
+          _write(ref.length);
+          for (var element in ref) {
+            _writeString(element);
+          }
+        }
       },
       boolean: (value) {
         _write(value
@@ -138,7 +171,7 @@ class BmlBinaryWriter {
           _write(items.entries.length);
           for (var item in items.entries) {
             _writeString(item.key);
-            writeValue(item.value);
+            writeValue(item.expression);
           }
         }
       },

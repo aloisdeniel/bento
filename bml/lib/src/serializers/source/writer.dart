@@ -43,7 +43,7 @@ class BmlSourceWriter {
     );
   }
 
-  void writeValue(BmlValue value) {
+  void writeValue(BmlLiteral value) {
     value.map(
         empty: () => buffer.write('null'),
         reference: (ref) => buffer.write(ref),
@@ -63,7 +63,7 @@ class BmlSourceWriter {
           for (var item in items.entries) {
             buffer.write(item.key);
             buffer.write('=');
-            writeValue(item.value);
+            writeValue(item.expression);
             buffer.write(',');
           }
           buffer.write(']');
@@ -71,6 +71,15 @@ class BmlSourceWriter {
         node: (node) {
           buffer.write('(');
           writeNode(node);
+          buffer.write(')');
+        },
+        invocation: (value, args) {
+          writeValue(value);
+
+          buffer.write('(');
+          for (var arg in args) {
+            writeValue(arg);
+          }
           buffer.write(')');
         });
   }

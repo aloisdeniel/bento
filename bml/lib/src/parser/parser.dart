@@ -14,7 +14,7 @@ final _parser = BmlParserDefinition().build();
 class BmlParserDefinition extends BmlGrammarDefinition {
   @override
   Parser start() {
-    return super.start().map((x) => BmlDocument(x as BmlValue));
+    return super.start().map((x) => BmlDocument(x as BmlLiteral));
   }
   // Nodes ---------------------------------------------------------------------
 
@@ -69,11 +69,13 @@ class BmlParserDefinition extends BmlGrammarDefinition {
   @override
   Parser tagNodePropertyAggregate() {
     return super.tagNodePropertyAggregate().map((each) {
-      final BmlValue reference = each[1];
+      final BmlLiteral reference = each[1];
       return BmlProperty.aggregate(
         reference.maybeMap(
-          reference: (name) => name,
-          orElse: () => '',
+          reference: (identifiers) => <String>[
+            ...identifiers,
+          ],
+          orElse: () => const <String>[],
         ),
       );
     });
@@ -104,54 +106,82 @@ class BmlParserDefinition extends BmlGrammarDefinition {
   // Values --------------------------------------------------------------------
 
   @override
+  Parser expression() {
+    return super.expression().map((each) {
+      final value = each[0];
+      final args = each[1];
+      if (args != null) {
+        return BmlLiteral.invocation(value, <BmlLiteral>[...args]);
+      }
+
+      return value;
+    });
+  }
+
+  @override
+  Parser invocationArgs() {
+    return super.invocationArgs().map((each) => each[1] != null
+        ? <BmlLiteral>[
+            ...each[1],
+          ]
+        : const <BmlLiteral>[]);
+  }
+
+  @override
   Parser wrappedValue() {
     return super.wrappedValue().map((each) => each[1]);
   }
 
   @override
-  Parser objectValue() => super.objectValue().map((each) {
-        final result = <String, BmlValue>{};
+  Parser objectExpression() => super.objectExpression().map((each) {
+        final result = <String, BmlLiteral>{};
         if (each[1] != null) {
           for (final element in each[1]) {
             result[element[0]] = element[2];
           }
         }
-        return BmlValue.object(result);
+        return BmlLiteral.object(result);
       });
 
   @override
-  Parser arrayValue() => super.arrayValue().map(
-        (each) => BmlValue.array(
-          <BmlValue>[
-            ...(each[1] ?? const <BmlValue>[]),
+  Parser arrayExpression() => super.arrayExpression().map(
+        (each) => BmlLiteral.array(
+          <BmlLiteral>[
+            ...(each[1] ?? const <BmlLiteral>[]),
           ],
         ),
       );
 
   @override
-  Parser trueValue() => super.trueValue().map((each) => BmlValue.boolean(true));
+  Parser trueLiteral() =>
+      super.trueLiteral().map((each) => BmlLiteral.boolean(true));
 
   @override
-  Parser falseValue() =>
-      super.falseValue().map((each) => BmlValue.boolean(false));
+  Parser falseLiteral() =>
+      super.falseLiteral().map((each) => BmlLiteral.boolean(false));
 
   @override
-  Parser nullValue() => super.nullValue().map((each) => BmlValue.empty());
+  Parser nullLiteral() => super.nullLiteral().map((each) => BmlLiteral.empty());
 
   @override
-  Parser stringValue() =>
-      ref0(stringPrimitive).trim().map((each) => BmlValue.string(each));
+  Parser stringLiteral() =>
+      ref0(stringPrimitive).trim().map((each) => BmlLiteral.string(each));
 
   @override
-  Parser numberValue() =>
-      super.numberValue().map((each) => BmlValue.number(num.parse(each)));
+  Parser numberLiteral() =>
+      super.numberLiteral().map((each) => BmlLiteral.number(num.parse(each)));
 
   @override
   Parser referenceValue() =>
-      super.referenceValue().map((each) => BmlValue.reference(each));
+      super.referenceValue().map((each) => BmlLiteral.reference(
+            <String>[
+              ...each,
+            ],
+          ));
 
   @override
-  Parser nodeValue() => super.nodeValue().map((each) => BmlValue.node(each));
+  Parser nodeExpression() =>
+      super.nodeExpression().map((each) => BmlLiteral.node(each));
 
   @override
   Parser identifier() =>
@@ -162,8 +192,14 @@ class BmlParserDefinition extends BmlGrammarDefinition {
       super.stringPrimitive().map((each) => each[1].join());
 
   @override
-  Parser characterEscape() =>
-      super.characterEscape().map((each) => escapeChars[each[1]]);
+  Parser characterDoubleQuoteEscape() => super
+      .characterDoubleQuoteEscape()
+      .map((each) => escapeDoubleQuoteChars[each[1]]);
+
+  @override
+  Parser characterSimpleQuoteEscape() => super
+      .characterSimpleQuoteEscape()
+      .map((each) => escapeSimpleQuoteChars[each[1]]);
 
   @override
   Parser characterUnicode() => super.characterUnicode().map((each) {

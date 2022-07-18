@@ -2,7 +2,7 @@ import 'package:petitparser/petitparser.dart';
 
 class BmlGrammarDefinition extends GrammarDefinition {
   @override
-  Parser start() => ref0(value).end();
+  Parser start() => ref0(expression).end();
 
   Parser token(Object source, [String? name]) {
     if (source is String) {
@@ -15,7 +15,7 @@ class BmlGrammarDefinition extends GrammarDefinition {
     }
   }
 
-  // Nodes ---------------------------------------------------------------------
+  // NODES ===============================================================
 
   Parser textNode() => pattern('^<').plus();
 
@@ -60,7 +60,7 @@ class BmlGrammarDefinition extends GrammarDefinition {
       ].toChoiceParser(failureJoiner: selectFarthestJoined);
 
   Parser tagNodePropertyAggregate() =>
-      ref1(token, '{...') & ref0(referenceValue) & ref1(token, '}');
+      ref1(token, '{...') & ref0(expression) & ref1(token, '}');
 
   Parser tagNodePropertyMember() =>
       ref0(tagNodeMemberName) & ref1(token, '=') & ref0(tagNodeMemberValue);
@@ -73,72 +73,183 @@ class BmlGrammarDefinition extends GrammarDefinition {
       ].toChoiceParser(failureJoiner: selectFarthestJoined);
 
   Parser tagNodeMemberDynamicValue() =>
-      ref1(token, '{') & ref0(value) & ref1(token, '}');
+      ref1(token, '{') & ref0(expression) & ref1(token, '}');
 
-  Parser tagNodeMemberStringValue() => ref0(stringValue);
+  Parser tagNodeMemberStringValue() => ref0(stringLiteral);
 
-  // Values --------------------------------------------------------------------
+  // EXPRESSIONS ===============================================================
 
-  Parser value() => [
-        ref0(wrappedValue),
-        ref0(rawValue),
-      ].toChoiceParser(failureJoiner: selectFarthestJoined);
-
-  Parser rawValue() => [
-        ref0(stringValue),
-        ref0(numberValue),
-        ref0(objectValue),
-        ref0(arrayValue),
-        ref0(trueValue),
-        ref0(falseValue),
-        ref0(nullValue),
-        ref0(referenceValue),
-      ].toChoiceParser(failureJoiner: selectFarthestJoined);
-
-  Parser wrappedValue() =>
-      ref1(token, '(') &
+  Parser expression() =>
       [
-        ref0(nodeValue),
-        ref0(rawValue),
+        ref0(groupExpression),
+        ref0(arrayExpression),
+        ref0(objectExpression),
+        ref0(unaryExpression),
+        ref0(literalExpression),
       ].toChoiceParser(failureJoiner: selectFarthestJoined) &
+      [
+        ref0(accessorExpression),
+        ref0(binaryRightExpression),
+        ref0(thirdaryRightExpressions),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined);
+
+  // Unary
+
+  Parser unaryExpression() =>
+      [
+        ref1(token, '!'),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined) &
+      ref0(expression);
+
+  // Binary
+
+  Parser binaryRightExpression() =>
+      [
+        ref1(token, '+'),
+        ref1(token, '-'),
+        ref1(token, '/'),
+        ref1(token, '*'),
+        ref1(token, '=='),
+        ref1(token, '&&'),
+        ref1(token, '&'),
+        ref1(token, '||'),
+        ref1(token, '|'),
+        ref1(token, '%'),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined) &
+      ref0(expression);
+
+  // Binary
+
+  Parser thirdaryRightExpressions() =>
+      ref1(token, '?') & ref0(expression) & ref1(token, ':') & ref0(expression);
+
+  // Node
+
+  Parser nodeExpression() =>
+      ref1(token, '(') & ref0(tagNode) & ref1(token, ')');
+
+  // Accessors
+
+  Parser accessorExpression() => [
+        ref0(accessorCallExpression),
+        ref0(accessorIndexedExpression),
+        ref0(accessorMemberExpression),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined);
+
+  Parser accessorMemberExpression() => ref1(token, '.') & ref0(identifier);
+
+  Parser accessorCallExpression() =>
+      ref1(token, '(') &
+      ref0(expression)
+          .separatedBy(
+            ref1(token, ','),
+            includeSeparators: false,
+            optionalSeparatorAtEnd: true,
+          )
+          .optional() &
       ref1(token, ')');
 
-  Parser arrayValue() =>
+  Parser accessorIndexedExpression() =>
       ref1(token, '[') &
-      ref0(elements).optional() &
-      ref1(token, ',').optional() &
+      ref0(expression)
+          .separatedBy(
+            ref1(token, ','),
+            includeSeparators: false,
+            optionalSeparatorAtEnd: true,
+          )
+          .optional() &
       ref1(token, ']');
 
-  Parser nodeValue() => ref0(tagNode);
+  // Array
 
-  Parser elements() =>
-      ref0(value).separatedBy(ref1(token, ','), includeSeparators: false);
-  Parser members() => ref0(objectValueMember)
-      .separatedBy(ref1(token, ','), includeSeparators: false);
+  Parser arrayExpression() =>
+      ref1(token, '[') &
+      ref0(arrayItem).separatedBy(
+        ref1(token, ','),
+        includeSeparators: false,
+        optionalSeparatorAtEnd: true,
+      ) &
+      ref1(token, ']');
 
-  Parser objectValue() =>
+  Parser arrayItem() => [
+        ref0(arrayEachItem),
+        ref0(arrayAggregateItem),
+        ref0(expression),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined);
+
+  Parser arrayAggregateItem() => ref1(token, '...') & ref0(expression);
+
+  Parser arrayEachItem() =>
+      ref1(token, 'for') &
+      ref1(token, '(') &
+      ref1(token, 'var') &
+      ref0(identifier) &
+      ref1(token, 'in') &
+      ref0(expression) &
+      ref1(token, ')') &
+      ref0(arrayItem);
+
+  Parser arrayConditionalItem() =>
+      ref1(token, 'if') &
+      ref1(token, '(') &
+      ref0(expression) &
+      ref1(token, ')') &
+      ref0(arrayItem);
+
+  // Object
+
+  Parser objectExpression() =>
       ref1(token, '{') &
-      ref0(members).optional() &
-      ref1(token, ',').optional() &
+      ref0(objectExpressionMember).separatedBy(
+        ref1(token, ','),
+        includeSeparators: false,
+        optionalSeparatorAtEnd: true,
+      ) &
       ref1(token, '}');
-  Parser objectValueMember() =>
-      ref0(objectValueKey) & ref1(token, ':') & ref0(value);
 
-  Parser objectValueKey() => ref0(identifier);
+  Parser objectExpressionMember() =>
+      ref0(objectExpressionKey) & ref1(token, ':') & ref0(expression);
 
-  Parser trueValue() => ref1(token, 'true');
-  Parser falseValue() => ref1(token, 'false');
-  Parser nullValue() => ref1(token, 'null');
-  Parser stringValue() => ref2(token, ref0(stringPrimitive), 'string');
-  Parser numberValue() => ref2(token, ref0(numberPrimitive), 'number');
-  Parser referenceValue() => ref0(identifier);
+  Parser objectExpressionKey() => ref0(identifier);
 
-  // Primitives ----------------------------------------------------------------
+  // Group
 
-  Parser characterPrimitive() =>
-      ref0(characterNormal) | ref0(characterEscape) | ref0(characterUnicode);
-  Parser characterNormal() => pattern('^"\\');
-  Parser characterEscape() => char('\\') & pattern(escapeChars.keys.join());
+  Parser groupExpression() =>
+      ref1(token, '(') & ref0(expression) & ref1(token, ')');
+
+  // Literals
+
+  Parser literalExpression() => [
+        ref0(stringLiteral),
+        ref0(numberLiteral),
+        ref0(booleanLiteral),
+        ref0(nullLiteral),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined);
+  Parser booleanLiteral() => ref0(trueLiteral) | ref0(falseLiteral);
+  Parser trueLiteral() => ref1(token, 'true');
+  Parser falseLiteral() => ref1(token, 'false');
+  Parser nullLiteral() => ref1(token, 'null');
+  Parser stringLiteral() => ref2(token, ref0(stringPrimitive), 'string');
+  Parser numberLiteral() => ref2(token, ref0(numberPrimitive), 'number');
+
+  // PRIMITIVES ================================================================
+
+  Parser characterDoubleQuotePrimitive() =>
+      ref0(characterDoubleQuoteNormal) |
+      ref0(characterDoubleQuoteEscape) |
+      ref0(characterUnicode);
+
+  Parser characterSimpleQuotePrimitive() =>
+      ref0(characterSimpleQuoteNormal) |
+      ref0(characterSimpleQuoteEscape) |
+      ref0(characterUnicode);
+
+  Parser characterDoubleQuoteNormal() => pattern('^"\\');
+  Parser characterSimpleQuoteNormal() => pattern('^\'\\');
+  Parser characterDoubleQuoteEscape() =>
+      char('\\') & pattern(escapeDoubleQuoteChars.keys.join());
+  Parser characterSimpleQuoteEscape() =>
+      char('\\') & pattern(escapeSimpleQuoteChars.keys.join());
   Parser characterUnicode() => string('\\u') & pattern('0-9A-Fa-f').times(4);
   Parser numberPrimitive() =>
       char('-').optional() &
@@ -148,14 +259,16 @@ class BmlGrammarDefinition extends GrammarDefinition {
           .seq(pattern('-+').optional())
           .seq(digit().plus())
           .optional();
-  Parser stringPrimitive() =>
-      char('"') & ref0(characterPrimitive).star() & char('"');
+  Parser stringPrimitive() => [
+        char('\'') & ref0(characterSimpleQuotePrimitive).star() & char('\''),
+        char('"') & ref0(characterDoubleQuotePrimitive).star() & char('"'),
+      ].toChoiceParser(failureJoiner: selectFarthestJoined);
 
   Parser letterLexicalToken() => letter();
 
   Parser digitLexicalToken() => digit();
 
-  // Identifiers ----------------------------------------------------------------
+  // Identifiers
 
   Parser identifier() =>
       ref0(identifierStartLexicalToken) &
@@ -167,10 +280,19 @@ class BmlGrammarDefinition extends GrammarDefinition {
       ref0(identifierStartLexicalToken) | ref0(digitLexicalToken);
 }
 
-const Map<String, String> escapeChars = {
+const Map<String, String> escapeDoubleQuoteChars = {
+  '"': '"',
+  ...escapeCommonQuoteChars,
+};
+
+const Map<String, String> escapeSimpleQuoteChars = {
+  '\'': '\'',
+  ...escapeCommonQuoteChars,
+};
+
+const Map<String, String> escapeCommonQuoteChars = {
   '\\': '\\',
   '/': '/',
-  '"': '"',
   'b': '\b',
   'f': '\f',
   'n': '\n',

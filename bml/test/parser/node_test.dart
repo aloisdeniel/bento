@@ -27,7 +27,7 @@ void main() {
         equals(
           BmlProperty.member(
             'text',
-            BmlValue.string('Hello World'),
+            BmlLiteral.string('Hello World'),
           ),
         ),
       );
@@ -42,7 +42,7 @@ void main() {
         equals(
           BmlProperty.member(
             'visible',
-            BmlValue.boolean(true),
+            BmlLiteral.boolean(true),
           ),
         ),
       );
@@ -58,7 +58,7 @@ void main() {
         equals(
           BmlProperty.member(
             'text',
-            BmlValue.string('Hello World'),
+            BmlLiteral.string('Hello World'),
           ),
         ),
       );
@@ -67,7 +67,7 @@ void main() {
         equals(
           BmlProperty.member(
             'visible',
-            BmlValue.boolean(true),
+            BmlLiteral.boolean(true),
           ),
         ),
       );
@@ -94,7 +94,7 @@ void main() {
             properties: [
               BmlProperty.member(
                 'text',
-                BmlValue.string('Hello World'),
+                BmlLiteral.string('Hello World'),
               )
             ],
           ),
@@ -114,7 +114,7 @@ void main() {
             properties: [
               BmlProperty.member(
                 'visible',
-                BmlValue.boolean(true),
+                BmlLiteral.boolean(true),
               )
             ],
           ),
@@ -134,7 +134,7 @@ void main() {
             properties: [
               BmlProperty.member(
                 'data',
-                BmlValue.object({'hello': BmlValue.string('World')}),
+                BmlLiteral.object({'hello': BmlLiteral.string('World')}),
               )
             ],
           ),
@@ -142,21 +142,39 @@ void main() {
       );
     });
 
-    test('with one aggregate', () {
-      final result = parser.parse('<Text  {...props} />');
-      expect(result.isSuccess, isTrue, reason: result.reason());
+    group('with aggregate', () {
+      test('one', () {
+        final result = parser.parse('<Text  {...props} />');
+        expect(result.isSuccess, isTrue, reason: result.reason());
 
-      expect(
-        result.value,
-        equals(
-          BmlNode.tag(
-            'Text',
-            properties: [
-              BmlProperty.aggregate('props'),
-            ],
+        expect(
+          result.value,
+          equals(
+            BmlNode.tag(
+              'Text',
+              properties: [
+                BmlProperty.aggregate(['props']),
+              ],
+            ),
           ),
-        ),
-      );
+        );
+      });
+      test('multiple', () {
+        final result = parser.parse('<Text  {...props.member.other} />');
+        expect(result.isSuccess, isTrue, reason: result.reason());
+
+        expect(
+          result.value,
+          equals(
+            BmlNode.tag(
+              'Text',
+              properties: [
+                BmlProperty.aggregate(['props', 'member', 'other']),
+              ],
+            ),
+          ),
+        );
+      });
     });
   });
 

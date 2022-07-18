@@ -1,23 +1,23 @@
+import 'package:bml/src/model/expressions/expression.dart';
 import 'package:equatable/equatable.dart';
-
-import 'values.dart';
 
 abstract class BmlProperty extends Equatable {
   const BmlProperty();
-  const factory BmlProperty.member(String name, BmlValue value) =
+  const factory BmlProperty.member(String name, BmlExpression value) =
       MemberBmlProperty;
-  const factory BmlProperty.aggregate(String reference) = AggregateBmlProperty;
+  const factory BmlProperty.aggregate(List<String> reference) =
+      AggregateBmlProperty;
 
   T map<T>({
-    required T Function(String name, BmlValue value) member,
-    required T Function(String reference) aggregate,
+    required T Function(String name, BmlExpression value) member,
+    required T Function(List<String> identifiers) aggregate,
   }) {
     final value = this;
     if (value is MemberBmlProperty) {
       return member(value.name, value.value);
     }
     if (value is AggregateBmlProperty) {
-      return aggregate(value.reference);
+      return aggregate(value.identifiers);
     }
 
     throw Exception();
@@ -27,7 +27,7 @@ abstract class BmlProperty extends Equatable {
 class MemberBmlProperty extends BmlProperty {
   const MemberBmlProperty(this.name, this.value);
   final String name;
-  final BmlValue value;
+  final BmlExpression value;
 
   @override
   List<Object?> get props => [
@@ -37,9 +37,9 @@ class MemberBmlProperty extends BmlProperty {
 }
 
 class AggregateBmlProperty extends BmlProperty {
-  const AggregateBmlProperty(this.reference);
-  final String reference;
+  const AggregateBmlProperty(this.identifiers);
+  final List<String> identifiers;
 
   @override
-  List<Object?> get props => [reference];
+  List<Object?> get props => [identifiers];
 }

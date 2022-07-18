@@ -1,7 +1,7 @@
+import 'package:bml/src/model/expressions/expression.dart';
 import 'package:equatable/equatable.dart';
 
 import 'properties.dart';
-import 'values.dart';
 
 abstract class BmlNode extends Equatable {
   const BmlNode();
@@ -36,7 +36,7 @@ abstract class BmlNode extends Equatable {
     throw Exception();
   }
 
-  BmlValue? operator [](String name) => map(
+  BmlExpression? operator [](String name) => map(
         tag: ((name, properties, children) => properties
             .whereType<MemberBmlProperty?>()
             .firstWhere(

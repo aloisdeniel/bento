@@ -45,7 +45,10 @@ class BmlJsonReader {
       if (key == '...' && value == List) {
         return <BmlProperty>[
           for (var aggregate in value)
-            if (aggregate is String) BmlProperty.aggregate(aggregate),
+            if (aggregate is List)
+              BmlProperty.aggregate([
+                ...aggregate.whereType<String>(),
+              ]),
         ];
       }
       return <BmlProperty>[BmlProperty.member(key, readValue(value))];
@@ -54,26 +57,26 @@ class BmlJsonReader {
     return const <BmlProperty>[];
   }
 
-  BmlValue readValue(dynamic json) {
-    if (json == null) return BmlValue.empty();
-    if (json is num) return BmlValue.number(json);
-    if (json is String) return BmlValue.string(json);
-    if (json is bool) return BmlValue.boolean(json);
-    if (json is bool) return BmlValue.boolean(json);
+  BmlLiteral readValue(dynamic json) {
+    if (json == null) return BmlLiteral.empty();
+    if (json is num) return BmlLiteral.number(json);
+    if (json is String) return BmlLiteral.string(json);
+    if (json is bool) return BmlLiteral.boolean(json);
+    if (json is bool) return BmlLiteral.boolean(json);
     if (json is List) {
-      return BmlValue.array([
+      return BmlLiteral.array([
         for (var item in json) readValue(item),
       ]);
     }
     if (json is Map) {
       if (json.containsKey('\$node')) {
-        return BmlValue.node(readNode(json));
+        return BmlLiteral.node(readNode(json));
       }
-      return BmlValue.object({
+      return BmlLiteral.object({
         for (var item in json.entries)
           item.key.toString(): readValue(item.value),
       });
     }
-    return BmlValue.empty();
+    return BmlLiteral.empty();
   }
 }

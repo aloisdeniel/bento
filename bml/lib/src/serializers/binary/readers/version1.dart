@@ -88,13 +88,20 @@ class BmlBinaryReader1 extends BmlVersionnedBinaryReader {
         final name = _readString();
         final value = readValue();
         return BmlProperty.member(name, value);
-      case BmlBinaryProperty.aggregate:
+      case BmlBinaryProperty.aggregateOne:
         final reference = _readString();
-        return BmlProperty.aggregate(reference);
+        return BmlProperty.aggregate([reference]);
+      case BmlBinaryProperty.aggregateMultiple:
+        final length = _read();
+        final refs = <String>[];
+        for (var i = 0; i < length; i++) {
+          refs.add(_readString());
+        }
+        return BmlProperty.aggregate(refs);
     }
   }
 
-  BmlValue readValue() {
+  BmlLiteral readValue() {
     final flag = _read();
     final type = BmlBinaryValue.values.firstWhere(
       (x) => x.flag == flag,
@@ -103,52 +110,74 @@ class BmlBinaryReader1 extends BmlVersionnedBinaryReader {
 
     switch (type) {
       case BmlBinaryValue.empty:
-        return BmlValue.empty();
+        return BmlLiteral.empty();
       case BmlBinaryValue.stringEmpty:
-        return BmlValue.string('');
+        return BmlLiteral.string('');
       case BmlBinaryValue.string:
         final value = _readString();
-        return BmlValue.string(value);
+        return BmlLiteral.string(value);
       case BmlBinaryValue.booleanFalse:
-        return BmlValue.boolean(false);
+        return BmlLiteral.boolean(false);
       case BmlBinaryValue.booleanTrue:
-        return BmlValue.boolean(true);
+        return BmlLiteral.boolean(true);
       case BmlBinaryValue.numberZero:
-        return BmlValue.number(0);
+        return BmlLiteral.number(0);
       case BmlBinaryValue.numberInteger:
-        return BmlValue.number(_read());
+        return BmlLiteral.number(_read());
       case BmlBinaryValue.numberDouble:
         var byteData = ByteData(8);
         for (var i = 0; i < 8; i++) {
           var byteData = ByteData(8);
           byteData.setUint8(i, _read());
         }
-        return BmlValue.number(byteData.buffer.asFloat64List().first);
-      case BmlBinaryValue.reference:
+        return BmlLiteral.number(byteData.buffer.asFloat64List().first);
+      case BmlBinaryValue.referenceOne:
         final value = _readString();
-        return BmlValue.reference(value);
-      case BmlBinaryValue.node:
-        final node = readNode();
-        return BmlValue.node(node);
-      case BmlBinaryValue.arrayEmpty:
-        return BmlValue.array(const <BmlValue>[]);
-      case BmlBinaryValue.array:
+        return BmlLiteral.reference([value]);
+      case BmlBinaryValue.referenceMultiple:
         final length = _read();
-        final children = <BmlValue>[];
+        final refs = <String>[];
+        for (var i = 0; i < length; i++) {
+          refs.add(_readString());
+        }
+        return BmlLiteral.reference(refs);
+      case BmlBinaryValue.invocationNoArgs:
+        final value = readValue();
+        return BmlLiteral.invocation(value, const <BmlLiteral>[]);
+      case BmlBinaryValue.invocationOneArg:
+        final value = readValue();
+        final arg = readValue();
+        return BmlLiteral.invocation(value, <BmlLiteral>[arg]);
+      case BmlBinaryValue.invocationMultipleArgs:
+        final value = readValue();
+        final length = _read();
+        final children = <BmlLiteral>[];
         for (var i = 0; i < length; i++) {
           children.add(readValue());
         }
-        return BmlValue.array(children);
+        return BmlLiteral.invocation(value, children);
+      case BmlBinaryValue.node:
+        final node = readNode();
+        return BmlLiteral.node(node);
+      case BmlBinaryValue.arrayEmpty:
+        return BmlLiteral.array(const <BmlLiteral>[]);
+      case BmlBinaryValue.array:
+        final length = _read();
+        final children = <BmlLiteral>[];
+        for (var i = 0; i < length; i++) {
+          children.add(readValue());
+        }
+        return BmlLiteral.array(children);
       case BmlBinaryValue.objectEmpty:
-        return BmlValue.object(const <String, BmlValue>{});
+        return BmlLiteral.object(const <String, BmlLiteral>{});
       case BmlBinaryValue.object:
         final length = _read();
-        final children = <String, BmlValue>{};
+        final children = <String, BmlLiteral>{};
         for (var i = 0; i < length; i++) {
           final name = _readString();
           children[name] = readValue();
         }
-        return BmlValue.object(children);
+        return BmlLiteral.object(children);
     }
   }
 

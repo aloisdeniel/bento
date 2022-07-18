@@ -23,8 +23,8 @@ final _parser = BmlFormatterDefinition().build();
 
 class BmlFormatterDefinition extends BmlGrammarDefinition {
   @override
-  Parser arrayValue() {
-    return super.arrayValue().map(
+  Parser arrayExpression() {
+    return super.arrayExpression().map(
           (value) => value[1]?.expand((e) => e as Iterable) ?? const [],
         );
   }
@@ -37,8 +37,8 @@ class BmlFormatterDefinition extends BmlGrammarDefinition {
   }
 
   @override
-  Parser falseValue() {
-    return super.falseValue().token().map((value) => [
+  Parser falseLiteral() {
+    return super.falseLiteral().token().map((value) => [
           FormattedToken(
             type: FormattedTokenType.keyword,
             token: value,
@@ -47,8 +47,8 @@ class BmlFormatterDefinition extends BmlGrammarDefinition {
   }
 
   @override
-  Parser trueValue() {
-    return super.trueValue().token().map((value) => [
+  Parser trueLiteral() {
+    return super.trueLiteral().token().map((value) => [
           FormattedToken(
             type: FormattedTokenType.keyword,
             token: value,
@@ -67,8 +67,8 @@ class BmlFormatterDefinition extends BmlGrammarDefinition {
   }
 
   @override
-  Parser nullValue() {
-    return super.nullValue().token().map((value) => [
+  Parser nullLiteral() {
+    return super.nullLiteral().token().map((value) => [
           FormattedToken(
             type: FormattedTokenType.keyword,
             token: value,
@@ -77,8 +77,8 @@ class BmlFormatterDefinition extends BmlGrammarDefinition {
   }
 
   @override
-  Parser numberValue() {
-    return super.numberValue().token().map((value) => [
+  Parser numberLiteral() {
+    return super.numberLiteral().token().map((value) => [
           FormattedToken(
             type: FormattedTokenType.doubleLiteral,
             token: value,
@@ -87,8 +87,8 @@ class BmlFormatterDefinition extends BmlGrammarDefinition {
   }
 
   @override
-  Parser objectValue() {
-    return super.objectValue().map((each) {
+  Parser objectExpression() {
+    return super.objectExpression().map((each) {
       return [
         if (each[1] != null)
           for (final element in each[1]) ...element,
@@ -97,23 +97,23 @@ class BmlFormatterDefinition extends BmlGrammarDefinition {
   }
 
   @override
-  Parser objectValueMember() {
-    return super.objectValueMember().map((value) => [
+  Parser objectExpressionMember() {
+    return super.objectExpressionMember().map((value) => [
           ...value[0],
           ...value[2],
         ]);
   }
 
   @override
-  Parser objectValueKey() {
-    return super.objectValueKey().map((value) => [
+  Parser objectExpressionKey() {
+    return super.objectExpressionKey().map((value) => [
           ...value,
         ]);
   }
 
   @override
-  Parser stringValue() {
-    return super.stringValue().token().map((value) => [
+  Parser stringLiteral() {
+    return super.stringLiteral().token().map((value) => [
           FormattedToken(
             type: FormattedTokenType.stringLiteral,
             token: value,

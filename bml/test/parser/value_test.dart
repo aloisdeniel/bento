@@ -3,7 +3,7 @@ import 'package:petitparser/reflection.dart';
 import 'package:test/test.dart';
 
 final definition = BmlParserDefinition();
-final parser = definition.build(start: definition.value);
+final parser = definition.build(start: definition.expression);
 
 void main() {
   test('linter', () {
@@ -15,55 +15,55 @@ void main() {
       final result = parser.parse('null');
       expect(result.isSuccess, isTrue, reason: 'isSuccess');
 
-      expect(result.value, equals(BmlValue.empty()));
+      expect(result.value, equals(BmlLiteral.empty()));
     });
     group('boolean', () {
       test('true', () {
         final result = parser.parse('true');
         expect(result.isSuccess, isTrue, reason: 'isSuccess');
-        expect(result.value, equals(BmlValue.boolean(true)));
+        expect(result.value, equals(BmlLiteral.boolean(true)));
       });
       test('false', () {
         final result = parser.parse('false');
         expect(result.isSuccess, isTrue, reason: 'isSuccess');
-        expect(result.value, equals(BmlValue.boolean(false)));
+        expect(result.value, equals(BmlLiteral.boolean(false)));
       });
     });
     group('number', () {
       test('integer', () {
         final result = parser.parse('10');
         expect(result.isSuccess, isTrue, reason: 'isSuccess');
-        expect(result.value, equals(BmlValue.number(10)));
+        expect(result.value, equals(BmlLiteral.number(10)));
       });
       test('float', () {
         final result = parser.parse('1.0');
         expect(result.isSuccess, isTrue, reason: 'isSuccess');
-        expect(result.value, equals(BmlValue.number(1.0)));
+        expect(result.value, equals(BmlLiteral.number(1.0)));
       });
     });
     group('string', () {
       test('empty', () {
         final result = parser.parse('""');
         expect(result.isSuccess, isTrue, reason: 'isSuccess');
-        expect(result.value, equals(BmlValue.string('')));
+        expect(result.value, equals(BmlLiteral.string('')));
       });
       test('literal', () {
         final result = parser.parse('"Hello world"');
         expect(result.isSuccess, isTrue, reason: 'isSuccess');
-        expect(result.value, equals(BmlValue.string('Hello world')));
+        expect(result.value, equals(BmlLiteral.string('Hello world')));
       });
     });
   });
   test('reference', () {
     final result = parser.parse('props');
     expect(result.isSuccess, isTrue, reason: 'isSuccess');
-    expect(result.value, equals(BmlValue.reference('props')));
+    expect(result.value, equals(BmlLiteral.reference(['props'])));
   });
   group('object', () {
     test('empty', () {
       final result = parser.parse('{}');
       expect(result.isSuccess, isTrue, reason: 'isSuccess');
-      expect(result.value, equals(BmlValue.object({})));
+      expect(result.value, equals(BmlLiteral.object({})));
     });
 
     test('with primitive properties', () {
@@ -73,11 +73,11 @@ void main() {
       expect(
           result.value,
           equals(
-            BmlValue.object(
+            BmlLiteral.object(
               {
-                'hello': BmlValue.string('World'),
-                'success': BmlValue.number(1),
-                'really': BmlValue.boolean(true),
+                'hello': BmlLiteral.string('World'),
+                'success': BmlLiteral.number(1),
+                'really': BmlLiteral.boolean(true),
               },
             ),
           ));
@@ -90,11 +90,11 @@ void main() {
       expect(
           result.value,
           equals(
-            BmlValue.object(
+            BmlLiteral.object(
               {
-                'hello': BmlValue.string('World'),
-                'success': BmlValue.number(1),
-                'really': BmlValue.boolean(true),
+                'hello': BmlLiteral.string('World'),
+                'success': BmlLiteral.number(1),
+                'really': BmlLiteral.boolean(true),
               },
             ),
           ));
@@ -107,20 +107,20 @@ void main() {
       expect(
           result.value,
           equals(
-            BmlValue.object(
+            BmlLiteral.object(
               {
-                'hello': BmlValue.string('World'),
-                'child1': BmlValue.object(
+                'hello': BmlLiteral.string('World'),
+                'child1': BmlLiteral.object(
                   {
-                    'hello1': BmlValue.string('World1'),
+                    'hello1': BmlLiteral.string('World1'),
                   },
                 ),
-                'child2': BmlValue.object(
+                'child2': BmlLiteral.object(
                   {
-                    'hello2': BmlValue.string('World2'),
-                    'child3': BmlValue.object(
+                    'hello2': BmlLiteral.string('World2'),
+                    'child3': BmlLiteral.object(
                       {
-                        'hello3': BmlValue.string('World3'),
+                        'hello3': BmlLiteral.string('World3'),
                       },
                     ),
                   },
@@ -131,11 +131,86 @@ void main() {
     });
   });
 
+  group('invocation', () {
+    test('no args', () {
+      final result = parser.parse('example.member()');
+      expect(result.isSuccess, isTrue, reason: 'isSuccess');
+      expect(
+        result.value,
+        equals(
+          BmlLiteral.invocation(
+            BmlLiteral.reference(['example', 'member']),
+            const <BmlLiteral>[],
+          ),
+        ),
+      );
+    });
+
+    test('one double args', () {
+      final result = parser.parse('example.member(12)');
+      expect(result.isSuccess, isTrue, reason: 'isSuccess');
+      expect(
+        result.value,
+        equals(
+          BmlLiteral.invocation(
+            BmlLiteral.reference(['example', 'member']),
+            const <BmlLiteral>[BmlLiteral.number(12)],
+          ),
+        ),
+      );
+    });
+
+    test('multiple args', () {
+      final result = parser.parse('example.member(12, \'example\')');
+      expect(result.isSuccess, isTrue, reason: 'isSuccess');
+      expect(
+        result.value,
+        equals(
+          BmlLiteral.invocation(
+            BmlLiteral.reference(['example', 'member']),
+            const <BmlLiteral>[
+              BmlLiteral.number(12),
+              BmlLiteral.string('example'),
+            ],
+          ),
+        ),
+      );
+    });
+
+    test('multiple embedded args', () {
+      final result = parser
+          .parse('example.member(12, test(), 4, other.thing(8,7), "example")');
+      expect(result.isSuccess, isTrue, reason: 'isSuccess');
+      expect(
+        result.value,
+        equals(
+          BmlLiteral.invocation(
+            BmlLiteral.reference(['example', 'member']),
+            const <BmlLiteral>[
+              BmlLiteral.number(12),
+              BmlLiteral.invocation(
+                  BmlLiteral.reference(['test']), <BmlLiteral>[]),
+              BmlLiteral.number(4),
+              BmlLiteral.invocation(
+                BmlLiteral.reference(['other', 'thing']),
+                <BmlLiteral>[
+                  BmlLiteral.number(8),
+                  BmlLiteral.number(7),
+                ],
+              ),
+              BmlLiteral.string('example'),
+            ],
+          ),
+        ),
+      );
+    });
+  });
+
   group('array', () {
     test('empty', () {
       final result = parser.parse('[]');
       expect(result.isSuccess, isTrue, reason: 'isSuccess');
-      expect(result.value, equals(BmlValue.array([])));
+      expect(result.value, equals(BmlLiteral.array([])));
     });
 
     test('with primitive items', () {
@@ -144,11 +219,11 @@ void main() {
       expect(
         result.value,
         equals(
-          BmlValue.array(
+          BmlLiteral.array(
             [
-              BmlValue.string('World'),
-              BmlValue.number(1),
-              BmlValue.boolean(true),
+              BmlLiteral.string('World'),
+              BmlLiteral.number(1),
+              BmlLiteral.boolean(true),
             ],
           ),
         ),
@@ -161,11 +236,11 @@ void main() {
       expect(
         result.value,
         equals(
-          BmlValue.array(
+          BmlLiteral.array(
             [
-              BmlValue.string('World'),
-              BmlValue.number(1),
-              BmlValue.boolean(true),
+              BmlLiteral.string('World'),
+              BmlLiteral.number(1),
+              BmlLiteral.boolean(true),
             ],
           ),
         ),
@@ -179,22 +254,22 @@ void main() {
       expect(
         result.value,
         equals(
-          BmlValue.array(
+          BmlLiteral.array(
             [
-              BmlValue.string('World'),
-              BmlValue.number(1),
-              BmlValue.boolean(true),
-              BmlValue.array([
-                BmlValue.object(
+              BmlLiteral.string('World'),
+              BmlLiteral.number(1),
+              BmlLiteral.boolean(true),
+              BmlLiteral.array([
+                BmlLiteral.object(
                   {
-                    'hello': BmlValue.string('World'),
+                    'hello': BmlLiteral.string('World'),
                   },
                 ),
-                BmlValue.reference('props'),
+                BmlLiteral.reference(['props']),
               ]),
-              BmlValue.object(
+              BmlLiteral.object(
                 {
-                  'hello1': BmlValue.string('World1'),
+                  'hello1': BmlLiteral.string('World1'),
                 },
               ),
             ],

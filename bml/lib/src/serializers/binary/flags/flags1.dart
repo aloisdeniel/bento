@@ -12,7 +12,8 @@ enum BmlBinaryNode {
 
 enum BmlBinaryProperty {
   member(1),
-  aggregate(2);
+  aggregateOne(2),
+  aggregateMultiple(3);
 
   const BmlBinaryProperty(this.flag);
   final int flag;
@@ -31,8 +32,12 @@ enum BmlBinaryValue {
   arrayEmpty(9),
   object(10),
   objectEmpty(11),
-  reference(12),
-  node(13);
+  referenceMultiple(12),
+  referenceOne(13),
+  invocationNoArgs(14),
+  invocationOneArg(15),
+  invocationMultipleArgs(16),
+  node(17);
 
   const BmlBinaryValue(this.flag);
   final int flag;
