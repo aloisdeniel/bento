@@ -1,8 +1,8 @@
+// ignore_for_file: prefer_const_constructors, unused_import
 import 'package:flutter/widgets.dart';
 import 'package:path_icon/path_icon.dart';
-import 'package:equatable/equatable.dart';
 
-class AppThemeData extends Equatable {
+class AppThemeData {
   const AppThemeData(
       {required this.sizes,
       required this.breakpoints,
@@ -19,22 +19,7 @@ class AppThemeData extends Equatable {
       required this.typography,
       required this.icons});
 
-  static AppThemeData fallback = AppThemeData(
-    sizes: AppThemeSizesData.fallback,
-    breakpoints: AppThemeBreakpointsData.fallback,
-    spacing: AppThemeSpacingData.fallback,
-    borders: AppThemeBordersData.fallback,
-    radius: AppThemeRadiusData.fallback,
-    radii: AppThemeRadiiData.fallback,
-    motion: AppThemeMotionData.fallback,
-    gradient: AppThemeGradientData.fallback,
-    color: AppThemeColorData.fallback,
-    grid: AppThemeGridData.fallback,
-    font: AppThemeFontData.fallback,
-    effect: AppThemeEffectData.fallback,
-    typography: AppThemeTypographyData.fallback,
-    icons: AppThemeIconsData.fallback,
-  );
+  static AppThemeData fallback = _AppThemeDataInstance();
 
   final AppThemeSizesData sizes;
 
@@ -63,27 +48,55 @@ class AppThemeData extends Equatable {
   final AppThemeTypographyData typography;
 
   final AppThemeIconsData icons;
-
-  @override
-  List<Object?> get props => [
-        sizes,
-        breakpoints,
-        spacing,
-        borders,
-        radius,
-        radii,
-        motion,
-        gradient,
-        color,
-        grid,
-        font,
-        effect,
-        typography,
-        icons,
-      ];
 }
 
-class AppThemeSizesData extends Equatable {
+class _AppThemeDataInstance implements AppThemeData {
+  _AppThemeDataInstance();
+
+  @override
+  late final sizes = AppThemeSizesData.fallback;
+
+  @override
+  late final breakpoints = AppThemeBreakpointsData.fallback;
+
+  @override
+  late final spacing = AppThemeSpacingData.fallback;
+
+  @override
+  late final borders = AppThemeBordersData.fallback;
+
+  @override
+  late final radius = AppThemeRadiusData.fallback;
+
+  @override
+  late final radii = AppThemeRadiiData.fallback;
+
+  @override
+  late final motion = AppThemeMotionData.fallback;
+
+  @override
+  late final gradient = AppThemeGradientData.fallback;
+
+  @override
+  late final color = AppThemeColorData.fallback;
+
+  @override
+  late final grid = AppThemeGridData.fallback;
+
+  @override
+  late final font = AppThemeFontData.fallback;
+
+  @override
+  late final effect = AppThemeEffectData.fallback;
+
+  @override
+  late final typography = AppThemeTypographyData.fallback;
+
+  @override
+  late final icons = AppThemeIconsData.fallback;
+}
+
+class AppThemeSizesData {
   const AppThemeSizesData(
       {required this.v32,
       required this.v40,
@@ -99,21 +112,7 @@ class AppThemeSizesData extends Equatable {
       required this.rect,
       required this.shapeInComponent});
 
-  static AppThemeSizesData fallback = AppThemeSizesData(
-    v32: 32.72,
-    v40: 40.0,
-    v60: 60.0,
-    v80: 80.0,
-    plainToken: 200.0,
-    tokenInFrame: 200.0,
-    tokenInGroup: 200.0,
-    inVariant60: 60.0,
-    inVariant90: 90.0,
-    inVariant120: 120.0,
-    frame: 32.0,
-    rect: 32.0,
-    shapeInComponent: 32.0,
-  );
+  static AppThemeSizesData fallback = _AppThemeSizesDataInstance();
 
   final double v32;
 
@@ -140,247 +139,252 @@ class AppThemeSizesData extends Equatable {
   final double rect;
 
   final double shapeInComponent;
-
-  @override
-  List<Object?> get props => [
-        v32,
-        v40,
-        v60,
-        v80,
-        plainToken,
-        tokenInFrame,
-        tokenInGroup,
-        inVariant60,
-        inVariant90,
-        inVariant120,
-        frame,
-        rect,
-        shapeInComponent,
-      ];
 }
 
-class AppThemeBreakpointsData extends Equatable {
+class _AppThemeSizesDataInstance implements AppThemeSizesData {
+  _AppThemeSizesDataInstance();
+
+  @override
+  late final v32 = 32.72;
+
+  @override
+  late final v40 = 40.0;
+
+  @override
+  late final v60 = 60.0;
+
+  @override
+  late final v80 = 80.0;
+
+  @override
+  late final plainToken = 200.0;
+
+  @override
+  late final tokenInFrame = 200.0;
+
+  @override
+  late final tokenInGroup = 200.0;
+
+  @override
+  late final inVariant60 = 60.0;
+
+  @override
+  late final inVariant90 = 90.0;
+
+  @override
+  late final inVariant120 = 120.0;
+
+  @override
+  late final frame = 32.0;
+
+  @override
+  late final rect = 32.0;
+
+  @override
+  late final shapeInComponent = 32.0;
+}
+
+class AppThemeBreakpointsData {
   const AppThemeBreakpointsData(
       {required this.lg, required this.sm, required this.md});
 
-  static AppThemeBreakpointsData fallback = AppThemeBreakpointsData(
-    lg: 1280.0,
-    sm: 768.0,
-    md: 1024.0,
-  );
+  static AppThemeBreakpointsData fallback = _AppThemeBreakpointsDataInstance();
 
   final double lg;
 
   final double sm;
 
   final double md;
-
-  @override
-  List<Object?> get props => [
-        lg,
-        sm,
-        md,
-      ];
 }
 
-class AppThemeSpacingData extends Equatable {
+class _AppThemeBreakpointsDataInstance implements AppThemeBreakpointsData {
+  _AppThemeBreakpointsDataInstance();
+
+  @override
+  late final lg = 1280.0;
+
+  @override
+  late final sm = 768.0;
+
+  @override
+  late final md = 1024.0;
+}
+
+class AppThemeSpacingData {
   const AppThemeSpacingData(
       {required this.v10, required this.mixed, required this.top});
 
-  static AppThemeSpacingData fallback = AppThemeSpacingData(
-    v10: const EdgeInsets.all(10.0),
-    mixed: const EdgeInsets.only(
-      top: 10.0,
-      left: 20.0,
-      right: 20.0,
-      bottom: 30.0,
-    ),
-    top: const EdgeInsets.only(
-      top: 10.0,
-      left: 0.0,
-      right: 0.0,
-      bottom: 0.0,
-    ),
-  );
+  static AppThemeSpacingData fallback = _AppThemeSpacingDataInstance();
 
   final EdgeInsets v10;
 
   final EdgeInsets mixed;
 
   final EdgeInsets top;
-
-  @override
-  List<Object?> get props => [
-        v10,
-        mixed,
-        top,
-      ];
 }
 
-class AppThemeBordersData extends Equatable {
-  const AppThemeBordersData({required this.unsupported});
+class _AppThemeSpacingDataInstance implements AppThemeSpacingData {
+  _AppThemeSpacingDataInstance();
 
-  static AppThemeBordersData fallback = AppThemeBordersData(
-    unsupported: AppThemeBordersUnsupportedData.fallback,
+  @override
+  late final v10 = const EdgeInsets.all(10.0);
+
+  @override
+  late final mixed = const EdgeInsets.only(
+    top: 10.0,
+    left: 20.0,
+    right: 20.0,
+    bottom: 30.0,
   );
 
-  final AppThemeBordersUnsupportedData unsupported;
-
   @override
-  List<Object?> get props => [
-        unsupported,
-      ];
+  late final top = const EdgeInsets.only(
+    top: 10.0,
+    left: 0.0,
+    right: 0.0,
+    bottom: 0.0,
+  );
 }
 
-class AppThemeBordersUnsupportedData extends Equatable {
+class AppThemeBordersData {
+  const AppThemeBordersData({required this.unsupported});
+
+  static AppThemeBordersData fallback = _AppThemeBordersDataInstance();
+
+  final AppThemeBordersUnsupportedData unsupported;
+}
+
+class _AppThemeBordersDataInstance implements AppThemeBordersData {
+  _AppThemeBordersDataInstance();
+
+  @override
+  late final unsupported = AppThemeBordersUnsupportedData.fallback;
+}
+
+class AppThemeBordersUnsupportedData {
   const AppThemeBordersUnsupportedData();
 
   static AppThemeBordersUnsupportedData fallback =
-      AppThemeBordersUnsupportedData();
-
-  @override
-  List<Object?> get props => [];
+      _AppThemeBordersUnsupportedDataInstance();
 }
 
-class AppThemeRadiusData extends Equatable {
+class _AppThemeBordersUnsupportedDataInstance
+    implements AppThemeBordersUnsupportedData {
+  _AppThemeBordersUnsupportedDataInstance();
+}
+
+class AppThemeRadiusData {
   const AppThemeRadiusData({required this.v5});
 
-  static AppThemeRadiusData fallback = AppThemeRadiusData(
-    v5: const BorderRadius.only(
-      topLeft: Radius.circular(5.0),
-      topRight: Radius.circular(5.0),
-      bottomLeft: Radius.circular(5.0),
-      bottomRight: Radius.circular(5.0),
-    ),
-  );
+  static AppThemeRadiusData fallback = _AppThemeRadiusDataInstance();
 
   final BorderRadius v5;
-
-  @override
-  List<Object?> get props => [
-        v5,
-      ];
 }
 
-class AppThemeRadiiData extends Equatable {
+class _AppThemeRadiusDataInstance implements AppThemeRadiusData {
+  _AppThemeRadiusDataInstance();
+
+  @override
+  late final v5 = const BorderRadius.only(
+    topLeft: Radius.circular(5.0),
+    topRight: Radius.circular(5.0),
+    bottomLeft: Radius.circular(5.0),
+    bottomRight: Radius.circular(5.0),
+  );
+}
+
+class AppThemeRadiiData {
   const AppThemeRadiiData({required this.smoothing, required this.mixed});
 
-  static AppThemeRadiiData fallback = AppThemeRadiiData(
-    smoothing: const BorderRadius.only(
-      topLeft: Radius.circular(10.0),
-      topRight: Radius.circular(10.0),
-      bottomLeft: Radius.circular(10.0),
-      bottomRight: Radius.circular(10.0),
-    ),
-    mixed: const BorderRadius.only(
-      topLeft: Radius.circular(5.5),
-      topRight: Radius.circular(10.0),
-      bottomLeft: Radius.circular(20.0),
-      bottomRight: Radius.circular(15.0),
-    ),
-  );
+  static AppThemeRadiiData fallback = _AppThemeRadiiDataInstance();
 
   final BorderRadius smoothing;
 
   final BorderRadius mixed;
-
-  @override
-  List<Object?> get props => [
-        smoothing,
-        mixed,
-      ];
 }
 
-class AppThemeMotionData extends Equatable {
+class _AppThemeRadiiDataInstance implements AppThemeRadiiData {
+  _AppThemeRadiiDataInstance();
+
+  @override
+  late final smoothing = const BorderRadius.only(
+    topLeft: Radius.circular(10.0),
+    topRight: Radius.circular(10.0),
+    bottomLeft: Radius.circular(10.0),
+    bottomRight: Radius.circular(10.0),
+  );
+
+  @override
+  late final mixed = const BorderRadius.only(
+    topLeft: Radius.circular(5.5),
+    topRight: Radius.circular(10.0),
+    bottomLeft: Radius.circular(20.0),
+    bottomRight: Radius.circular(15.0),
+  );
+}
+
+class AppThemeMotionData {
   const AppThemeMotionData();
 
-  static AppThemeMotionData fallback = AppThemeMotionData();
-
-  @override
-  List<Object?> get props => [];
+  static AppThemeMotionData fallback = _AppThemeMotionDataInstance();
 }
 
-class AppThemeGradientData extends Equatable {
+class _AppThemeMotionDataInstance implements AppThemeMotionData {
+  _AppThemeMotionDataInstance();
+}
+
+class AppThemeGradientData {
   const AppThemeGradientData({required this.gradient});
 
-  static AppThemeGradientData fallback = AppThemeGradientData(
-    gradient: AppThemeGradientGradientData.fallback,
-  );
+  static AppThemeGradientData fallback = _AppThemeGradientDataInstance();
 
   final AppThemeGradientGradientData gradient;
-
-  @override
-  List<Object?> get props => [
-        gradient,
-      ];
 }
 
-class AppThemeGradientGradientData extends Equatable {
+class _AppThemeGradientDataInstance implements AppThemeGradientData {
+  _AppThemeGradientDataInstance();
+
+  @override
+  late final gradient = AppThemeGradientGradientData.fallback;
+}
+
+class AppThemeGradientGradientData {
   const AppThemeGradientGradientData({required this.multiplegrad});
 
-  static AppThemeGradientGradientData fallback = AppThemeGradientGradientData(
-    multiplegrad: AppThemeGradientGradientMultiplegradData.fallback,
-  );
+  static AppThemeGradientGradientData fallback =
+      _AppThemeGradientGradientDataInstance();
 
   final AppThemeGradientGradientMultiplegradData multiplegrad;
-
-  @override
-  List<Object?> get props => [
-        multiplegrad,
-      ];
 }
 
-class AppThemeGradientGradientMultiplegradData extends Equatable {
-  const AppThemeGradientGradientMultiplegradData({required this.extensions});
+class _AppThemeGradientGradientDataInstance
+    implements AppThemeGradientGradientData {
+  _AppThemeGradientGradientDataInstance();
+
+  @override
+  late final multiplegrad = AppThemeGradientGradientMultiplegradData.fallback;
+}
+
+class AppThemeGradientGradientMultiplegradData {
+  const AppThemeGradientGradientMultiplegradData();
 
   static AppThemeGradientGradientMultiplegradData fallback =
-      AppThemeGradientGradientMultiplegradData(
-    extensions: AppThemeGradientGradientMultiplegradExtensionsData.fallback,
-  );
-
-  final AppThemeGradientGradientMultiplegradExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        extensions,
-      ];
+      _AppThemeGradientGradientMultiplegradDataInstance();
 }
 
-class AppThemeGradientGradientMultiplegradExtensionsData extends Equatable {
-  const AppThemeGradientGradientMultiplegradExtensionsData();
-
-  static AppThemeGradientGradientMultiplegradExtensionsData fallback =
-      AppThemeGradientGradientMultiplegradExtensionsData();
-
-  @override
-  List<Object?> get props => [];
+class _AppThemeGradientGradientMultiplegradDataInstance
+    implements AppThemeGradientGradientMultiplegradData {
+  _AppThemeGradientGradientMultiplegradDataInstance();
 }
 
-class AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeGradientGradientMultiplegradExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeColorData extends Equatable {
+class AppThemeColorData {
   const AppThemeColorData(
       {required this.colors,
       required this.invalid,
       required this.light,
       required this.dark});
 
-  static AppThemeColorData fallback = AppThemeColorData(
-    colors: AppThemeColorColorsData.fallback,
-    invalid: AppThemeColorInvalidData.fallback,
-    light: AppThemeColorLightData.fallback,
-    dark: AppThemeColorDarkData.fallback,
-  );
+  static AppThemeColorData fallback = _AppThemeColorDataInstance();
 
   final AppThemeColorColorsData colors;
 
@@ -389,29 +393,32 @@ class AppThemeColorData extends Equatable {
   final AppThemeColorLightData light;
 
   final AppThemeColorDarkData dark;
-
-  @override
-  List<Object?> get props => [
-        colors,
-        invalid,
-        light,
-        dark,
-      ];
 }
 
-class AppThemeColorColorsData extends Equatable {
+class _AppThemeColorDataInstance implements AppThemeColorData {
+  _AppThemeColorDataInstance();
+
+  @override
+  late final colors = AppThemeColorColorsData.fallback;
+
+  @override
+  late final invalid = AppThemeColorInvalidData.fallback;
+
+  @override
+  late final light = AppThemeColorLightData.fallback;
+
+  @override
+  late final dark = AppThemeColorDarkData.fallback;
+}
+
+class AppThemeColorColorsData {
   const AppThemeColorColorsData(
       {required this.singleBlue,
       required this.refBlue,
       required this.multipleFills,
       required this.specialCharacters});
 
-  static AppThemeColorColorsData fallback = AppThemeColorColorsData(
-    singleBlue: const Color(0xff044aff),
-    refBlue: const Color(0x0),
-    multipleFills: AppThemeColorColorsMultipleFillsData.fallback,
-    specialCharacters: AppThemeColorColorsSpecialCharactersData.fallback,
-  );
+  static AppThemeColorColorsData fallback = _AppThemeColorColorsDataInstance();
 
   final Color singleBlue;
 
@@ -420,197 +427,159 @@ class AppThemeColorColorsData extends Equatable {
   final AppThemeColorColorsMultipleFillsData multipleFills;
 
   final AppThemeColorColorsSpecialCharactersData specialCharacters;
-
-  @override
-  List<Object?> get props => [
-        singleBlue,
-        refBlue,
-        multipleFills,
-        specialCharacters,
-      ];
 }
 
-class AppThemeColorColorsMultipleFillsData extends Equatable {
+class _AppThemeColorColorsDataInstance implements AppThemeColorColorsData {
+  _AppThemeColorColorsDataInstance();
+
+  @override
+  late final singleBlue = const Color(0xff044aff);
+
+  @override
+  late final refBlue = const Color(0x0);
+
+  @override
+  late final multipleFills = AppThemeColorColorsMultipleFillsData.fallback;
+
+  @override
+  late final specialCharacters =
+      AppThemeColorColorsSpecialCharactersData.fallback;
+}
+
+class AppThemeColorColorsMultipleFillsData {
   const AppThemeColorColorsMultipleFillsData(
-      {required this.v0, required this.v1, required this.extensions});
+      {required this.v0, required this.v1});
 
   static AppThemeColorColorsMultipleFillsData fallback =
-      AppThemeColorColorsMultipleFillsData(
-    v0: const Color(0xff40ffba),
-    v1: const Color(0x1a000000),
-    extensions: AppThemeColorColorsMultipleFillsExtensionsData.fallback,
-  );
+      _AppThemeColorColorsMultipleFillsDataInstance();
 
   final Color v0;
 
   final Color v1;
-
-  final AppThemeColorColorsMultipleFillsExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        v0,
-        v1,
-        extensions,
-      ];
 }
 
-class AppThemeColorColorsMultipleFillsExtensionsData extends Equatable {
-  const AppThemeColorColorsMultipleFillsExtensionsData();
-
-  static AppThemeColorColorsMultipleFillsExtensionsData fallback =
-      AppThemeColorColorsMultipleFillsExtensionsData();
+class _AppThemeColorColorsMultipleFillsDataInstance
+    implements AppThemeColorColorsMultipleFillsData {
+  _AppThemeColorColorsMultipleFillsDataInstance();
 
   @override
-  List<Object?> get props => [];
-}
-
-class AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeColorColorsMultipleFillsExtensionsOrgLukasoppermannFigmaDesignTokensData();
+  late final v0 = const Color(0xff40ffba);
 
   @override
-  List<Object?> get props => [];
+  late final v1 = const Color(0x1a000000);
 }
 
-class AppThemeColorColorsSpecialCharactersData extends Equatable {
+class AppThemeColorColorsSpecialCharactersData {
   const AppThemeColorColorsSpecialCharactersData(
       {required this.c55357c56837, required this.c228nderung});
 
   static AppThemeColorColorsSpecialCharactersData fallback =
-      AppThemeColorColorsSpecialCharactersData(
-    c55357c56837: const Color(0xff40df50),
-    c228nderung: const Color(0xff3456af),
-  );
+      _AppThemeColorColorsSpecialCharactersDataInstance();
 
   final Color c55357c56837;
 
   final Color c228nderung;
-
-  @override
-  List<Object?> get props => [
-        c55357c56837,
-        c228nderung,
-      ];
 }
 
-class AppThemeColorInvalidData extends Equatable {
+class _AppThemeColorColorsSpecialCharactersDataInstance
+    implements AppThemeColorColorsSpecialCharactersData {
+  _AppThemeColorColorsSpecialCharactersDataInstance();
+
+  @override
+  late final c55357c56837 = const Color(0xff40df50);
+
+  @override
+  late final c228nderung = const Color(0xff3456af);
+}
+
+class AppThemeColorInvalidData {
   const AppThemeColorInvalidData({required this.empty});
 
-  static AppThemeColorInvalidData fallback = AppThemeColorInvalidData(
-    empty: const Color(0x0),
-  );
+  static AppThemeColorInvalidData fallback =
+      _AppThemeColorInvalidDataInstance();
 
   final Color empty;
-
-  @override
-  List<Object?> get props => [
-        empty,
-      ];
 }
 
-class AppThemeColorLightData extends Equatable {
+class _AppThemeColorInvalidDataInstance implements AppThemeColorInvalidData {
+  _AppThemeColorInvalidDataInstance();
+
+  @override
+  late final empty = const Color(0x0);
+}
+
+class AppThemeColorLightData {
   const AppThemeColorLightData({required this.background});
 
-  static AppThemeColorLightData fallback = AppThemeColorLightData(
-    background: const Color(0xffffffff),
-  );
+  static AppThemeColorLightData fallback = _AppThemeColorLightDataInstance();
 
   final Color background;
-
-  @override
-  List<Object?> get props => [
-        background,
-      ];
 }
 
-class AppThemeColorDarkData extends Equatable {
+class _AppThemeColorLightDataInstance implements AppThemeColorLightData {
+  _AppThemeColorLightDataInstance();
+
+  @override
+  late final background = const Color(0xffffffff);
+}
+
+class AppThemeColorDarkData {
   const AppThemeColorDarkData({required this.background});
 
-  static AppThemeColorDarkData fallback = AppThemeColorDarkData(
-    background: const Color(0xff000000),
-  );
+  static AppThemeColorDarkData fallback = _AppThemeColorDarkDataInstance();
 
   final Color background;
-
-  @override
-  List<Object?> get props => [
-        background,
-      ];
 }
 
-class AppThemeGridData extends Equatable {
+class _AppThemeColorDarkDataInstance implements AppThemeColorDarkData {
+  _AppThemeColorDarkDataInstance();
+
+  @override
+  late final background = const Color(0xff000000);
+}
+
+class AppThemeGridData {
   const AppThemeGridData({required this.multiple});
 
-  static AppThemeGridData fallback = AppThemeGridData(
-    multiple: AppThemeGridMultipleData.fallback,
-  );
+  static AppThemeGridData fallback = _AppThemeGridDataInstance();
 
   final AppThemeGridMultipleData multiple;
-
-  @override
-  List<Object?> get props => [
-        multiple,
-      ];
 }
 
-class AppThemeGridMultipleData extends Equatable {
-  const AppThemeGridMultipleData({required this.extensions});
-
-  static AppThemeGridMultipleData fallback = AppThemeGridMultipleData(
-    extensions: AppThemeGridMultipleExtensionsData.fallback,
-  );
-
-  final AppThemeGridMultipleExtensionsData extensions;
+class _AppThemeGridDataInstance implements AppThemeGridData {
+  _AppThemeGridDataInstance();
 
   @override
-  List<Object?> get props => [
-        extensions,
-      ];
+  late final multiple = AppThemeGridMultipleData.fallback;
 }
 
-class AppThemeGridMultipleExtensionsData extends Equatable {
-  const AppThemeGridMultipleExtensionsData();
+class AppThemeGridMultipleData {
+  const AppThemeGridMultipleData();
 
-  static AppThemeGridMultipleExtensionsData fallback =
-      AppThemeGridMultipleExtensionsData();
-
-  @override
-  List<Object?> get props => [];
+  static AppThemeGridMultipleData fallback =
+      _AppThemeGridMultipleDataInstance();
 }
 
-class AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeGridMultipleExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  @override
-  List<Object?> get props => [];
+class _AppThemeGridMultipleDataInstance implements AppThemeGridMultipleData {
+  _AppThemeGridMultipleDataInstance();
 }
 
-class AppThemeFontData extends Equatable {
+class AppThemeFontData {
   const AppThemeFontData({required this.body});
 
-  static AppThemeFontData fallback = AppThemeFontData(
-    body: AppThemeFontBodyData.fallback,
-  );
+  static AppThemeFontData fallback = _AppThemeFontDataInstance();
 
   final AppThemeFontBodyData body;
-
-  @override
-  List<Object?> get props => [
-        body,
-      ];
 }
 
-class AppThemeFontBodyData extends Equatable {
+class _AppThemeFontDataInstance implements AppThemeFontData {
+  _AppThemeFontDataInstance();
+
+  @override
+  late final body = AppThemeFontBodyData.fallback;
+}
+
+class AppThemeFontBodyData {
   const AppThemeFontBodyData(
       {required this.h3,
       required this.h4StrikeThrough,
@@ -619,38 +588,7 @@ class AppThemeFontBodyData extends Equatable {
       required this.mediumExtendedItalic,
       required this.super$});
 
-  static AppThemeFontBodyData fallback = AppThemeFontBodyData(
-    h3: const TextStyle(
-      fontFamily: 'Akzidenz-Grotesk Pro',
-      fontSize: 20.0,
-      fontWeight: FontWeight.w700,
-    ),
-    h4StrikeThrough: const TextStyle(
-      fontFamily: 'Roboto',
-      fontSize: 16.0,
-      fontWeight: FontWeight.w500,
-    ),
-    italic: const TextStyle(
-      fontFamily: 'Roboto',
-      fontSize: 12.0,
-      fontWeight: FontWeight.w400,
-    ),
-    extraBoldCondensedItalic: const TextStyle(
-      fontFamily: 'Akzidenz-Grotesk Pro',
-      fontSize: 12.0,
-      fontWeight: FontWeight.w800,
-    ),
-    mediumExtendedItalic: const TextStyle(
-      fontFamily: 'Akzidenz-Grotesk Pro',
-      fontSize: 20.0,
-      fontWeight: FontWeight.w500,
-    ),
-    super$: const TextStyle(
-      fontFamily: 'Akzidenz-Grotesk Pro',
-      fontSize: 22.0,
-      fontWeight: FontWeight.w900,
-    ),
-  );
+  static AppThemeFontBodyData fallback = _AppThemeFontBodyDataInstance();
 
   final TextStyle h3;
 
@@ -663,174 +601,140 @@ class AppThemeFontBodyData extends Equatable {
   final TextStyle mediumExtendedItalic;
 
   final TextStyle super$;
-
-  @override
-  List<Object?> get props => [
-        h3,
-        h4StrikeThrough,
-        italic,
-        extraBoldCondensedItalic,
-        mediumExtendedItalic,
-        super$,
-      ];
 }
 
-class AppThemeEffectData extends Equatable {
-  const AppThemeEffectData(
-      {required this.innerShadowc40multiplec41,
-      required this.layerBlur,
-      required this.backgroundBlur});
+class _AppThemeFontBodyDataInstance implements AppThemeFontBodyData {
+  _AppThemeFontBodyDataInstance();
 
-  static AppThemeEffectData fallback = AppThemeEffectData(
-    innerShadowc40multiplec41:
-        AppThemeEffectInnerShadowc40multiplec41Data.fallback,
-    layerBlur: AppThemeEffectLayerBlurData.fallback,
-    backgroundBlur: AppThemeEffectBackgroundBlurData.fallback,
+  @override
+  late final h3 = const TextStyle(
+    fontFamily: 'Akzidenz-Grotesk Pro',
+    fontSize: 20.0,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 0.4,
+    decoration: TextDecoration.none,
+    fontStyle: FontStyle.normal,
   );
 
-  final AppThemeEffectInnerShadowc40multiplec41Data innerShadowc40multiplec41;
-
-  final AppThemeEffectLayerBlurData layerBlur;
-
-  final AppThemeEffectBackgroundBlurData backgroundBlur;
-
   @override
-  List<Object?> get props => [
-        innerShadowc40multiplec41,
-        layerBlur,
-        backgroundBlur,
-      ];
-}
-
-class AppThemeEffectInnerShadowc40multiplec41Data extends Equatable {
-  const AppThemeEffectInnerShadowc40multiplec41Data({required this.extensions});
-
-  static AppThemeEffectInnerShadowc40multiplec41Data fallback =
-      AppThemeEffectInnerShadowc40multiplec41Data(
-    extensions: AppThemeEffectInnerShadowc40multiplec41ExtensionsData.fallback,
+  late final h4StrikeThrough = const TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 16.0,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0,
+    decoration: TextDecoration.lineThrough,
+    fontStyle: FontStyle.italic,
   );
 
-  final AppThemeEffectInnerShadowc40multiplec41ExtensionsData extensions;
-
   @override
-  List<Object?> get props => [
-        extensions,
-      ];
-}
-
-class AppThemeEffectInnerShadowc40multiplec41ExtensionsData extends Equatable {
-  const AppThemeEffectInnerShadowc40multiplec41ExtensionsData();
-
-  static AppThemeEffectInnerShadowc40multiplec41ExtensionsData fallback =
-      AppThemeEffectInnerShadowc40multiplec41ExtensionsData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeEffectInnerShadowc40multiplec41ExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeEffectLayerBlurData extends Equatable {
-  const AppThemeEffectLayerBlurData({required this.extensions});
-
-  static AppThemeEffectLayerBlurData fallback = AppThemeEffectLayerBlurData(
-    extensions: AppThemeEffectLayerBlurExtensionsData.fallback,
+  late final italic = const TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.0,
+    decoration: TextDecoration.none,
+    fontStyle: FontStyle.italic,
   );
 
-  final AppThemeEffectLayerBlurExtensionsData extensions;
+  @override
+  late final extraBoldCondensedItalic = const TextStyle(
+    fontFamily: 'Akzidenz-Grotesk Pro',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w800,
+    letterSpacing: 0.0,
+    decoration: TextDecoration.none,
+    fontStyle: FontStyle.italic,
+  );
 
   @override
-  List<Object?> get props => [
-        extensions,
-      ];
-}
-
-class AppThemeEffectLayerBlurExtensionsData extends Equatable {
-  const AppThemeEffectLayerBlurExtensionsData();
-
-  static AppThemeEffectLayerBlurExtensionsData fallback =
-      AppThemeEffectLayerBlurExtensionsData();
+  late final mediumExtendedItalic = const TextStyle(
+    fontFamily: 'Akzidenz-Grotesk Pro',
+    fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0,
+    decoration: TextDecoration.none,
+    fontStyle: FontStyle.italic,
+  );
 
   @override
-  List<Object?> get props => [];
+  late final super$ = const TextStyle(
+    fontFamily: 'Akzidenz-Grotesk Pro',
+    fontSize: 22.0,
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0,
+    decoration: TextDecoration.none,
+    fontStyle: FontStyle.normal,
+  );
 }
 
-class AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
+class AppThemeEffectData {
+  const AppThemeEffectData({required this.innerShadowMultiple});
 
-  static AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeEffectLayerBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
+  static AppThemeEffectData fallback = _AppThemeEffectDataInstance();
+
+  final AppThemeEffectInnerShadowMultipleData innerShadowMultiple;
+}
+
+class _AppThemeEffectDataInstance implements AppThemeEffectData {
+  _AppThemeEffectDataInstance();
 
   @override
-  List<Object?> get props => [];
+  late final innerShadowMultiple =
+      AppThemeEffectInnerShadowMultipleData.fallback;
 }
 
-class AppThemeEffectBackgroundBlurData extends Equatable {
-  const AppThemeEffectBackgroundBlurData({required this.extensions});
+class AppThemeEffectInnerShadowMultipleData {
+  const AppThemeEffectInnerShadowMultipleData();
+
+  static AppThemeEffectInnerShadowMultipleData fallback =
+      _AppThemeEffectInnerShadowMultipleDataInstance();
+}
+
+class _AppThemeEffectInnerShadowMultipleDataInstance
+    implements AppThemeEffectInnerShadowMultipleData {
+  _AppThemeEffectInnerShadowMultipleDataInstance();
+}
+
+class AppThemeEffectLayerBlurData {
+  const AppThemeEffectLayerBlurData();
+
+  static AppThemeEffectLayerBlurData fallback =
+      _AppThemeEffectLayerBlurDataInstance();
+}
+
+class _AppThemeEffectLayerBlurDataInstance
+    implements AppThemeEffectLayerBlurData {
+  _AppThemeEffectLayerBlurDataInstance();
+}
+
+class AppThemeEffectBackgroundBlurData {
+  const AppThemeEffectBackgroundBlurData();
 
   static AppThemeEffectBackgroundBlurData fallback =
-      AppThemeEffectBackgroundBlurData(
-    extensions: AppThemeEffectBackgroundBlurExtensionsData.fallback,
-  );
-
-  final AppThemeEffectBackgroundBlurExtensionsData extensions;
-
-  @override
-  List<Object?> get props => [
-        extensions,
-      ];
+      _AppThemeEffectBackgroundBlurDataInstance();
 }
 
-class AppThemeEffectBackgroundBlurExtensionsData extends Equatable {
-  const AppThemeEffectBackgroundBlurExtensionsData();
-
-  static AppThemeEffectBackgroundBlurExtensionsData fallback =
-      AppThemeEffectBackgroundBlurExtensionsData();
-
-  @override
-  List<Object?> get props => [];
+class _AppThemeEffectBackgroundBlurDataInstance
+    implements AppThemeEffectBackgroundBlurData {
+  _AppThemeEffectBackgroundBlurDataInstance();
 }
 
-class AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-    extends Equatable {
-  const AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  static AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData
-      fallback =
-      AppThemeEffectBackgroundBlurExtensionsOrgLukasoppermannFigmaDesignTokensData();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AppThemeTypographyData extends Equatable {
+class AppThemeTypographyData {
   const AppThemeTypographyData({required this.body});
 
-  static AppThemeTypographyData fallback = AppThemeTypographyData(
-    body: AppThemeTypographyBodyData.fallback,
-  );
+  static AppThemeTypographyData fallback = _AppThemeTypographyDataInstance();
 
   final AppThemeTypographyBodyData body;
-
-  @override
-  List<Object?> get props => [
-        body,
-      ];
 }
 
-class AppThemeTypographyBodyData extends Equatable {
+class _AppThemeTypographyDataInstance implements AppThemeTypographyData {
+  _AppThemeTypographyDataInstance();
+
+  @override
+  late final body = AppThemeTypographyBodyData.fallback;
+}
+
+class AppThemeTypographyBodyData {
   const AppThemeTypographyBodyData(
       {required this.h3,
       required this.h4StrikeThrough,
@@ -839,16 +743,8 @@ class AppThemeTypographyBodyData extends Equatable {
       required this.mediumExtendedItalic,
       required this.super$});
 
-  static AppThemeTypographyBodyData fallback = AppThemeTypographyBodyData(
-    h3: AppThemeTypographyBodyH3Data.fallback,
-    h4StrikeThrough: AppThemeTypographyBodyH4StrikeThroughData.fallback,
-    italic: AppThemeTypographyBodyItalicData.fallback,
-    extraBoldCondensedItalic:
-        AppThemeTypographyBodyExtraBoldCondensedItalicData.fallback,
-    mediumExtendedItalic:
-        AppThemeTypographyBodyMediumExtendedItalicData.fallback,
-    super$: AppThemeTypographyBodySuperData.fallback,
-  );
+  static AppThemeTypographyBodyData fallback =
+      _AppThemeTypographyBodyDataInstance();
 
   final AppThemeTypographyBodyH3Data h3;
 
@@ -862,19 +758,35 @@ class AppThemeTypographyBodyData extends Equatable {
   final AppThemeTypographyBodyMediumExtendedItalicData mediumExtendedItalic;
 
   final AppThemeTypographyBodySuperData super$;
-
-  @override
-  List<Object?> get props => [
-        h3,
-        h4StrikeThrough,
-        italic,
-        extraBoldCondensedItalic,
-        mediumExtendedItalic,
-        super$,
-      ];
 }
 
-class AppThemeTypographyBodyH3Data extends Equatable {
+class _AppThemeTypographyBodyDataInstance
+    implements AppThemeTypographyBodyData {
+  _AppThemeTypographyBodyDataInstance();
+
+  @override
+  late final h3 = AppThemeTypographyBodyH3Data.fallback;
+
+  @override
+  late final h4StrikeThrough =
+      AppThemeTypographyBodyH4StrikeThroughData.fallback;
+
+  @override
+  late final italic = AppThemeTypographyBodyItalicData.fallback;
+
+  @override
+  late final extraBoldCondensedItalic =
+      AppThemeTypographyBodyExtraBoldCondensedItalicData.fallback;
+
+  @override
+  late final mediumExtendedItalic =
+      AppThemeTypographyBodyMediumExtendedItalicData.fallback;
+
+  @override
+  late final super$ = AppThemeTypographyBodySuperData.fallback;
+}
+
+class AppThemeTypographyBodyH3Data {
   const AppThemeTypographyBodyH3Data(
       {required this.fontSize,
       required this.letterSpacing,
@@ -882,13 +794,8 @@ class AppThemeTypographyBodyH3Data extends Equatable {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyH3Data fallback = AppThemeTypographyBodyH3Data(
-    fontSize: 20.0,
-    letterSpacing: 0.4,
-    lineHeight: 32.0,
-    paragraphIndent: 5.0,
-    paragraphSpacing: 8.0,
-  );
+  static AppThemeTypographyBodyH3Data fallback =
+      _AppThemeTypographyBodyH3DataInstance();
 
   final double fontSize;
 
@@ -899,18 +806,29 @@ class AppThemeTypographyBodyH3Data extends Equatable {
   final double paragraphIndent;
 
   final double paragraphSpacing;
-
-  @override
-  List<Object?> get props => [
-        fontSize,
-        letterSpacing,
-        lineHeight,
-        paragraphIndent,
-        paragraphSpacing,
-      ];
 }
 
-class AppThemeTypographyBodyH4StrikeThroughData extends Equatable {
+class _AppThemeTypographyBodyH3DataInstance
+    implements AppThemeTypographyBodyH3Data {
+  _AppThemeTypographyBodyH3DataInstance();
+
+  @override
+  late final fontSize = 20.0;
+
+  @override
+  late final letterSpacing = 0.4;
+
+  @override
+  late final lineHeight = 32.0;
+
+  @override
+  late final paragraphIndent = 5.0;
+
+  @override
+  late final paragraphSpacing = 8.0;
+}
+
+class AppThemeTypographyBodyH4StrikeThroughData {
   const AppThemeTypographyBodyH4StrikeThroughData(
       {required this.fontSize,
       required this.letterSpacing,
@@ -919,13 +837,7 @@ class AppThemeTypographyBodyH4StrikeThroughData extends Equatable {
       required this.paragraphSpacing});
 
   static AppThemeTypographyBodyH4StrikeThroughData fallback =
-      AppThemeTypographyBodyH4StrikeThroughData(
-    fontSize: 16.0,
-    letterSpacing: 0.0,
-    lineHeight: 19.2,
-    paragraphIndent: 0.0,
-    paragraphSpacing: 0.0,
-  );
+      _AppThemeTypographyBodyH4StrikeThroughDataInstance();
 
   final double fontSize;
 
@@ -936,18 +848,29 @@ class AppThemeTypographyBodyH4StrikeThroughData extends Equatable {
   final double paragraphIndent;
 
   final double paragraphSpacing;
-
-  @override
-  List<Object?> get props => [
-        fontSize,
-        letterSpacing,
-        lineHeight,
-        paragraphIndent,
-        paragraphSpacing,
-      ];
 }
 
-class AppThemeTypographyBodyItalicData extends Equatable {
+class _AppThemeTypographyBodyH4StrikeThroughDataInstance
+    implements AppThemeTypographyBodyH4StrikeThroughData {
+  _AppThemeTypographyBodyH4StrikeThroughDataInstance();
+
+  @override
+  late final fontSize = 16.0;
+
+  @override
+  late final letterSpacing = 0.0;
+
+  @override
+  late final lineHeight = 19.2;
+
+  @override
+  late final paragraphIndent = 0.0;
+
+  @override
+  late final paragraphSpacing = 0.0;
+}
+
+class AppThemeTypographyBodyItalicData {
   const AppThemeTypographyBodyItalicData(
       {required this.fontSize,
       required this.letterSpacing,
@@ -956,13 +879,7 @@ class AppThemeTypographyBodyItalicData extends Equatable {
       required this.paragraphSpacing});
 
   static AppThemeTypographyBodyItalicData fallback =
-      AppThemeTypographyBodyItalicData(
-    fontSize: 12.0,
-    letterSpacing: 0.0,
-    lineHeight: 14.0,
-    paragraphIndent: 0.0,
-    paragraphSpacing: 0.0,
-  );
+      _AppThemeTypographyBodyItalicDataInstance();
 
   final double fontSize;
 
@@ -973,18 +890,29 @@ class AppThemeTypographyBodyItalicData extends Equatable {
   final double paragraphIndent;
 
   final double paragraphSpacing;
-
-  @override
-  List<Object?> get props => [
-        fontSize,
-        letterSpacing,
-        lineHeight,
-        paragraphIndent,
-        paragraphSpacing,
-      ];
 }
 
-class AppThemeTypographyBodyExtraBoldCondensedItalicData extends Equatable {
+class _AppThemeTypographyBodyItalicDataInstance
+    implements AppThemeTypographyBodyItalicData {
+  _AppThemeTypographyBodyItalicDataInstance();
+
+  @override
+  late final fontSize = 12.0;
+
+  @override
+  late final letterSpacing = 0.0;
+
+  @override
+  late final lineHeight = 14.0;
+
+  @override
+  late final paragraphIndent = 0.0;
+
+  @override
+  late final paragraphSpacing = 0.0;
+}
+
+class AppThemeTypographyBodyExtraBoldCondensedItalicData {
   const AppThemeTypographyBodyExtraBoldCondensedItalicData(
       {required this.fontSize,
       required this.letterSpacing,
@@ -993,13 +921,7 @@ class AppThemeTypographyBodyExtraBoldCondensedItalicData extends Equatable {
       required this.paragraphSpacing});
 
   static AppThemeTypographyBodyExtraBoldCondensedItalicData fallback =
-      AppThemeTypographyBodyExtraBoldCondensedItalicData(
-    fontSize: 12.0,
-    letterSpacing: 0.0,
-    lineHeight: 14.4,
-    paragraphIndent: 0.0,
-    paragraphSpacing: 0.0,
-  );
+      _AppThemeTypographyBodyExtraBoldCondensedItalicDataInstance();
 
   final double fontSize;
 
@@ -1010,18 +932,29 @@ class AppThemeTypographyBodyExtraBoldCondensedItalicData extends Equatable {
   final double paragraphIndent;
 
   final double paragraphSpacing;
-
-  @override
-  List<Object?> get props => [
-        fontSize,
-        letterSpacing,
-        lineHeight,
-        paragraphIndent,
-        paragraphSpacing,
-      ];
 }
 
-class AppThemeTypographyBodyMediumExtendedItalicData extends Equatable {
+class _AppThemeTypographyBodyExtraBoldCondensedItalicDataInstance
+    implements AppThemeTypographyBodyExtraBoldCondensedItalicData {
+  _AppThemeTypographyBodyExtraBoldCondensedItalicDataInstance();
+
+  @override
+  late final fontSize = 12.0;
+
+  @override
+  late final letterSpacing = 0.0;
+
+  @override
+  late final lineHeight = 14.4;
+
+  @override
+  late final paragraphIndent = 0.0;
+
+  @override
+  late final paragraphSpacing = 0.0;
+}
+
+class AppThemeTypographyBodyMediumExtendedItalicData {
   const AppThemeTypographyBodyMediumExtendedItalicData(
       {required this.fontSize,
       required this.letterSpacing,
@@ -1030,13 +963,7 @@ class AppThemeTypographyBodyMediumExtendedItalicData extends Equatable {
       required this.paragraphSpacing});
 
   static AppThemeTypographyBodyMediumExtendedItalicData fallback =
-      AppThemeTypographyBodyMediumExtendedItalicData(
-    fontSize: 20.0,
-    letterSpacing: 0.0,
-    lineHeight: 24.0,
-    paragraphIndent: 0.0,
-    paragraphSpacing: 0.0,
-  );
+      _AppThemeTypographyBodyMediumExtendedItalicDataInstance();
 
   final double fontSize;
 
@@ -1047,18 +974,29 @@ class AppThemeTypographyBodyMediumExtendedItalicData extends Equatable {
   final double paragraphIndent;
 
   final double paragraphSpacing;
-
-  @override
-  List<Object?> get props => [
-        fontSize,
-        letterSpacing,
-        lineHeight,
-        paragraphIndent,
-        paragraphSpacing,
-      ];
 }
 
-class AppThemeTypographyBodySuperData extends Equatable {
+class _AppThemeTypographyBodyMediumExtendedItalicDataInstance
+    implements AppThemeTypographyBodyMediumExtendedItalicData {
+  _AppThemeTypographyBodyMediumExtendedItalicDataInstance();
+
+  @override
+  late final fontSize = 20.0;
+
+  @override
+  late final letterSpacing = 0.0;
+
+  @override
+  late final lineHeight = 24.0;
+
+  @override
+  late final paragraphIndent = 0.0;
+
+  @override
+  late final paragraphSpacing = 0.0;
+}
+
+class AppThemeTypographyBodySuperData {
   const AppThemeTypographyBodySuperData(
       {required this.fontSize,
       required this.letterSpacing,
@@ -1067,13 +1005,7 @@ class AppThemeTypographyBodySuperData extends Equatable {
       required this.paragraphSpacing});
 
   static AppThemeTypographyBodySuperData fallback =
-      AppThemeTypographyBodySuperData(
-    fontSize: 22.0,
-    letterSpacing: 0.0,
-    lineHeight: 26.4,
-    paragraphIndent: 0.0,
-    paragraphSpacing: 0.0,
-  );
+      _AppThemeTypographyBodySuperDataInstance();
 
   final double fontSize;
 
@@ -1084,18 +1016,29 @@ class AppThemeTypographyBodySuperData extends Equatable {
   final double paragraphIndent;
 
   final double paragraphSpacing;
-
-  @override
-  List<Object?> get props => [
-        fontSize,
-        letterSpacing,
-        lineHeight,
-        paragraphIndent,
-        paragraphSpacing,
-      ];
 }
 
-class AppThemeIconsData extends Equatable {
+class _AppThemeTypographyBodySuperDataInstance
+    implements AppThemeTypographyBodySuperData {
+  _AppThemeTypographyBodySuperDataInstance();
+
+  @override
+  late final fontSize = 22.0;
+
+  @override
+  late final letterSpacing = 0.0;
+
+  @override
+  late final lineHeight = 26.4;
+
+  @override
+  late final paragraphIndent = 0.0;
+
+  @override
+  late final paragraphSpacing = 0.0;
+}
+
+class AppThemeIconsData {
   const AppThemeIconsData(
       {required this.propagation,
       required this.productMenuClosed,
@@ -1104,382 +1047,7 @@ class AppThemeIconsData extends Equatable {
       required this.pageTree,
       required this.phone});
 
-  static AppThemeIconsData fallback = AppThemeIconsData(
-    propagation: PathIconData(
-      path: Path()
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(11.5, 3.5)
-            ..cubicTo(11.5, 5.43299674987793, 9.93299674987793, 7.0, 8.0, 7.0)
-            ..cubicTo(6.06700325012207, 7.0, 4.5, 5.43299674987793, 4.5, 3.5)
-            ..cubicTo(4.5, 1.5670033693313599, 6.06700325012207, 0.0, 8.0, 0.0)
-            ..cubicTo(
-                9.93299674987793, 0.0, 11.5, 1.5670033693313599, 11.5, 3.5)
-            ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(1.0, 10.299994468688965)
-            ..lineTo(4.143750190734863, 7.159369468688965)
-            ..cubicTo(4.596875190734863, 6.712494373321533, 5.3125,
-                7.331244468688965, 4.849999904632568, 7.86561918258667)
-            ..lineTo(1.7156250476837158, 10.999994277954102)
-            ..lineTo(2.075000047683716, 10.999994277954102)
-            ..cubicTo(
-                2.7218751907348633,
-                11.006244659423828,
-                2.7531251907348633,
-                11.974994659423828,
-                2.075000047683716,
-                11.999994277954102)
-            ..lineTo(0.5, 11.999994277954102)
-            ..cubicTo(0.22499999403953552, 11.999994277954102, 0.0,
-                11.774993896484375, 0.0, 11.499994277954102)
-            ..lineTo(0.0, 9.924994468688965)
-            ..cubicTo(0.015625, 9.262495040893555, 1.0, 9.265619277954102, 1.0,
-                9.924994468688965)
-            ..lineTo(1.0, 10.299994468688965)
-            ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(14.999682426452637, 10.299994468688965)
-            ..lineTo(11.855941772460938, 7.159369468688965)
-            ..cubicTo(11.402817726135254, 6.712494373321533, 10.68719482421875,
-                7.331244468688965, 11.149693489074707, 7.86561918258667)
-            ..lineTo(14.284059524536133, 10.999994277954102)
-            ..lineTo(13.92468547821045, 10.999994277954102)
-            ..cubicTo(
-                13.277812957763672,
-                11.006244659423828,
-                13.246562957763672,
-                11.974994659423828,
-                13.92468547821045,
-                11.999994277954102)
-            ..lineTo(15.499680519104004, 11.999994277954102)
-            ..cubicTo(
-                15.774680137634277,
-                11.999994277954102,
-                15.999679565429688,
-                11.774993896484375,
-                15.999679565429688,
-                11.499994277954102)
-            ..lineTo(15.999679565429688, 9.924994468688965)
-            ..cubicTo(15.984054565429688, 9.262494087219238, 14.999682426452637,
-                9.265619277954102, 14.999682426452637, 9.924994468688965)
-            ..lineTo(14.999682426452637, 10.299994468688965)
-            ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(7.5065741539001465, 9.506209373474121)
-            ..lineTo(7.5065741539001465, 14.299959182739258)
-            ..lineTo(7.2409491539001465, 14.034334182739258)
-            ..cubicTo(6.775323867797852, 13.568708419799805, 6.075324535369873,
-                14.262458801269531, 6.534699440002441, 14.740583419799805)
-            ..lineTo(7.6471991539001465, 15.853082656860352)
-            ..cubicTo(7.840949058532715, 16.046833038330078, 8.159698486328125,
-                16.046833038330078, 8.353448867797852, 15.853082656860352)
-            ..lineTo(9.465949058532715, 14.740583419799805)
-            ..cubicTo(9.928448677062988, 14.243708610534668, 9.222198486328125,
-                13.581209182739258, 8.759698867797852, 14.034334182739258)
-            ..lineTo(8.506574630737305, 14.287458419799805)
-            ..lineTo(8.506574630737305, 9.506209373474121)
-            ..cubicTo(8.453449249267578, 8.803084373474121, 7.50969934463501,
-                8.868708610534668, 7.5065741539001465, 9.506209373474121)
-            ..close(),
-          Offset.zero,
-        ),
-      viewBox: Offset.zero & Size(15.999679565429688, 15.998395919799805),
-    ),
-    productMenuClosed: PathIconData(
-      path: Path()
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(0.0, 0.96875)
-            ..cubicTo(0.0, 0.43438720703125, 0.4345703125, 0.0, 0.96875, 0.0)
-            ..cubicTo(1.505859375, 0.0, 1.9404296875, 0.43438720703125, 1.9375,
-                0.96875)
-            ..lineTo(1.9375, 15.03125)
-            ..cubicTo(
-                1.9375, 15.56561279296875, 1.5029296875, 16.0, 0.96875, 16.0)
-            ..cubicTo(0.4345703125, 16.0, 0.0, 15.56561279296875, 0.0, 15.03125)
-            ..lineTo(0.0, 0.96875)
-            ..close(),
-          Offset.zero,
-        )
-        ..addPath(
-          Path()
-            ..fillType = PathFillType.evenOdd
-            ..moveTo(14.5, 16.0)
-            ..lineTo(4.5, 16.0)
-            ..cubicTo(3.671875, 16.0, 3.0, 15.328125, 3.0, 14.5)
-            ..lineTo(3.0, 1.5)
-            ..cubicTo(3.0, 0.67498779296875, 3.671875, 0.0, 4.5, 0.0)
-            ..lineTo(14.5, 0.0)
-            ..cubicTo(15.328125, 0.0, 16.0, 0.671875, 16.0, 1.5)
-            ..lineTo(16.0, 14.5)
-            ..cubicTo(16.0, 15.32501220703125, 15.3251953125, 16.0, 14.5, 16.0)
-            ..close()
-            ..moveTo(5.0, 14.0)
-            ..lineTo(14.0, 14.0)
-            ..lineTo(14.0, 2.0)
-            ..lineTo(5.0, 2.0)
-            ..lineTo(5.0, 14.0)
-            ..close(),
-          Offset.zero,
-        ),
-      viewBox: Offset.zero & Size(16.0, 16.0),
-    ),
-    pasteWord: PathIconData(
-      path: Path()
-        ..fillType = PathFillType.evenOdd
-        ..moveTo(13.0, 6.0)
-        ..lineTo(11.0, 6.0)
-        ..lineTo(11.0, 2.8709375858306885)
-        ..cubicTo(11.0, 1.8375000953674316, 10.162500143051147, 1.0,
-            9.12906265258789, 1.0)
-        ..lineTo(2.8709375858306885, 1.0)
-        ..cubicTo(1.8375000953674316, 1.0, 1.0, 1.8375000953674316, 1.0,
-            2.8709375858306885)
-        ..lineTo(1.0, 11.129375457763672)
-        ..cubicTo(1.0, 12.162500500679016, 1.8375000953674316, 13.0,
-            2.8709375858306885, 13.0)
-        ..lineTo(5.0, 13.0)
-        ..lineTo(5.0, 14.0)
-        ..cubicTo(5.0, 15.104687452316284, 5.895312547683716, 16.0, 7.0, 16.0)
-        ..lineTo(13.0, 16.0)
-        ..cubicTo(
-            14.104687452316284, 16.0, 15.0, 15.104687452316284, 15.0, 14.0)
-        ..lineTo(15.0, 8.0)
-        ..cubicTo(15.0, 6.895312547683716, 14.104687452316284, 6.0, 13.0, 6.0)
-        ..close()
-        ..moveTo(5.0, 8.0)
-        ..lineTo(5.0, 11.0)
-        ..lineTo(3.0, 11.0)
-        ..lineTo(3.0, 3.0)
-        ..lineTo(4.0, 3.0)
-        ..cubicTo(4.0, 3.552187502384186, 4.447812497615814, 4.0, 5.0, 4.0)
-        ..lineTo(7.0, 4.0)
-        ..cubicTo(7.552187502384186, 4.0, 8.0, 3.552187502384186, 8.0, 3.0)
-        ..lineTo(9.0, 3.0)
-        ..lineTo(9.0, 6.0)
-        ..lineTo(7.0, 6.0)
-        ..cubicTo(5.895312547683716, 6.0, 5.0, 6.895312547683716, 5.0, 8.0)
-        ..close()
-        ..moveTo(12.063437461853027, 13.0)
-        ..lineTo(10.918437957763672, 13.0)
-        ..lineTo(10.063437461853027, 10.398750305175781)
-        ..lineTo(9.182812690734863, 13.0)
-        ..lineTo(8.063437461853027, 13.0)
-        ..lineTo(7.063437461853027, 9.0)
-        ..lineTo(8.063437461853027, 9.0)
-        ..lineTo(8.66812515258789, 11.676875114440918)
-        ..lineTo(9.524687767028809, 9.0)
-        ..lineTo(10.577812194824219, 9.0)
-        ..lineTo(11.4165620803833, 11.676875114440918)
-        ..lineTo(12.063437461853027, 9.0)
-        ..lineTo(13.063437461853027, 9.0)
-        ..lineTo(12.063437461853027, 13.0)
-        ..close(),
-      viewBox: Offset.zero & Size(16.0, 16.0),
-    ),
-    paperclip: PathIconData(
-      path: Path()
-        ..fillType = PathFillType.evenOdd
-        ..moveTo(15.070035994052887, 1.912181556224823)
-        ..cubicTo(14.489995241165161, 1.3321734070777893, 13.719322443008423,
-            1.01318359375, 12.899640142917633, 1.01318359375)
-        ..cubicTo(12.079957842826843, 1.01318359375, 11.30925339460373,
-            1.3321408033370972, 10.729245245456696, 1.912181556224823)
-        ..lineTo(4.1137829422950745, 8.526731491088867)
-        ..cubicTo(3.70306196808815, 8.937452465295792, 3.4865245847031474,
-            9.456002056598663, 3.5016773343086243, 9.988824844360352)
-        ..cubicTo(3.516830083914101, 10.48867005109787, 3.734214961528778,
-            10.972450286149979, 4.112870752811432, 11.351985931396484)
-        ..cubicTo(4.489766895771027, 11.728849470615387, 4.992251634597778,
-            11.937338829040527, 5.525954306125641, 11.937338829040527)
-        ..cubicTo(6.059656977653503, 11.937338829040527, 6.562141418457031,
-            11.728849470615387, 6.939004957675934, 11.351985931396484)
-        ..lineTo(10.48774629831314, 7.803244590759277)
-        ..cubicTo(10.792463213205338, 7.498527675867081, 10.792463213205338,
-            7.004939317703247, 10.48774629831314, 6.701102256774902)
-        ..cubicTo(10.183029383420944, 6.397265195846558, 9.68944102525711,
-            6.396385341882706, 9.385603964328766, 6.701102256774902)
-        ..lineTo(5.835949957370758, 10.24984359741211)
-        ..cubicTo(5.671094566583633, 10.415578827261925, 5.382443070411682,
-            10.416458666324615, 5.215828001499176, 10.24984359741211)
-        ..cubicTo(5.118720062077045, 10.152735657989979, 5.063485818449408,
-            10.044026330113411, 5.059901297092438, 9.944246292114258)
-        ..cubicTo(5.057229199446738, 9.841794155538082, 5.109791338443756,
-            9.736670017242432, 5.215828001499176, 9.630633354187012)
-        ..lineTo(11.831290304660797, 3.0151712894439697)
-        ..cubicTo(12.402402341365814, 2.444939136505127, 13.396715819835663,
-            2.444939136505127, 13.96782785654068, 3.0151712894439697)
-        ..cubicTo(14.556764721870422, 3.604108154773712, 14.556764721870422,
-            4.562804818153381, 13.96782785654068, 5.151709079742432)
-        ..lineTo(6.215518534183502, 12.90401840209961)
-        ..cubicTo(5.1517303586006165, 13.966959357261658, 3.420536696910858,
-            13.967806577682495, 2.356715977191925, 12.90401840209961)
-        ..cubicTo(1.292895257472992, 11.840230226516724, 1.2929278016090393,
-            10.109037280082703, 2.356715977191925, 9.04521656036377)
-        ..lineTo(7.869123041629791, 3.532808780670166)
-        ..cubicTo(8.173839956521988, 3.2281244695186615, 8.173839956521988,
-            2.734503388404846, 7.869123041629791, 2.4306663274765015)
-        ..cubicTo(7.564406126737595, 2.125982016324997, 7.070817768573761,
-            2.125982016324997, 6.766980707645416, 2.4306663274765015)
-        ..lineTo(1.254573404788971, 7.943073749542236)
-        ..cubicTo(-0.41688889265060425, 9.614536046981812, -0.41688889265060425,
-            12.335546255111694, 1.254573404788971, 14.00700855255127)
-        ..cubicTo(2.090320885181427, 14.842756032943726, 3.188879072666168,
-            15.260581016540527, 4.286557257175446, 15.260581016540527)
-        ..cubicTo(5.385147869586945, 15.260581016540527, 6.482793152332306,
-            14.842723429203033, 7.318540632724762, 14.00700855255127)
-        ..lineTo(15.070850431919098, 6.254698753356934)
-        ..cubicTo(16.26739627122879, 5.056328058242798, 16.267461597919464,
-            3.109639823436737, 15.070035994052887, 1.912181556224823)
-        ..close(),
-      viewBox: Offset.zero & Size(16.0, 16.0),
-    ),
-    pageTree: PathIconData(
-      path: Path()
-        ..fillType = PathFillType.evenOdd
-        ..moveTo(5.012578725814819, 9.0)
-        ..lineTo(8.974842548370361, 9.0)
-        ..cubicTo(8.974842548370361, 9.550000011920929, 9.427672922611237, 10.0,
-            9.98113203048706, 10.0)
-        ..lineTo(11.9937105178833, 10.0)
-        ..cubicTo(12.55345892906189, 10.0, 13.0, 9.550000011920929, 13.0, 9.0)
-        ..lineTo(13.0, 7.0)
-        ..cubicTo(13.0, 6.443750023841858, 12.547169625759125, 6.0,
-            11.9937105178833, 6.0)
-        ..lineTo(9.98113203048706, 6.0)
-        ..cubicTo(9.421383619308472, 6.0, 8.974842548370361, 6.449999988079071,
-            8.974842548370361, 7.0)
-        ..lineTo(8.974842548370361, 8.0)
-        ..lineTo(5.012578725814819, 8.0)
-        ..lineTo(5.012578725814819, 4.0)
-        ..lineTo(6.0188679695129395, 4.0)
-        ..cubicTo(6.578616380691528, 4.0, 7.025157451629639, 3.550000011920929,
-            7.025157451629639, 3.0)
-        ..lineTo(7.025157451629639, 1.0)
-        ..cubicTo(7.025157451629639, 0.4437500238418579, 6.572327077388763, 0.0,
-            6.0188679695129395, 0.0)
-        ..lineTo(4.00628936290741, 0.0)
-        ..cubicTo(3.446540951728821, 0.0, 3.0, 0.44999998807907104, 3.0, 1.0)
-        ..lineTo(3.0, 3.0)
-        ..cubicTo(3.0, 3.550000011920929, 3.4528302550315857, 4.0,
-            4.00628936290741, 4.0)
-        ..lineTo(4.00628936290741, 15.0)
-        ..lineTo(8.974842548370361, 15.0)
-        ..cubicTo(8.974842548370361, 15.550000011920929, 9.427672922611237,
-            16.0, 9.98113203048706, 16.0)
-        ..lineTo(11.9937105178833, 16.0)
-        ..cubicTo(12.55345892906189, 16.0, 13.0, 15.550000011920929, 13.0, 15.0)
-        ..lineTo(13.0, 13.0)
-        ..cubicTo(13.0, 12.443750023841858, 12.547169625759125, 12.0,
-            11.9937105178833, 12.0)
-        ..lineTo(9.98113203048706, 12.0)
-        ..cubicTo(9.421383619308472, 12.0, 8.974842548370361,
-            12.449999988079071, 8.974842548370361, 13.0)
-        ..lineTo(8.974842548370361, 14.0)
-        ..lineTo(5.012578725814819, 14.0)
-        ..lineTo(5.012578725814819, 9.0)
-        ..close(),
-      viewBox: Offset.zero & Size(16.0, 16.0),
-    ),
-    phone: PathIconData(
-      path: Path()
-        ..fillType = PathFillType.evenOdd
-        ..moveTo(15.265635505318642, 11.19683837890625)
-        ..lineTo(15.352549567818642, 11.356201171875)
-        ..cubicTo(15.568369880318642, 11.7686767578125, 16.21192456781864,
-            12.98431396484375, 15.372080817818642, 14.07183837890625)
-        ..cubicTo(15.012705817818642, 14.55621337890625, 14.240244880318642,
-            15.44683837890625, 13.234385505318642, 15.85931396484375)
-        ..lineTo(13.024424567818642, 15.93743896484375)
-        ..lineTo(12.937510505318642, 15.9405517578125)
-        ..cubicTo(12.708994880318642, 15.981201171875, 12.437510505318642,
-            15.9906005859375, 12.237315192818642, 15.9906005859375)
-        ..cubicTo(11.458994880318642, 15.9906005859375, 7.4091897159814835,
-            15.80621337890625, 3.9218852669000626, 12.15618896484375)
-        ..cubicTo(0.24024464190006256, 8.309326171875, -0.043935179710388184,
-            3.39996337890625, 0.3779398202896118, 2.43743896484375)
-        ..cubicTo(0.8310648202896118, 1.4593505859375, 1.758799210190773,
-            0.71868896484375, 2.2685649544000626, 0.36871337890625)
-        ..cubicTo(2.4775493294000626, 0.23431396484375, 2.6777446419000626,
-            0.1468505859375, 2.8935649544000626, 0.0843505859375)
-        ..cubicTo(3.0869243294000626, 0.0343017578125, 3.2558696419000626,
-            0.012451171875, 3.4248149544000626, 0.012451171875)
-        ..cubicTo(4.100596204400063, 0.012451171875, 4.6552834659814835,
-            0.3411865234375, 4.9580178409814835, 0.52044677734375)
-        ..lineTo(4.9658303409814835, 0.52496337890625)
-        ..lineTo(5.1250100284814835, 0.621826171875)
-        ..cubicTo(6.2216897159814835, 1.29681396484375, 6.6533303409814835,
-            4.7061767578125, 6.6533303409814835, 4.7374267578125)
-        ..cubicTo(6.6220803409814835, 5.4561767578125, 6.1406350284814835,
-            5.9906005859375, 5.4531350284814835, 6.66558837890625)
-        ..cubicTo(5.8437600284814835, 7.4124755859375, 6.5683694034814835,
-            8.36871337890625, 7.0908303409814835, 8.903076171875)
-        ..cubicTo(7.5996194034814835, 9.4249267578125, 8.450205817818642,
-            10.14056396484375, 9.237315192818642, 10.5999755859375)
-        ..cubicTo(9.846690192818642, 10.0343017578125, 10.287119880318642,
-            9.66558837890625, 10.815440192818642, 9.543701171875)
-        ..lineTo(11.153330817818642, 9.496826171875)
-        ..lineTo(11.227549567818642, 9.49993896484375)
-        ..cubicTo(11.258799567818642, 9.49993896484375, 14.646494880318642,
-            10.074951171875, 15.265635505318642, 11.19683837890625)
-        ..close()
-        ..moveTo(12.599619880318642, 14.15936279296875)
-        ..cubicTo(13.078135505318642, 13.949951171875, 13.602549567818642,
-            13.40936279296875, 13.930674567818642, 12.97186279296875)
-        ..cubicTo(14.027354255318642, 12.84368896484375, 13.977549567818642,
-            12.63433837890625, 13.758799567818642, 12.22186279296875)
-        ..lineTo(13.724619880318642, 12.15936279296875)
-        ..cubicTo(13.315440192818642, 11.89373779296875, 11.750010505318642,
-            11.43121337890625, 11.199229255318642, 11.324951171875)
-        ..cubicTo(11.032237067818642, 11.4114990234375, 10.600596442818642,
-            11.8140869140625, 10.287119880318642, 12.10601806640625)
-        ..lineTo(10.243174567818642, 12.1468505859375)
-        ..cubicTo(9.843760505318642, 12.53118896484375, 9.218760505318642,
-            12.63433837890625, 8.708994880318642, 12.3812255859375)
-        ..cubicTo(7.6523537784814835, 11.84368896484375, 6.4873147159814835,
-            10.887451171875, 5.7968850284814835, 10.17498779296875)
-        ..cubicTo(5.0937600284814835, 9.45623779296875, 4.102549329400063,
-            8.1312255859375, 3.6591899544000626, 7.10308837890625)
-        ..cubicTo(3.4531352669000626, 6.5999755859375, 3.5654399544000626,
-            6.02496337890625, 3.9375102669000626, 5.62493896484375)
-        ..lineTo(3.9687602669000626, 5.590576171875)
-        ..lineTo(4.020518079400063, 5.53955078125)
-        ..cubicTo(4.2929787784814835, 5.27105712890625, 4.7226662784814835,
-            4.846923828125, 4.8339944034814835, 4.65936279296875)
-        ..cubicTo(4.7500100284814835, 4.10931396484375, 4.3593850284814835,
-            2.543701171875, 4.105479016900063, 2.121826171875)
-        ..lineTo(4.031260266900063, 2.074951171875)
-        ..cubicTo(3.8623149544000626, 1.9749755859375, 3.5468852669000626,
-            1.7874755859375, 3.3750102669000626, 1.83123779296875)
-        ..cubicTo(3.3281352669000626, 1.84686279296875, 3.2841899544000626,
-            1.871826171875, 3.2685649544000626, 1.8812255859375)
-        ..cubicTo(2.7216899544000626, 2.25933837890625, 2.2656352669000626,
-            2.72808837890625, 2.058603897690773, 3.12493896484375)
-        ..cubicTo(1.968760147690773, 3.71868896484375, 2.1054787784814835,
-            7.63433837890625, 5.2343850284814835, 10.903076171875)
-        ..cubicTo(8.211924090981483, 14.01873779296875, 11.589854255318642,
-            14.1781005859375, 12.237315192818642, 14.1781005859375)
-        ..cubicTo(12.430674567818642, 14.1781005859375, 12.552744880318642,
-            14.16558837890625, 12.599619880318642, 14.15936279296875)
-        ..close(),
-      viewBox: Offset.zero & Size(16.0, 16.0),
-    ),
-  );
+  static AppThemeIconsData fallback = _AppThemeIconsDataInstance();
 
   final PathIconData propagation;
 
@@ -1492,14 +1060,379 @@ class AppThemeIconsData extends Equatable {
   final PathIconData pageTree;
 
   final PathIconData phone;
+}
+
+class _AppThemeIconsDataInstance implements AppThemeIconsData {
+  _AppThemeIconsDataInstance();
 
   @override
-  List<Object?> get props => [
-        propagation,
-        productMenuClosed,
-        pasteWord,
-        paperclip,
-        pageTree,
-        phone,
-      ];
+  late final propagation = PathIconData(
+    path: Path()
+      ..addPath(
+        Path()
+          ..fillType = PathFillType.evenOdd
+          ..moveTo(11.5, 3.5)
+          ..cubicTo(11.5, 5.43299674987793, 9.93299674987793, 7.0, 8.0, 7.0)
+          ..cubicTo(6.06700325012207, 7.0, 4.5, 5.43299674987793, 4.5, 3.5)
+          ..cubicTo(4.5, 1.5670033693313599, 6.06700325012207, 0.0, 8.0, 0.0)
+          ..cubicTo(9.93299674987793, 0.0, 11.5, 1.5670033693313599, 11.5, 3.5)
+          ..close(),
+        Offset.zero,
+      )
+      ..addPath(
+        Path()
+          ..fillType = PathFillType.evenOdd
+          ..moveTo(1.0, 10.299994468688965)
+          ..lineTo(4.143750190734863, 7.159369468688965)
+          ..cubicTo(4.596875190734863, 6.712494373321533, 5.3125,
+              7.331244468688965, 4.849999904632568, 7.86561918258667)
+          ..lineTo(1.715625047683716, 10.999994277954102)
+          ..lineTo(2.075000047683716, 10.999994277954102)
+          ..cubicTo(2.7218751907348633, 11.006244659423828, 2.7531251907348633,
+              11.974994659423828, 2.075000047683716, 11.999994277954102)
+          ..lineTo(0.5, 11.999994277954102)
+          ..cubicTo(0.22499999403953558, 11.999994277954102, 0.0,
+              11.774993896484375, 0.0, 11.499994277954102)
+          ..lineTo(0.0, 9.924994468688965)
+          ..cubicTo(0.015625000000000003, 9.262495040893555, 1.0,
+              9.265619277954102, 1.0, 9.924994468688965)
+          ..lineTo(1.0, 10.299994468688965)
+          ..close(),
+        Offset.zero,
+      )
+      ..addPath(
+        Path()
+          ..fillType = PathFillType.evenOdd
+          ..moveTo(14.999682426452637, 10.299994468688965)
+          ..lineTo(11.855941772460938, 7.159369468688965)
+          ..cubicTo(11.402817726135254, 6.712494373321533, 10.68719482421875,
+              7.331244468688965, 11.149693489074707, 7.86561918258667)
+          ..lineTo(14.284059524536133, 10.999994277954102)
+          ..lineTo(13.92468547821045, 10.999994277954102)
+          ..cubicTo(13.277812957763672, 11.006244659423828, 13.246562957763672,
+              11.974994659423828, 13.92468547821045, 11.999994277954102)
+          ..lineTo(15.499680519104004, 11.999994277954102)
+          ..cubicTo(15.774680137634277, 11.999994277954102, 15.999679565429688,
+              11.774993896484375, 15.999679565429688, 11.499994277954102)
+          ..lineTo(15.999679565429688, 9.924994468688965)
+          ..cubicTo(15.984054565429688, 9.262494087219238, 14.999682426452637,
+              9.265619277954102, 14.999682426452637, 9.924994468688965)
+          ..lineTo(14.999682426452637, 10.299994468688965)
+          ..close(),
+        Offset.zero,
+      )
+      ..addPath(
+        Path()
+          ..fillType = PathFillType.evenOdd
+          ..moveTo(7.5065741539001465, 9.506209373474121)
+          ..lineTo(7.5065741539001465, 14.299959182739258)
+          ..lineTo(7.2409491539001465, 14.034334182739258)
+          ..cubicTo(6.775323867797852, 13.568708419799805, 6.075324535369873,
+              14.262458801269531, 6.534699440002441, 14.740583419799805)
+          ..lineTo(7.6471991539001465, 15.853082656860352)
+          ..cubicTo(7.840949058532715, 16.046833038330078, 8.159698486328125,
+              16.046833038330078, 8.353448867797852, 15.853082656860352)
+          ..lineTo(9.465949058532715, 14.740583419799805)
+          ..cubicTo(9.928448677062988, 14.243708610534668, 9.222198486328125,
+              13.581209182739258, 8.759698867797852, 14.034334182739258)
+          ..lineTo(8.506574630737305, 14.287458419799805)
+          ..lineTo(8.506574630737305, 9.506209373474121)
+          ..cubicTo(8.453449249267578, 8.803084373474121, 7.50969934463501,
+              8.868708610534668, 7.5065741539001465, 9.506209373474121)
+          ..close(),
+        Offset.zero,
+      ),
+    viewBox: Offset.zero & Size(15.999679565429688, 15.998395919799805),
+  );
+
+  @override
+  late final productMenuClosed = PathIconData(
+    path: Path()
+      ..addPath(
+        Path()
+          ..fillType = PathFillType.evenOdd
+          ..moveTo(0.0, 0.9687500000000001)
+          ..cubicTo(0.0, 0.4343872070312501, 0.43457031250000006, 0.0,
+              0.9687500000000001, 0.0)
+          ..cubicTo(1.505859375, 0.0, 1.9404296875, 0.4343872070312501, 1.9375,
+              0.9687500000000001)
+          ..lineTo(1.9375, 15.03125)
+          ..cubicTo(1.9375, 15.56561279296875, 1.5029296875, 16.0,
+              0.9687500000000001, 16.0)
+          ..cubicTo(
+              0.43457031250000006, 16.0, 0.0, 15.56561279296875, 0.0, 15.03125)
+          ..lineTo(0.0, 0.9687500000000001)
+          ..close(),
+        Offset.zero,
+      )
+      ..addPath(
+        Path()
+          ..fillType = PathFillType.evenOdd
+          ..moveTo(14.5, 16.0)
+          ..lineTo(4.5, 16.0)
+          ..cubicTo(3.671875, 16.0, 3.0, 15.328125, 3.0, 14.5)
+          ..lineTo(3.0, 1.5)
+          ..cubicTo(3.0, 0.6749877929687501, 3.671875, 0.0, 4.5, 0.0)
+          ..lineTo(14.5, 0.0)
+          ..cubicTo(15.328125, 0.0, 16.0, 0.6718750000000002, 16.0, 1.5)
+          ..lineTo(16.0, 14.5)
+          ..cubicTo(16.0, 15.32501220703125, 15.3251953125, 16.0, 14.5, 16.0)
+          ..close()
+          ..moveTo(5.0, 14.0)
+          ..lineTo(14.0, 14.0)
+          ..lineTo(14.0, 2.0)
+          ..lineTo(5.0, 2.0)
+          ..lineTo(5.0, 14.0)
+          ..close(),
+        Offset.zero,
+      ),
+    viewBox: Offset.zero & Size(16.0, 16.0),
+  );
+
+  @override
+  late final pasteWord = PathIconData(
+    path: Path()
+      ..fillType = PathFillType.evenOdd
+      ..moveTo(12.0, 5.0)
+      ..lineTo(10.0, 5.0)
+      ..lineTo(10.0, 1.8709375858306885)
+      ..cubicTo(10.0, 0.8375000953674315, 9.162500143051147, 0.0,
+          8.12906265258789, 0.0)
+      ..lineTo(1.8709375858306885, 0.0)
+      ..cubicTo(0.8375000953674315, 0.0, 0.0, 0.8375000953674315, 0.0,
+          1.8709375858306885)
+      ..lineTo(0.0, 10.129375457763672)
+      ..cubicTo(0.0, 11.162500500679016, 0.8375000953674315, 12.0,
+          1.8709375858306885, 12.0)
+      ..lineTo(4.0, 12.0)
+      ..lineTo(4.0, 13.0)
+      ..cubicTo(4.0, 14.104687452316284, 4.895312547683716, 15.0, 6.0, 15.0)
+      ..lineTo(12.0, 15.0)
+      ..cubicTo(13.104687452316284, 15.0, 14.0, 14.104687452316284, 14.0, 13.0)
+      ..lineTo(14.0, 7.0)
+      ..cubicTo(14.0, 5.895312547683716, 13.104687452316284, 5.0, 12.0, 5.0)
+      ..close()
+      ..moveTo(4.0, 7.0)
+      ..lineTo(4.0, 10.0)
+      ..lineTo(2.0, 10.0)
+      ..lineTo(2.0, 2.0)
+      ..lineTo(3.0, 2.0)
+      ..cubicTo(3.0, 2.5521875023841862, 3.447812497615814, 3.0, 4.0, 3.0)
+      ..lineTo(6.0, 3.0)
+      ..cubicTo(6.552187502384186, 3.0, 7.0, 2.5521875023841862, 7.0, 2.0)
+      ..lineTo(8.0, 2.0)
+      ..lineTo(8.0, 5.0)
+      ..lineTo(6.0, 5.0)
+      ..cubicTo(4.895312547683716, 5.0, 4.0, 5.895312547683716, 4.0, 7.0)
+      ..close()
+      ..moveTo(11.063437461853027, 12.0)
+      ..lineTo(9.918437957763672, 12.0)
+      ..lineTo(9.063437461853027, 9.398750305175781)
+      ..lineTo(8.182812690734863, 12.0)
+      ..lineTo(7.063437461853027, 12.0)
+      ..lineTo(6.063437461853027, 8.0)
+      ..lineTo(7.063437461853027, 8.0)
+      ..lineTo(7.6681251525878915, 10.676875114440918)
+      ..lineTo(8.524687767028809, 8.0)
+      ..lineTo(9.577812194824219, 8.0)
+      ..lineTo(10.4165620803833, 10.676875114440918)
+      ..lineTo(11.063437461853027, 8.0)
+      ..lineTo(12.063437461853027, 8.0)
+      ..lineTo(11.063437461853027, 12.0)
+      ..close(),
+    viewBox: Offset.zero & Size(16.0, 16.0),
+  );
+
+  @override
+  late final paperclip = PathIconData(
+    path: Path()
+      ..fillType = PathFillType.evenOdd
+      ..moveTo(15.069059371948242, 0.8989979624748232)
+      ..cubicTo(14.489018619060516, 0.3189898133277894, 13.718345820903778, 0.0,
+          12.898663520812988, 0.0)
+      ..cubicTo(12.078981220722198, 0.0, 11.308276772499084, 0.3189572095870972,
+          10.72826862335205, 0.8989979624748232)
+      ..lineTo(4.11280632019043, 7.513547897338867)
+      ..cubicTo(3.7020853459835052, 7.924268871545792, 3.4855479625985026,
+          8.442818462848663, 3.5007007122039795, 8.975641250610352)
+      ..cubicTo(3.5158534618094563, 9.47548645734787, 3.7332383394241333,
+          9.959266692399979, 4.111894130706787, 10.338802337646484)
+      ..cubicTo(4.488790273666382, 10.715665876865387, 4.9912750124931335,
+          10.924155235290527, 5.524977684020996, 10.924155235290527)
+      ..cubicTo(6.058680355548859, 10.924155235290527, 6.5611647963523865,
+          10.715665876865387, 6.938028335571289, 10.338802337646484)
+      ..lineTo(10.486769676208496, 6.790060997009277)
+      ..cubicTo(10.791486591100693, 6.485344082117081, 10.791486591100693,
+          5.991755723953247, 10.486769676208496, 5.687918663024902)
+      ..cubicTo(10.1820527613163, 5.384081602096558, 9.688464403152466,
+          5.383201748132706, 9.384627342224121, 5.687918663024902)
+      ..lineTo(5.834973335266113, 9.23666000366211)
+      ..cubicTo(5.670117944478989, 9.402395233511925, 5.381466448307037,
+          9.403275072574615, 5.214851379394531, 9.23666000366211)
+      ..cubicTo(5.117743439972401, 9.139552064239979, 5.062509196344763,
+          9.030842736363411, 5.058924674987793, 8.931062698364258)
+      ..cubicTo(5.056252577342093, 8.828610561788082, 5.108814716339111,
+          8.723486423492432, 5.214851379394531, 8.617449760437012)
+      ..lineTo(11.830313682556152, 2.0019876956939697)
+      ..cubicTo(12.40142571926117, 1.431755542755127, 13.395739197731018,
+          1.431755542755127, 13.966851234436035, 2.0019876956939697)
+      ..cubicTo(14.555788099765778, 2.590924561023712, 14.555788099765778,
+          3.5496212244033813, 13.966851234436035, 4.138525485992432)
+      ..lineTo(6.214541912078857, 11.89083480834961)
+      ..cubicTo(5.150753736495972, 12.953775763511658, 3.4195600748062134,
+          12.954622983932495, 2.3557393550872803, 11.89083480834961)
+      ..cubicTo(1.2919186353683474, 10.827046632766724, 1.2919511795043945,
+          9.095853686332703, 2.3557393550872803, 8.03203296661377)
+      ..lineTo(7.8681464195251465, 2.519625186920166)
+      ..cubicTo(8.172863334417343, 2.2149408757686615, 8.172863334417343,
+          1.7213197946548462, 7.8681464195251465, 1.4174827337265015)
+      ..cubicTo(7.56342950463295, 1.112798422574997, 7.069841146469116,
+          1.112798422574997, 6.7660040855407715, 1.4174827337265015)
+      ..lineTo(1.2535967826843262, 6.929890155792236)
+      ..cubicTo(-0.4178655147552491, 8.601352453231812, -0.4178655147552491,
+          11.322362661361694, 1.2535967826843262, 12.99382495880127)
+      ..cubicTo(2.0893442630767822, 13.829572439193726, 3.1879024505615234,
+          14.247397422790527, 4.285580635070801, 14.247397422790527)
+      ..cubicTo(5.3841712474823, 14.247397422790527, 6.481816530227661,
+          13.829539835453033, 7.317564010620117, 12.99382495880127)
+      ..lineTo(15.069873809814453, 5.241515159606934)
+      ..cubicTo(16.266419649124146, 4.043144464492798, 16.26648497581482,
+          2.096456229686737, 15.069059371948242, 0.8989979624748232)
+      ..close(),
+    viewBox: Offset.zero & Size(16.0, 16.0),
+  );
+
+  @override
+  late final pageTree = PathIconData(
+    path: Path()
+      ..fillType = PathFillType.evenOdd
+      ..moveTo(2.0125787258148193, 9.0)
+      ..lineTo(5.974842548370361, 9.0)
+      ..cubicTo(5.974842548370361, 9.550000011920929, 6.427672922611237, 10.0,
+          6.9811320304870605, 10.0)
+      ..lineTo(8.9937105178833, 10.0)
+      ..cubicTo(9.55345892906189, 10.0, 10.0, 9.550000011920929, 10.0, 9.0)
+      ..lineTo(10.0, 7.0)
+      ..cubicTo(
+          10.0, 6.443750023841858, 9.547169625759125, 6.0, 8.9937105178833, 6.0)
+      ..lineTo(6.9811320304870605, 6.0)
+      ..cubicTo(6.421383619308472, 6.0, 5.974842548370361, 6.449999988079071,
+          5.974842548370361, 7.0)
+      ..lineTo(5.974842548370361, 8.0)
+      ..lineTo(2.0125787258148193, 8.0)
+      ..lineTo(2.0125787258148193, 4.0)
+      ..lineTo(3.0188679695129395, 4.0)
+      ..cubicTo(3.5786163806915283, 4.0, 4.025157451629639, 3.550000011920929,
+          4.025157451629639, 3.0)
+      ..lineTo(4.025157451629639, 1.0)
+      ..cubicTo(4.025157451629639, 0.44375002384185797, 3.5723270773887634, 0.0,
+          3.0188679695129395, 0.0)
+      ..lineTo(1.0062893629074097, 0.0)
+      ..cubicTo(0.44654095172882086, 0.0, 0.0, 0.44999998807907116, 0.0, 1.0)
+      ..lineTo(0.0, 3.0)
+      ..cubicTo(0.0, 3.550000011920929, 0.4528302550315857, 4.0,
+          1.0062893629074097, 4.0)
+      ..lineTo(1.0062893629074097, 15.0)
+      ..lineTo(5.974842548370361, 15.0)
+      ..cubicTo(5.974842548370361, 15.550000011920929, 6.427672922611237, 16.0,
+          6.9811320304870605, 16.0)
+      ..lineTo(8.9937105178833, 16.0)
+      ..cubicTo(9.55345892906189, 16.0, 10.0, 15.550000011920929, 10.0, 15.0)
+      ..lineTo(10.0, 13.0)
+      ..cubicTo(10.0, 12.443750023841858, 9.547169625759125, 12.0,
+          8.9937105178833, 12.0)
+      ..lineTo(6.9811320304870605, 12.0)
+      ..cubicTo(6.421383619308472, 12.0, 5.974842548370361, 12.449999988079071,
+          5.974842548370361, 13.0)
+      ..lineTo(5.974842548370361, 14.0)
+      ..lineTo(2.0125787258148193, 14.0)
+      ..lineTo(2.0125787258148193, 9.0)
+      ..close(),
+    viewBox: Offset.zero & Size(16.0, 16.0),
+  );
+
+  @override
+  late final phone = PathIconData(
+    path: Path()
+      ..fillType = PathFillType.evenOdd
+      ..moveTo(15.03516674041748, 11.18438720703125)
+      ..lineTo(15.12208080291748, 11.34375)
+      ..cubicTo(15.33790111541748, 11.7562255859375, 15.98145580291748,
+          12.97186279296875, 15.14161205291748, 14.05938720703125)
+      ..cubicTo(14.78223705291748, 14.54376220703125, 14.00977611541748,
+          15.43438720703125, 13.00391674041748, 15.84686279296875)
+      ..lineTo(12.79395580291748, 15.92498779296875)
+      ..lineTo(12.70704174041748, 15.9281005859375)
+      ..cubicTo(12.47852611541748, 15.96875, 12.20704174041748,
+          15.9781494140625, 12.00684642791748, 15.9781494140625)
+      ..cubicTo(11.22852611541748, 15.9781494140625, 7.178720951080322,
+          15.79376220703125, 3.6914165019989014, 12.14373779296875)
+      ..cubicTo(0.009775876998901372, 8.296875, -0.2744039446115494,
+          3.38751220703125, 0.14747105538845065, 2.42498779296875)
+      ..cubicTo(0.6005960553884506, 1.4468994140625, 1.5283304452896118,
+          0.70623779296875, 2.0380961894989014, 0.35626220703125006)
+      ..cubicTo(2.2470805644989014, 0.22186279296875, 2.4472758769989014,
+          0.13439941406250003, 2.6630961894989014, 0.0718994140625)
+      ..cubicTo(2.8564555644989014, 0.021850585937500007, 3.0254008769989014,
+          0.0, 3.1943461894989014, 0.0)
+      ..cubicTo(3.8701274394989014, 0.0, 4.424814701080322, 0.3287353515625,
+          4.727549076080322, 0.5079956054687501)
+      ..lineTo(4.735361576080322, 0.5125122070312498)
+      ..lineTo(4.894541263580322, 0.6093750000000001)
+      ..cubicTo(5.991220951080322, 1.28436279296875, 6.422861576080322,
+          4.6937255859375, 6.422861576080322, 4.7249755859375)
+      ..cubicTo(6.391611576080322, 5.4437255859375, 5.910166263580322,
+          5.9781494140625, 5.222666263580322, 6.65313720703125)
+      ..cubicTo(5.613291263580322, 7.4000244140625, 6.337900638580322,
+          8.35626220703125, 6.860361576080322, 8.890625)
+      ..cubicTo(7.369150638580322, 9.4124755859375, 8.21973705291748,
+          10.12811279296875, 9.00684642791748, 10.5875244140625)
+      ..cubicTo(9.61622142791748, 10.0218505859375, 10.05665111541748,
+          9.65313720703125, 10.58497142791748, 9.53125)
+      ..lineTo(10.92286205291748, 9.484375)
+      ..lineTo(10.99708080291748, 9.48748779296875)
+      ..cubicTo(11.02833080291748, 9.48748779296875, 14.41602611541748, 10.0625,
+          15.03516674041748, 11.18438720703125)
+      ..close()
+      ..moveTo(12.36915111541748, 14.14691162109375)
+      ..cubicTo(12.84766674041748, 13.9375, 13.37208080291748,
+          13.39691162109375, 13.70020580291748, 12.95941162109375)
+      ..cubicTo(13.79688549041748, 12.83123779296875, 13.74708080291748,
+          12.62188720703125, 13.52833080291748, 12.20941162109375)
+      ..lineTo(13.49415111541748, 12.14691162109375)
+      ..cubicTo(13.08497142791748, 11.88128662109375, 11.51954174041748,
+          11.41876220703125, 10.96876049041748, 11.3125)
+      ..cubicTo(10.80176830291748, 11.3990478515625, 10.37012767791748,
+          11.8016357421875, 10.05665111541748, 12.09356689453125)
+      ..lineTo(10.01270580291748, 12.1343994140625)
+      ..cubicTo(9.61329174041748, 12.51873779296875, 8.98829174041748,
+          12.62188720703125, 8.47852611541748, 12.3687744140625)
+      ..cubicTo(7.421885013580322, 11.83123779296875, 6.256845951080322, 10.875,
+          5.566416263580322, 10.16253662109375)
+      ..cubicTo(4.863291263580322, 9.44378662109375, 3.8720805644989014,
+          8.1187744140625, 3.4287211894989014, 7.09063720703125)
+      ..cubicTo(3.2226665019989014, 6.5875244140625, 3.3349711894989014,
+          6.01251220703125, 3.7070415019989014, 5.61248779296875)
+      ..lineTo(3.7382915019989014, 5.578125)
+      ..lineTo(3.7900493144989014, 5.527099609375)
+      ..cubicTo(4.062510013580322, 5.25860595703125, 4.492197513580322,
+          4.83447265625, 4.603525638580322, 4.64691162109375)
+      ..cubicTo(4.519541263580322, 4.09686279296875, 4.128916263580322, 2.53125,
+          3.8750102519989014, 2.109375)
+      ..lineTo(3.8007915019989014, 2.0625)
+      ..cubicTo(3.6318461894989014, 1.9625244140625, 3.3164165019989014,
+          1.7750244140625, 3.1445415019989014, 1.81878662109375)
+      ..cubicTo(3.0976665019989014, 1.83441162109375, 3.0537211894989014,
+          1.859375, 3.0380961894989014, 1.8687744140625002)
+      ..cubicTo(2.4912211894989014, 2.24688720703125, 2.0351665019989014,
+          2.71563720703125, 1.8281351327896118, 3.11248779296875)
+      ..cubicTo(1.7382913827896118, 3.70623779296875, 1.8750100135803225,
+          7.62188720703125, 5.003916263580322, 10.890625)
+      ..cubicTo(7.981455326080322, 14.00628662109375, 11.35938549041748,
+          14.1656494140625, 12.00684642791748, 14.1656494140625)
+      ..cubicTo(12.20020580291748, 14.1656494140625, 12.32227611541748,
+          14.15313720703125, 12.36915111541748, 14.14691162109375)
+      ..close(),
+    viewBox: Offset.zero & Size(16.0, 16.0),
+  );
 }

@@ -3,13 +3,41 @@ import 'package:bento/src/widgets/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'models.freezed.dart';
+part 'models.g.dart';
+
+@freezed
+class BentoProjectConfiguration with _$BentoProjectConfiguration {
+  const BentoProjectConfiguration._();
+
+  const factory BentoProjectConfiguration({
+    required String name,
+    required BentoDartOptions dart,
+  }) = _BentoProjectConfiguration;
+
+  factory BentoProjectConfiguration.fromJson(Map<String, Object?> json) =>
+      _$BentoProjectConfigurationFromJson(json);
+}
+
+@freezed
+class BentoDartOptions with _$BentoDartOptions {
+  const BentoDartOptions._();
+
+  const factory BentoDartOptions({
+    @Default(true) bool equatable,
+    @Default(false) bool lazyInstances,
+    String? assetPackage,
+  }) = _BentoDartOptions;
+
+  factory BentoDartOptions.fromJson(Map<String, Object?> json) =>
+      _$BentoDartOptionsFromJson(json);
+}
 
 @freezed
 class BentoProject with _$BentoProject {
   const BentoProject._();
 
   const factory BentoProject({
-    required String name,
+    required BentoProjectConfiguration configuration,
     required List<BentoItem<BentoTheme>> themes,
     required List<BentoItem<BentoWidget>> widgets,
   }) = _BentoProject;

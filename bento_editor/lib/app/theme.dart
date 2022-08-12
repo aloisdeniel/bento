@@ -27,20 +27,28 @@ class AppThemeData extends Equatable {
     required this.color,
     required this.typography,
     required this.spacing,
+    required this.radius,
   });
 
   static AppThemeData fallback = AppThemeData(
     color: const ColorAppData.dark(),
     typography: TypographyAppData.regular(),
     spacing: const SpacingAppData.regular(),
+    radius: const BorderRadiusAppData.regular(),
   );
 
   final ColorAppData color;
   final TypographyAppData typography;
   final SpacingAppData spacing;
+  final BorderRadiusAppData radius;
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [
+        radius,
+        color,
+        typography,
+        radius,
+      ];
 }
 
 class ColorAppData extends Equatable {
@@ -88,6 +96,7 @@ class TypographyAppData extends Equatable {
     required this.code,
     required this.button,
     required this.paragraph,
+    required this.smallParagraph,
   });
 
   TypographyAppData.regular()
@@ -115,6 +124,10 @@ class TypographyAppData extends Equatable {
           fontSize: 12,
           decoration: TextDecoration.none,
         ),
+        smallParagraph = GoogleFonts.poppins(
+          fontSize: 10,
+          decoration: TextDecoration.none,
+        ),
         button = GoogleFonts.poppins(
           fontSize: 12,
           fontWeight: FontWeight.bold,
@@ -130,6 +143,7 @@ class TypographyAppData extends Equatable {
   final TextStyle title3;
   final TextStyle title4;
   final TextStyle paragraph;
+  final TextStyle smallParagraph;
   final TextStyle button;
   final TextStyle code;
 
@@ -140,6 +154,7 @@ class TypographyAppData extends Equatable {
         title3,
         title4,
         paragraph,
+        smallParagraph,
         button,
         code,
       ];
@@ -178,5 +193,29 @@ class SpacingAppData extends Equatable {
         semiBig,
         big,
         extraBig,
+      ];
+}
+
+class BorderRadiusAppData extends Equatable {
+  const BorderRadiusAppData({
+    required this.small,
+    required this.medium,
+    required this.big,
+  });
+
+  const BorderRadiusAppData.regular()
+      : small = const BorderRadius.all(Radius.circular(2)),
+        medium = const BorderRadius.all(Radius.circular(4)),
+        big = const BorderRadius.all(Radius.circular(12));
+
+  final BorderRadius small;
+  final BorderRadius medium;
+  final BorderRadius big;
+
+  @override
+  List<Object?> get props => [
+        small,
+        medium,
+        big,
       ];
 }

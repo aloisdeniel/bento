@@ -5,7 +5,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('Parsing the example token file', () async {
-    final data = await File('example/bento/theme/AppTheme.json').readAsString();
+    final data = await File('../../../example/bento/themes/AppTheme.json')
+        .readAsString();
     final library = const BentoThemeParser().parseJson('AppTheme', data);
     expect(library.children, isNotEmpty);
 

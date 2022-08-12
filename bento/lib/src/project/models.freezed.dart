@@ -14,9 +14,358 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+BentoProjectConfiguration _$BentoProjectConfigurationFromJson(
+    Map<String, dynamic> json) {
+  return _BentoProjectConfiguration.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BentoProjectConfiguration {
+  String get name => throw _privateConstructorUsedError;
+  BentoDartOptions get dart => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BentoProjectConfigurationCopyWith<BentoProjectConfiguration> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BentoProjectConfigurationCopyWith<$Res> {
+  factory $BentoProjectConfigurationCopyWith(BentoProjectConfiguration value,
+          $Res Function(BentoProjectConfiguration) then) =
+      _$BentoProjectConfigurationCopyWithImpl<$Res>;
+  $Res call({String name, BentoDartOptions dart});
+
+  $BentoDartOptionsCopyWith<$Res> get dart;
+}
+
+/// @nodoc
+class _$BentoProjectConfigurationCopyWithImpl<$Res>
+    implements $BentoProjectConfigurationCopyWith<$Res> {
+  _$BentoProjectConfigurationCopyWithImpl(this._value, this._then);
+
+  final BentoProjectConfiguration _value;
+  // ignore: unused_field
+  final $Res Function(BentoProjectConfiguration) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? dart = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      dart: dart == freezed
+          ? _value.dart
+          : dart // ignore: cast_nullable_to_non_nullable
+              as BentoDartOptions,
+    ));
+  }
+
+  @override
+  $BentoDartOptionsCopyWith<$Res> get dart {
+    return $BentoDartOptionsCopyWith<$Res>(_value.dart, (value) {
+      return _then(_value.copyWith(dart: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_BentoProjectConfigurationCopyWith<$Res>
+    implements $BentoProjectConfigurationCopyWith<$Res> {
+  factory _$$_BentoProjectConfigurationCopyWith(
+          _$_BentoProjectConfiguration value,
+          $Res Function(_$_BentoProjectConfiguration) then) =
+      __$$_BentoProjectConfigurationCopyWithImpl<$Res>;
+  @override
+  $Res call({String name, BentoDartOptions dart});
+
+  @override
+  $BentoDartOptionsCopyWith<$Res> get dart;
+}
+
+/// @nodoc
+class __$$_BentoProjectConfigurationCopyWithImpl<$Res>
+    extends _$BentoProjectConfigurationCopyWithImpl<$Res>
+    implements _$$_BentoProjectConfigurationCopyWith<$Res> {
+  __$$_BentoProjectConfigurationCopyWithImpl(
+      _$_BentoProjectConfiguration _value,
+      $Res Function(_$_BentoProjectConfiguration) _then)
+      : super(_value, (v) => _then(v as _$_BentoProjectConfiguration));
+
+  @override
+  _$_BentoProjectConfiguration get _value =>
+      super._value as _$_BentoProjectConfiguration;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? dart = freezed,
+  }) {
+    return _then(_$_BentoProjectConfiguration(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      dart: dart == freezed
+          ? _value.dart
+          : dart // ignore: cast_nullable_to_non_nullable
+              as BentoDartOptions,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_BentoProjectConfiguration extends _BentoProjectConfiguration {
+  const _$_BentoProjectConfiguration({required this.name, required this.dart})
+      : super._();
+
+  factory _$_BentoProjectConfiguration.fromJson(Map<String, dynamic> json) =>
+      _$$_BentoProjectConfigurationFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final BentoDartOptions dart;
+
+  @override
+  String toString() {
+    return 'BentoProjectConfiguration(name: $name, dart: $dart)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BentoProjectConfiguration &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.dart, dart));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(dart));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_BentoProjectConfigurationCopyWith<_$_BentoProjectConfiguration>
+      get copyWith => __$$_BentoProjectConfigurationCopyWithImpl<
+          _$_BentoProjectConfiguration>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BentoProjectConfigurationToJson(this);
+  }
+}
+
+abstract class _BentoProjectConfiguration extends BentoProjectConfiguration {
+  const factory _BentoProjectConfiguration(
+      {required final String name,
+      required final BentoDartOptions dart}) = _$_BentoProjectConfiguration;
+  const _BentoProjectConfiguration._() : super._();
+
+  factory _BentoProjectConfiguration.fromJson(Map<String, dynamic> json) =
+      _$_BentoProjectConfiguration.fromJson;
+
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  BentoDartOptions get dart => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BentoProjectConfigurationCopyWith<_$_BentoProjectConfiguration>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BentoDartOptions _$BentoDartOptionsFromJson(Map<String, dynamic> json) {
+  return _BentoDartOptions.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BentoDartOptions {
+  bool get equatable => throw _privateConstructorUsedError;
+  bool get lazyInstances => throw _privateConstructorUsedError;
+  String? get assetPackage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BentoDartOptionsCopyWith<BentoDartOptions> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BentoDartOptionsCopyWith<$Res> {
+  factory $BentoDartOptionsCopyWith(
+          BentoDartOptions value, $Res Function(BentoDartOptions) then) =
+      _$BentoDartOptionsCopyWithImpl<$Res>;
+  $Res call({bool equatable, bool lazyInstances, String? assetPackage});
+}
+
+/// @nodoc
+class _$BentoDartOptionsCopyWithImpl<$Res>
+    implements $BentoDartOptionsCopyWith<$Res> {
+  _$BentoDartOptionsCopyWithImpl(this._value, this._then);
+
+  final BentoDartOptions _value;
+  // ignore: unused_field
+  final $Res Function(BentoDartOptions) _then;
+
+  @override
+  $Res call({
+    Object? equatable = freezed,
+    Object? lazyInstances = freezed,
+    Object? assetPackage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      equatable: equatable == freezed
+          ? _value.equatable
+          : equatable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lazyInstances: lazyInstances == freezed
+          ? _value.lazyInstances
+          : lazyInstances // ignore: cast_nullable_to_non_nullable
+              as bool,
+      assetPackage: assetPackage == freezed
+          ? _value.assetPackage
+          : assetPackage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_BentoDartOptionsCopyWith<$Res>
+    implements $BentoDartOptionsCopyWith<$Res> {
+  factory _$$_BentoDartOptionsCopyWith(
+          _$_BentoDartOptions value, $Res Function(_$_BentoDartOptions) then) =
+      __$$_BentoDartOptionsCopyWithImpl<$Res>;
+  @override
+  $Res call({bool equatable, bool lazyInstances, String? assetPackage});
+}
+
+/// @nodoc
+class __$$_BentoDartOptionsCopyWithImpl<$Res>
+    extends _$BentoDartOptionsCopyWithImpl<$Res>
+    implements _$$_BentoDartOptionsCopyWith<$Res> {
+  __$$_BentoDartOptionsCopyWithImpl(
+      _$_BentoDartOptions _value, $Res Function(_$_BentoDartOptions) _then)
+      : super(_value, (v) => _then(v as _$_BentoDartOptions));
+
+  @override
+  _$_BentoDartOptions get _value => super._value as _$_BentoDartOptions;
+
+  @override
+  $Res call({
+    Object? equatable = freezed,
+    Object? lazyInstances = freezed,
+    Object? assetPackage = freezed,
+  }) {
+    return _then(_$_BentoDartOptions(
+      equatable: equatable == freezed
+          ? _value.equatable
+          : equatable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lazyInstances: lazyInstances == freezed
+          ? _value.lazyInstances
+          : lazyInstances // ignore: cast_nullable_to_non_nullable
+              as bool,
+      assetPackage: assetPackage == freezed
+          ? _value.assetPackage
+          : assetPackage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_BentoDartOptions extends _BentoDartOptions {
+  const _$_BentoDartOptions(
+      {this.equatable = true, this.lazyInstances = false, this.assetPackage})
+      : super._();
+
+  factory _$_BentoDartOptions.fromJson(Map<String, dynamic> json) =>
+      _$$_BentoDartOptionsFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool equatable;
+  @override
+  @JsonKey()
+  final bool lazyInstances;
+  @override
+  final String? assetPackage;
+
+  @override
+  String toString() {
+    return 'BentoDartOptions(equatable: $equatable, lazyInstances: $lazyInstances, assetPackage: $assetPackage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BentoDartOptions &&
+            const DeepCollectionEquality().equals(other.equatable, equatable) &&
+            const DeepCollectionEquality()
+                .equals(other.lazyInstances, lazyInstances) &&
+            const DeepCollectionEquality()
+                .equals(other.assetPackage, assetPackage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(equatable),
+      const DeepCollectionEquality().hash(lazyInstances),
+      const DeepCollectionEquality().hash(assetPackage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_BentoDartOptionsCopyWith<_$_BentoDartOptions> get copyWith =>
+      __$$_BentoDartOptionsCopyWithImpl<_$_BentoDartOptions>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BentoDartOptionsToJson(this);
+  }
+}
+
+abstract class _BentoDartOptions extends BentoDartOptions {
+  const factory _BentoDartOptions(
+      {final bool equatable,
+      final bool lazyInstances,
+      final String? assetPackage}) = _$_BentoDartOptions;
+  const _BentoDartOptions._() : super._();
+
+  factory _BentoDartOptions.fromJson(Map<String, dynamic> json) =
+      _$_BentoDartOptions.fromJson;
+
+  @override
+  bool get equatable => throw _privateConstructorUsedError;
+  @override
+  bool get lazyInstances => throw _privateConstructorUsedError;
+  @override
+  String? get assetPackage => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BentoDartOptionsCopyWith<_$_BentoDartOptions> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 /// @nodoc
 mixin _$BentoProject {
-  String get name => throw _privateConstructorUsedError;
+  BentoProjectConfiguration get configuration =>
+      throw _privateConstructorUsedError;
   List<BentoItem<BentoTheme>> get themes => throw _privateConstructorUsedError;
   List<BentoItem<BentoWidget>> get widgets =>
       throw _privateConstructorUsedError;
@@ -32,9 +381,11 @@ abstract class $BentoProjectCopyWith<$Res> {
           BentoProject value, $Res Function(BentoProject) then) =
       _$BentoProjectCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {BentoProjectConfiguration configuration,
       List<BentoItem<BentoTheme>> themes,
       List<BentoItem<BentoWidget>> widgets});
+
+  $BentoProjectConfigurationCopyWith<$Res> get configuration;
 }
 
 /// @nodoc
@@ -47,15 +398,15 @@ class _$BentoProjectCopyWithImpl<$Res> implements $BentoProjectCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? name = freezed,
+    Object? configuration = freezed,
     Object? themes = freezed,
     Object? widgets = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      configuration: configuration == freezed
+          ? _value.configuration
+          : configuration // ignore: cast_nullable_to_non_nullable
+              as BentoProjectConfiguration,
       themes: themes == freezed
           ? _value.themes
           : themes // ignore: cast_nullable_to_non_nullable
@@ -65,6 +416,14 @@ class _$BentoProjectCopyWithImpl<$Res> implements $BentoProjectCopyWith<$Res> {
           : widgets // ignore: cast_nullable_to_non_nullable
               as List<BentoItem<BentoWidget>>,
     ));
+  }
+
+  @override
+  $BentoProjectConfigurationCopyWith<$Res> get configuration {
+    return $BentoProjectConfigurationCopyWith<$Res>(_value.configuration,
+        (value) {
+      return _then(_value.copyWith(configuration: value));
+    });
   }
 }
 
@@ -76,9 +435,12 @@ abstract class _$$_BentoProjectCopyWith<$Res>
       __$$_BentoProjectCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {BentoProjectConfiguration configuration,
       List<BentoItem<BentoTheme>> themes,
       List<BentoItem<BentoWidget>> widgets});
+
+  @override
+  $BentoProjectConfigurationCopyWith<$Res> get configuration;
 }
 
 /// @nodoc
@@ -94,15 +456,15 @@ class __$$_BentoProjectCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? name = freezed,
+    Object? configuration = freezed,
     Object? themes = freezed,
     Object? widgets = freezed,
   }) {
     return _then(_$_BentoProject(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      configuration: configuration == freezed
+          ? _value.configuration
+          : configuration // ignore: cast_nullable_to_non_nullable
+              as BentoProjectConfiguration,
       themes: themes == freezed
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
@@ -119,7 +481,7 @@ class __$$_BentoProjectCopyWithImpl<$Res>
 
 class _$_BentoProject extends _BentoProject {
   const _$_BentoProject(
-      {required this.name,
+      {required this.configuration,
       required final List<BentoItem<BentoTheme>> themes,
       required final List<BentoItem<BentoWidget>> widgets})
       : _themes = themes,
@@ -127,7 +489,7 @@ class _$_BentoProject extends _BentoProject {
         super._();
 
   @override
-  final String name;
+  final BentoProjectConfiguration configuration;
   final List<BentoItem<BentoTheme>> _themes;
   @override
   List<BentoItem<BentoTheme>> get themes {
@@ -144,7 +506,7 @@ class _$_BentoProject extends _BentoProject {
 
   @override
   String toString() {
-    return 'BentoProject(name: $name, themes: $themes, widgets: $widgets)';
+    return 'BentoProject(configuration: $configuration, themes: $themes, widgets: $widgets)';
   }
 
   @override
@@ -152,7 +514,8 @@ class _$_BentoProject extends _BentoProject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BentoProject &&
-            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.configuration, configuration) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
             const DeepCollectionEquality().equals(other._widgets, _widgets));
   }
@@ -160,7 +523,7 @@ class _$_BentoProject extends _BentoProject {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(configuration),
       const DeepCollectionEquality().hash(_themes),
       const DeepCollectionEquality().hash(_widgets));
 
@@ -172,13 +535,14 @@ class _$_BentoProject extends _BentoProject {
 
 abstract class _BentoProject extends BentoProject {
   const factory _BentoProject(
-      {required final String name,
+      {required final BentoProjectConfiguration configuration,
       required final List<BentoItem<BentoTheme>> themes,
       required final List<BentoItem<BentoWidget>> widgets}) = _$_BentoProject;
   const _BentoProject._() : super._();
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  BentoProjectConfiguration get configuration =>
+      throw _privateConstructorUsedError;
   @override
   List<BentoItem<BentoTheme>> get themes => throw _privateConstructorUsedError;
   @override

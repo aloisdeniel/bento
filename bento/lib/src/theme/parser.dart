@@ -37,7 +37,10 @@ class BentoThemeConverter
       name: name,
       children: [
         ...entries.entries
-            .where((e) => e.value.isNotEmpty && !e.value.containsKey('type'))
+            .where((e) =>
+                e.key != 'extensions' &&
+                e.value.isNotEmpty &&
+                !e.value.containsKey('type'))
             .map(
               (e) => BentoThemeConverter(e.key).fromJson({
                 ...e.value,
@@ -366,12 +369,18 @@ class FontStyleTokenValueConverter
       final textDecoration = value['textDecoration'];
       final fontStyle = value['fontStyle'];
       final letterSpacing = value['letterSpacing'];
+      final lineHeight = value['lineHeight'];
+
+      final effectiveFontSize = fontSize is num ? fontSize.toDouble() : 12.0;
 
       return FontStyleTokenValue(
         textStyle: TextStyle(
-          fontSize: fontSize is num ? fontSize.toDouble() : 0.0,
+          fontSize: effectiveFontSize,
           fontFamily: fontFamily is String ? fontFamily : null,
           letterSpacing: letterSpacing is num ? letterSpacing.toDouble() : 0.0,
+          height: fontFamily is num
+              ? (lineHeight.toDouble() / effectiveFontSize).toDouble()
+              : null,
           fontWeight: fontWeight is num
               ? FontWeight.values.firstWhere(
                   (value) => (value.index + 1) * 100 == fontWeight,

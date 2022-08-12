@@ -180,12 +180,14 @@ class TextStyle {
     this.fontWeight,
     this.letterSpacing,
     this.decoration,
+    this.height,
     this.fontStyle,
   });
   final String? fontFamily;
   final double? fontSize;
   final FontWeight? fontWeight;
   final double? letterSpacing;
+  final double? height;
   final TextDecoration? decoration;
   final FontStyle? fontStyle;
 }
