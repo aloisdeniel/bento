@@ -35,7 +35,7 @@ packages:
       path: "../bento"
       relative: true
     source: path
-    version: "0.0.22+alpha"
+    version: "0.0.23+alpha"
   boolean_selector:
     dependency: transitive
     description:
@@ -234,21 +234,21 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1+1"
+    version: "1.0.1"
   path_icon:
     dependency: "direct main"
     description:
       name: path_icon
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.7.1"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "1.0.1"
   petitparser:
     dependency: transitive
     description:

@@ -1,6 +1,5 @@
 import 'package:bento_editor/app/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tap_builder/tap_builder.dart';
 
 class SmallActionButton extends StatelessWidget {
