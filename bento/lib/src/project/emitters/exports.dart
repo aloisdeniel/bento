@@ -49,8 +49,8 @@ class BentoProjectExportEmitter {
       file: (file) {
         final output = join(parent, name);
         return [
-          Directive.export('$output.dart'),
-          Directive.export('${output}_data.dart'),
+          Directive.export('$output.g.dart'),
+          Directive.export('${output}_data.g.dart'),
         ];
       },
       directory: (child) {

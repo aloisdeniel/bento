@@ -16,7 +16,7 @@ class BentoThemeDartEmitter {
     final fileName = ReCase(theme.name).snakeCase;
     library.directives.addAll([
       Directive.import('package:flutter/widgets.dart'),
-      Directive.import('${fileName}_data.dart'),
+      Directive.import('${fileName}_data.g.dart'),
     ]);
 
     final name = ReCase(theme.name);

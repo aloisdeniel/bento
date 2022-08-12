@@ -122,7 +122,8 @@ class __$$_BentoProjectConfigurationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_BentoProjectConfiguration extends _BentoProjectConfiguration {
-  const _$_BentoProjectConfiguration({required this.name, required this.dart})
+  const _$_BentoProjectConfiguration(
+      {required this.name, this.dart = const BentoDartOptions()})
       : super._();
 
   factory _$_BentoProjectConfiguration.fromJson(Map<String, dynamic> json) =>
@@ -131,6 +132,7 @@ class _$_BentoProjectConfiguration extends _BentoProjectConfiguration {
   @override
   final String name;
   @override
+  @JsonKey()
   final BentoDartOptions dart;
 
   @override
@@ -169,7 +171,7 @@ class _$_BentoProjectConfiguration extends _BentoProjectConfiguration {
 abstract class _BentoProjectConfiguration extends BentoProjectConfiguration {
   const factory _BentoProjectConfiguration(
       {required final String name,
-      required final BentoDartOptions dart}) = _$_BentoProjectConfiguration;
+      final BentoDartOptions dart}) = _$_BentoProjectConfiguration;
   const _BentoProjectConfiguration._() : super._();
 
   factory _BentoProjectConfiguration.fromJson(Map<String, dynamic> json) =
@@ -193,6 +195,8 @@ BentoDartOptions _$BentoDartOptionsFromJson(Map<String, dynamic> json) {
 mixin _$BentoDartOptions {
   bool get equatable => throw _privateConstructorUsedError;
   bool get lazyInstances => throw _privateConstructorUsedError;
+  bool get reflect => throw _privateConstructorUsedError;
+  bool get tests => throw _privateConstructorUsedError;
   String? get assetPackage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -206,7 +210,12 @@ abstract class $BentoDartOptionsCopyWith<$Res> {
   factory $BentoDartOptionsCopyWith(
           BentoDartOptions value, $Res Function(BentoDartOptions) then) =
       _$BentoDartOptionsCopyWithImpl<$Res>;
-  $Res call({bool equatable, bool lazyInstances, String? assetPackage});
+  $Res call(
+      {bool equatable,
+      bool lazyInstances,
+      bool reflect,
+      bool tests,
+      String? assetPackage});
 }
 
 /// @nodoc
@@ -222,6 +231,8 @@ class _$BentoDartOptionsCopyWithImpl<$Res>
   $Res call({
     Object? equatable = freezed,
     Object? lazyInstances = freezed,
+    Object? reflect = freezed,
+    Object? tests = freezed,
     Object? assetPackage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -232,6 +243,14 @@ class _$BentoDartOptionsCopyWithImpl<$Res>
       lazyInstances: lazyInstances == freezed
           ? _value.lazyInstances
           : lazyInstances // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reflect: reflect == freezed
+          ? _value.reflect
+          : reflect // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tests: tests == freezed
+          ? _value.tests
+          : tests // ignore: cast_nullable_to_non_nullable
               as bool,
       assetPackage: assetPackage == freezed
           ? _value.assetPackage
@@ -248,7 +267,12 @@ abstract class _$$_BentoDartOptionsCopyWith<$Res>
           _$_BentoDartOptions value, $Res Function(_$_BentoDartOptions) then) =
       __$$_BentoDartOptionsCopyWithImpl<$Res>;
   @override
-  $Res call({bool equatable, bool lazyInstances, String? assetPackage});
+  $Res call(
+      {bool equatable,
+      bool lazyInstances,
+      bool reflect,
+      bool tests,
+      String? assetPackage});
 }
 
 /// @nodoc
@@ -266,6 +290,8 @@ class __$$_BentoDartOptionsCopyWithImpl<$Res>
   $Res call({
     Object? equatable = freezed,
     Object? lazyInstances = freezed,
+    Object? reflect = freezed,
+    Object? tests = freezed,
     Object? assetPackage = freezed,
   }) {
     return _then(_$_BentoDartOptions(
@@ -276,6 +302,14 @@ class __$$_BentoDartOptionsCopyWithImpl<$Res>
       lazyInstances: lazyInstances == freezed
           ? _value.lazyInstances
           : lazyInstances // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reflect: reflect == freezed
+          ? _value.reflect
+          : reflect // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tests: tests == freezed
+          ? _value.tests
+          : tests // ignore: cast_nullable_to_non_nullable
               as bool,
       assetPackage: assetPackage == freezed
           ? _value.assetPackage
@@ -289,7 +323,11 @@ class __$$_BentoDartOptionsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BentoDartOptions extends _BentoDartOptions {
   const _$_BentoDartOptions(
-      {this.equatable = true, this.lazyInstances = false, this.assetPackage})
+      {this.equatable = true,
+      this.lazyInstances = false,
+      this.reflect = true,
+      this.tests = true,
+      this.assetPackage})
       : super._();
 
   factory _$_BentoDartOptions.fromJson(Map<String, dynamic> json) =>
@@ -302,11 +340,17 @@ class _$_BentoDartOptions extends _BentoDartOptions {
   @JsonKey()
   final bool lazyInstances;
   @override
+  @JsonKey()
+  final bool reflect;
+  @override
+  @JsonKey()
+  final bool tests;
+  @override
   final String? assetPackage;
 
   @override
   String toString() {
-    return 'BentoDartOptions(equatable: $equatable, lazyInstances: $lazyInstances, assetPackage: $assetPackage)';
+    return 'BentoDartOptions(equatable: $equatable, lazyInstances: $lazyInstances, reflect: $reflect, tests: $tests, assetPackage: $assetPackage)';
   }
 
   @override
@@ -317,6 +361,8 @@ class _$_BentoDartOptions extends _BentoDartOptions {
             const DeepCollectionEquality().equals(other.equatable, equatable) &&
             const DeepCollectionEquality()
                 .equals(other.lazyInstances, lazyInstances) &&
+            const DeepCollectionEquality().equals(other.reflect, reflect) &&
+            const DeepCollectionEquality().equals(other.tests, tests) &&
             const DeepCollectionEquality()
                 .equals(other.assetPackage, assetPackage));
   }
@@ -327,6 +373,8 @@ class _$_BentoDartOptions extends _BentoDartOptions {
       runtimeType,
       const DeepCollectionEquality().hash(equatable),
       const DeepCollectionEquality().hash(lazyInstances),
+      const DeepCollectionEquality().hash(reflect),
+      const DeepCollectionEquality().hash(tests),
       const DeepCollectionEquality().hash(assetPackage));
 
   @JsonKey(ignore: true)
@@ -344,6 +392,8 @@ abstract class _BentoDartOptions extends BentoDartOptions {
   const factory _BentoDartOptions(
       {final bool equatable,
       final bool lazyInstances,
+      final bool reflect,
+      final bool tests,
       final String? assetPackage}) = _$_BentoDartOptions;
   const _BentoDartOptions._() : super._();
 
@@ -354,6 +404,10 @@ abstract class _BentoDartOptions extends BentoDartOptions {
   bool get equatable => throw _privateConstructorUsedError;
   @override
   bool get lazyInstances => throw _privateConstructorUsedError;
+  @override
+  bool get reflect => throw _privateConstructorUsedError;
+  @override
+  bool get tests => throw _privateConstructorUsedError;
   @override
   String? get assetPackage => throw _privateConstructorUsedError;
   @override

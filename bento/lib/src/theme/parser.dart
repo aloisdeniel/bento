@@ -193,7 +193,7 @@ class WindingRuleConverter implements JsonConverter<PathFillType, Object?> {
     if (json is String && json.toLowerCase() == 'evenodd') {
       return PathFillType.evenOdd;
     }
-    return PathFillType.evenOdd;
+    return PathFillType.nonZero;
   }
 
   @override

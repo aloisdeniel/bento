@@ -53,7 +53,7 @@ class BentoProjectDartBuilder {
       await _generate<BentoTheme>(
         themes,
         project.themes,
-        (name) => '${name}_data.dart',
+        (name) => '${name}_data.g.dart',
         (theme) {
           return themeDataEmitter.emitDart(theme);
         },
@@ -62,28 +62,42 @@ class BentoProjectDartBuilder {
       await _generate<BentoTheme>(
         themes,
         project.themes,
-        (name) => '${name}.dart',
+        (name) => '${name}.g.dart',
         (theme) {
           return themeEmitter.emitDart(theme);
         },
       );
 
-      await _generate<BentoTheme>(
-        testThemes,
-        project.themes,
-        (name) => '${name}_test.dart',
-        (theme) {
-          return goldens.emitDart(theme);
-        },
-      );
+      // Tests
+      if (project.configuration.dart.tests) {
+        final test = Directory(join(output.path, 'test'));
 
-      final galleryFile = File(join(testThemes.path, 'gallery.dart'));
-      if (!galleryFile.existsSync())
-        await galleryFile.writeAsString(BentoThemeGoldenTestEmitter.gallery);
+        if (!test.existsSync()) {
+          await test.create(recursive: true);
+        }
 
-      final exports = exportEmitter.emitThemes(project);
-      final exportFile = File(join(lib.path, 'themes.dart'));
-      await exportFile.writeAsString(exports);
+        final testThemes = Directory(join(test.path, 'themes'));
+
+        if (!testThemes.existsSync()) {
+          await testThemes.create(recursive: true);
+        }
+
+        await _generate<BentoTheme>(
+          testThemes,
+          project.themes,
+          (name) => '${name}_test.dart',
+          (theme) {
+            return goldens.emitDart(theme);
+          },
+        );
+        final galleryFile = File(join(testThemes.path, 'gallery.g.dart'));
+        if (!galleryFile.existsSync())
+          await galleryFile.writeAsString(BentoThemeGoldenTestEmitter.gallery);
+
+        final exports = exportEmitter.emitThemes(project);
+        final exportFile = File(join(lib.path, 'themes.g.dart'));
+        await exportFile.writeAsString(exports);
+      }
     }
 
     // Widgets
@@ -104,7 +118,7 @@ class BentoProjectDartBuilder {
       );
 
       final exports = exportEmitter.emitWidgets(project);
-      final exportFile = File(join(lib.path, 'widgets.dart'));
+      final exportFile = File(join(lib.path, 'widgets.g.dart'));
       await exportFile.writeAsString(exports);
     }
   }

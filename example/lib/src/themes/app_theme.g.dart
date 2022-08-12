@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'app_theme_data.dart';
+import 'app_theme_data.g.dart';
 
 class AppTheme extends InheritedWidget {
   const AppTheme({required Key? key, required Widget child, required this.data})

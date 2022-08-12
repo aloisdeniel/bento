@@ -11,7 +11,7 @@ class BentoProjectConfiguration with _$BentoProjectConfiguration {
 
   const factory BentoProjectConfiguration({
     required String name,
-    required BentoDartOptions dart,
+    @Default(const BentoDartOptions()) BentoDartOptions dart,
   }) = _BentoProjectConfiguration;
 
   factory BentoProjectConfiguration.fromJson(Map<String, Object?> json) =>
@@ -25,6 +25,8 @@ class BentoDartOptions with _$BentoDartOptions {
   const factory BentoDartOptions({
     @Default(true) bool equatable,
     @Default(false) bool lazyInstances,
+    @Default(true) bool reflect,
+    @Default(true) bool tests,
     String? assetPackage,
   }) = _BentoDartOptions;
 

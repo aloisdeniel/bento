@@ -1,9 +1,17 @@
+
+## 0.0.23+alpha
+
+* Fixed path combine.
+
+## 0.0.19+alpha
+
+* Fixed path combine.
+* Fixed default dart config.
+* Fixing missing theme test directory.
+
 ## 0.0.18+alpha
 
-* Fixed svg data parsing.
-## 0.0.17+alpha
-
-* Added golden tests.
+* Fixed winding rule parsing.
 
 ## 0.0.17+alpha
 

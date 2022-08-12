@@ -2,18 +2,34 @@ import 'package:bento/src/theme/models.dart';
 import 'package:path_parsing/path_parsing.dart';
 
 String emitPathData(Offset offset, List<IconPath> paths) {
-  final result = StringBuffer('Path()');
-  for (var path in paths) {
-    if (paths.length > 1) {
-      result.writeln('..addPath(Path()');
-    }
-    result.writeln('..fillType = ${path.windingRule}');
-    writeSvgPathDataToPath(path.data, PathDartCodeProxy(result));
+  if (paths.isEmpty) {
+    return 'Path()';
+  }
 
-    if (paths.length > 1) {
-      result.writeln(', Offset.zero,)');
+  if (paths.length == 1) {
+    return emitData(offset, paths.first);
+  }
+
+  var result = '';
+
+  for (var i = 0; i < paths.length; i++) {
+    final newPath = emitData(offset, paths[i]);
+
+    if (result.isEmpty) {
+      result = newPath;
+    } else {
+      result = 'Path.combine(PathOperation.union,$result,$newPath,)';
     }
   }
+
+  return result;
+}
+
+String emitData(Offset offset, IconPath path) {
+  final result = StringBuffer('Path()');
+
+  result.writeln('..fillType = ${path.windingRule}');
+  writeSvgPathDataToPath(path.data, PathDartCodeProxy(result));
 
   return result.toString();
 }

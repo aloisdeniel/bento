@@ -19,7 +19,7 @@ class AppThemeData {
       required this.typography,
       required this.icons});
 
-  static AppThemeData fallback = _AppThemeDataInstance();
+  static final AppThemeData fallback = _AppThemeDataInstance();
 
   final AppThemeSizesData sizes;
 
@@ -48,6 +48,23 @@ class AppThemeData {
   final AppThemeTypographyData typography;
 
   final AppThemeIconsData icons;
+
+  Map<String, Object?> reflect() => {
+        'sizes': sizes,
+        'breakpoints': breakpoints,
+        'spacing': spacing,
+        'borders': borders,
+        'radius': radius,
+        'radii': radii,
+        'motion': motion,
+        'gradient': gradient,
+        'color': color,
+        'grid': grid,
+        'font': font,
+        'effect': effect,
+        'typography': typography,
+        'icons': icons,
+      };
 }
 
 class _AppThemeDataInstance implements AppThemeData {
@@ -94,6 +111,23 @@ class _AppThemeDataInstance implements AppThemeData {
 
   @override
   late final icons = AppThemeIconsData.fallback;
+
+  Map<String, Object?> reflect() => {
+        'sizes': sizes,
+        'breakpoints': breakpoints,
+        'spacing': spacing,
+        'borders': borders,
+        'radius': radius,
+        'radii': radii,
+        'motion': motion,
+        'gradient': gradient,
+        'color': color,
+        'grid': grid,
+        'font': font,
+        'effect': effect,
+        'typography': typography,
+        'icons': icons,
+      };
 }
 
 class AppThemeSizesData {
@@ -112,7 +146,7 @@ class AppThemeSizesData {
       required this.rect,
       required this.shapeInComponent});
 
-  static AppThemeSizesData fallback = _AppThemeSizesDataInstance();
+  static final AppThemeSizesData fallback = _AppThemeSizesDataInstance();
 
   final double v32;
 
@@ -139,6 +173,22 @@ class AppThemeSizesData {
   final double rect;
 
   final double shapeInComponent;
+
+  Map<String, double> reflect() => {
+        'v32': v32,
+        'v40': v40,
+        'v60': v60,
+        'v80': v80,
+        'plainToken': plainToken,
+        'tokenInFrame': tokenInFrame,
+        'tokenInGroup': tokenInGroup,
+        'inVariant60': inVariant60,
+        'inVariant90': inVariant90,
+        'inVariant120': inVariant120,
+        'frame': frame,
+        'rect': rect,
+        'shapeInComponent': shapeInComponent,
+      };
 }
 
 class _AppThemeSizesDataInstance implements AppThemeSizesData {
@@ -182,19 +232,42 @@ class _AppThemeSizesDataInstance implements AppThemeSizesData {
 
   @override
   late final shapeInComponent = 32.0;
+
+  Map<String, double> reflect() => {
+        'v32': v32,
+        'v40': v40,
+        'v60': v60,
+        'v80': v80,
+        'plainToken': plainToken,
+        'tokenInFrame': tokenInFrame,
+        'tokenInGroup': tokenInGroup,
+        'inVariant60': inVariant60,
+        'inVariant90': inVariant90,
+        'inVariant120': inVariant120,
+        'frame': frame,
+        'rect': rect,
+        'shapeInComponent': shapeInComponent,
+      };
 }
 
 class AppThemeBreakpointsData {
   const AppThemeBreakpointsData(
       {required this.lg, required this.sm, required this.md});
 
-  static AppThemeBreakpointsData fallback = _AppThemeBreakpointsDataInstance();
+  static final AppThemeBreakpointsData fallback =
+      _AppThemeBreakpointsDataInstance();
 
   final double lg;
 
   final double sm;
 
   final double md;
+
+  Map<String, double> reflect() => {
+        'lg': lg,
+        'sm': sm,
+        'md': md,
+      };
 }
 
 class _AppThemeBreakpointsDataInstance implements AppThemeBreakpointsData {
@@ -208,19 +281,31 @@ class _AppThemeBreakpointsDataInstance implements AppThemeBreakpointsData {
 
   @override
   late final md = 1024.0;
+
+  Map<String, double> reflect() => {
+        'lg': lg,
+        'sm': sm,
+        'md': md,
+      };
 }
 
 class AppThemeSpacingData {
   const AppThemeSpacingData(
       {required this.v10, required this.mixed, required this.top});
 
-  static AppThemeSpacingData fallback = _AppThemeSpacingDataInstance();
+  static final AppThemeSpacingData fallback = _AppThemeSpacingDataInstance();
 
   final EdgeInsets v10;
 
   final EdgeInsets mixed;
 
   final EdgeInsets top;
+
+  Map<String, EdgeInsets> reflect() => {
+        'v10': v10,
+        'mixed': mixed,
+        'top': top,
+      };
 }
 
 class _AppThemeSpacingDataInstance implements AppThemeSpacingData {
@@ -244,14 +329,24 @@ class _AppThemeSpacingDataInstance implements AppThemeSpacingData {
     right: 0.0,
     bottom: 0.0,
   );
+
+  Map<String, EdgeInsets> reflect() => {
+        'v10': v10,
+        'mixed': mixed,
+        'top': top,
+      };
 }
 
 class AppThemeBordersData {
   const AppThemeBordersData({required this.unsupported});
 
-  static AppThemeBordersData fallback = _AppThemeBordersDataInstance();
+  static final AppThemeBordersData fallback = _AppThemeBordersDataInstance();
 
   final AppThemeBordersUnsupportedData unsupported;
+
+  Map<String, AppThemeBordersUnsupportedData> reflect() => {
+        'unsupported': unsupported,
+      };
 }
 
 class _AppThemeBordersDataInstance implements AppThemeBordersData {
@@ -259,26 +354,38 @@ class _AppThemeBordersDataInstance implements AppThemeBordersData {
 
   @override
   late final unsupported = AppThemeBordersUnsupportedData.fallback;
+
+  Map<String, AppThemeBordersUnsupportedData> reflect() => {
+        'unsupported': unsupported,
+      };
 }
 
 class AppThemeBordersUnsupportedData {
   const AppThemeBordersUnsupportedData();
 
-  static AppThemeBordersUnsupportedData fallback =
+  static final AppThemeBordersUnsupportedData fallback =
       _AppThemeBordersUnsupportedDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class _AppThemeBordersUnsupportedDataInstance
     implements AppThemeBordersUnsupportedData {
   _AppThemeBordersUnsupportedDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class AppThemeRadiusData {
   const AppThemeRadiusData({required this.v5});
 
-  static AppThemeRadiusData fallback = _AppThemeRadiusDataInstance();
+  static final AppThemeRadiusData fallback = _AppThemeRadiusDataInstance();
 
   final BorderRadius v5;
+
+  Map<String, BorderRadius> reflect() => {
+        'v5': v5,
+      };
 }
 
 class _AppThemeRadiusDataInstance implements AppThemeRadiusData {
@@ -291,16 +398,25 @@ class _AppThemeRadiusDataInstance implements AppThemeRadiusData {
     bottomLeft: Radius.circular(5.0),
     bottomRight: Radius.circular(5.0),
   );
+
+  Map<String, BorderRadius> reflect() => {
+        'v5': v5,
+      };
 }
 
 class AppThemeRadiiData {
   const AppThemeRadiiData({required this.smoothing, required this.mixed});
 
-  static AppThemeRadiiData fallback = _AppThemeRadiiDataInstance();
+  static final AppThemeRadiiData fallback = _AppThemeRadiiDataInstance();
 
   final BorderRadius smoothing;
 
   final BorderRadius mixed;
+
+  Map<String, BorderRadius> reflect() => {
+        'smoothing': smoothing,
+        'mixed': mixed,
+      };
 }
 
 class _AppThemeRadiiDataInstance implements AppThemeRadiiData {
@@ -321,24 +437,37 @@ class _AppThemeRadiiDataInstance implements AppThemeRadiiData {
     bottomLeft: Radius.circular(20.0),
     bottomRight: Radius.circular(15.0),
   );
+
+  Map<String, BorderRadius> reflect() => {
+        'smoothing': smoothing,
+        'mixed': mixed,
+      };
 }
 
 class AppThemeMotionData {
   const AppThemeMotionData();
 
-  static AppThemeMotionData fallback = _AppThemeMotionDataInstance();
+  static final AppThemeMotionData fallback = _AppThemeMotionDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class _AppThemeMotionDataInstance implements AppThemeMotionData {
   _AppThemeMotionDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class AppThemeGradientData {
   const AppThemeGradientData({required this.gradient});
 
-  static AppThemeGradientData fallback = _AppThemeGradientDataInstance();
+  static final AppThemeGradientData fallback = _AppThemeGradientDataInstance();
 
   final AppThemeGradientGradientData gradient;
+
+  Map<String, AppThemeGradientGradientData> reflect() => {
+        'gradient': gradient,
+      };
 }
 
 class _AppThemeGradientDataInstance implements AppThemeGradientData {
@@ -346,15 +475,23 @@ class _AppThemeGradientDataInstance implements AppThemeGradientData {
 
   @override
   late final gradient = AppThemeGradientGradientData.fallback;
+
+  Map<String, AppThemeGradientGradientData> reflect() => {
+        'gradient': gradient,
+      };
 }
 
 class AppThemeGradientGradientData {
   const AppThemeGradientGradientData({required this.multiplegrad});
 
-  static AppThemeGradientGradientData fallback =
+  static final AppThemeGradientGradientData fallback =
       _AppThemeGradientGradientDataInstance();
 
   final AppThemeGradientGradientMultiplegradData multiplegrad;
+
+  Map<String, AppThemeGradientGradientMultiplegradData> reflect() => {
+        'multiplegrad': multiplegrad,
+      };
 }
 
 class _AppThemeGradientGradientDataInstance
@@ -363,18 +500,26 @@ class _AppThemeGradientGradientDataInstance
 
   @override
   late final multiplegrad = AppThemeGradientGradientMultiplegradData.fallback;
+
+  Map<String, AppThemeGradientGradientMultiplegradData> reflect() => {
+        'multiplegrad': multiplegrad,
+      };
 }
 
 class AppThemeGradientGradientMultiplegradData {
   const AppThemeGradientGradientMultiplegradData();
 
-  static AppThemeGradientGradientMultiplegradData fallback =
+  static final AppThemeGradientGradientMultiplegradData fallback =
       _AppThemeGradientGradientMultiplegradDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class _AppThemeGradientGradientMultiplegradDataInstance
     implements AppThemeGradientGradientMultiplegradData {
   _AppThemeGradientGradientMultiplegradDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class AppThemeColorData {
@@ -384,7 +529,7 @@ class AppThemeColorData {
       required this.light,
       required this.dark});
 
-  static AppThemeColorData fallback = _AppThemeColorDataInstance();
+  static final AppThemeColorData fallback = _AppThemeColorDataInstance();
 
   final AppThemeColorColorsData colors;
 
@@ -393,6 +538,13 @@ class AppThemeColorData {
   final AppThemeColorLightData light;
 
   final AppThemeColorDarkData dark;
+
+  Map<String, Object?> reflect() => {
+        'colors': colors,
+        'invalid': invalid,
+        'light': light,
+        'dark': dark,
+      };
 }
 
 class _AppThemeColorDataInstance implements AppThemeColorData {
@@ -409,6 +561,13 @@ class _AppThemeColorDataInstance implements AppThemeColorData {
 
   @override
   late final dark = AppThemeColorDarkData.fallback;
+
+  Map<String, Object?> reflect() => {
+        'colors': colors,
+        'invalid': invalid,
+        'light': light,
+        'dark': dark,
+      };
 }
 
 class AppThemeColorColorsData {
@@ -418,7 +577,8 @@ class AppThemeColorColorsData {
       required this.multipleFills,
       required this.specialCharacters});
 
-  static AppThemeColorColorsData fallback = _AppThemeColorColorsDataInstance();
+  static final AppThemeColorColorsData fallback =
+      _AppThemeColorColorsDataInstance();
 
   final Color singleBlue;
 
@@ -427,6 +587,13 @@ class AppThemeColorColorsData {
   final AppThemeColorColorsMultipleFillsData multipleFills;
 
   final AppThemeColorColorsSpecialCharactersData specialCharacters;
+
+  Map<String, Object?> reflect() => {
+        'singleBlue': singleBlue,
+        'refBlue': refBlue,
+        'multipleFills': multipleFills,
+        'specialCharacters': specialCharacters,
+      };
 }
 
 class _AppThemeColorColorsDataInstance implements AppThemeColorColorsData {
@@ -444,18 +611,30 @@ class _AppThemeColorColorsDataInstance implements AppThemeColorColorsData {
   @override
   late final specialCharacters =
       AppThemeColorColorsSpecialCharactersData.fallback;
+
+  Map<String, Object?> reflect() => {
+        'singleBlue': singleBlue,
+        'refBlue': refBlue,
+        'multipleFills': multipleFills,
+        'specialCharacters': specialCharacters,
+      };
 }
 
 class AppThemeColorColorsMultipleFillsData {
   const AppThemeColorColorsMultipleFillsData(
       {required this.v0, required this.v1});
 
-  static AppThemeColorColorsMultipleFillsData fallback =
+  static final AppThemeColorColorsMultipleFillsData fallback =
       _AppThemeColorColorsMultipleFillsDataInstance();
 
   final Color v0;
 
   final Color v1;
+
+  Map<String, Color> reflect() => {
+        'v0': v0,
+        'v1': v1,
+      };
 }
 
 class _AppThemeColorColorsMultipleFillsDataInstance
@@ -467,18 +646,28 @@ class _AppThemeColorColorsMultipleFillsDataInstance
 
   @override
   late final v1 = const Color(0x1a000000);
+
+  Map<String, Color> reflect() => {
+        'v0': v0,
+        'v1': v1,
+      };
 }
 
 class AppThemeColorColorsSpecialCharactersData {
   const AppThemeColorColorsSpecialCharactersData(
       {required this.c55357c56837, required this.c228nderung});
 
-  static AppThemeColorColorsSpecialCharactersData fallback =
+  static final AppThemeColorColorsSpecialCharactersData fallback =
       _AppThemeColorColorsSpecialCharactersDataInstance();
 
   final Color c55357c56837;
 
   final Color c228nderung;
+
+  Map<String, Color> reflect() => {
+        'c55357c56837': c55357c56837,
+        'c228nderung': c228nderung,
+      };
 }
 
 class _AppThemeColorColorsSpecialCharactersDataInstance
@@ -490,15 +679,24 @@ class _AppThemeColorColorsSpecialCharactersDataInstance
 
   @override
   late final c228nderung = const Color(0xff3456af);
+
+  Map<String, Color> reflect() => {
+        'c55357c56837': c55357c56837,
+        'c228nderung': c228nderung,
+      };
 }
 
 class AppThemeColorInvalidData {
   const AppThemeColorInvalidData({required this.empty});
 
-  static AppThemeColorInvalidData fallback =
+  static final AppThemeColorInvalidData fallback =
       _AppThemeColorInvalidDataInstance();
 
   final Color empty;
+
+  Map<String, Color> reflect() => {
+        'empty': empty,
+      };
 }
 
 class _AppThemeColorInvalidDataInstance implements AppThemeColorInvalidData {
@@ -506,14 +704,23 @@ class _AppThemeColorInvalidDataInstance implements AppThemeColorInvalidData {
 
   @override
   late final empty = const Color(0x0);
+
+  Map<String, Color> reflect() => {
+        'empty': empty,
+      };
 }
 
 class AppThemeColorLightData {
   const AppThemeColorLightData({required this.background});
 
-  static AppThemeColorLightData fallback = _AppThemeColorLightDataInstance();
+  static final AppThemeColorLightData fallback =
+      _AppThemeColorLightDataInstance();
 
   final Color background;
+
+  Map<String, Color> reflect() => {
+        'background': background,
+      };
 }
 
 class _AppThemeColorLightDataInstance implements AppThemeColorLightData {
@@ -521,14 +728,23 @@ class _AppThemeColorLightDataInstance implements AppThemeColorLightData {
 
   @override
   late final background = const Color(0xffffffff);
+
+  Map<String, Color> reflect() => {
+        'background': background,
+      };
 }
 
 class AppThemeColorDarkData {
   const AppThemeColorDarkData({required this.background});
 
-  static AppThemeColorDarkData fallback = _AppThemeColorDarkDataInstance();
+  static final AppThemeColorDarkData fallback =
+      _AppThemeColorDarkDataInstance();
 
   final Color background;
+
+  Map<String, Color> reflect() => {
+        'background': background,
+      };
 }
 
 class _AppThemeColorDarkDataInstance implements AppThemeColorDarkData {
@@ -536,14 +752,22 @@ class _AppThemeColorDarkDataInstance implements AppThemeColorDarkData {
 
   @override
   late final background = const Color(0xff000000);
+
+  Map<String, Color> reflect() => {
+        'background': background,
+      };
 }
 
 class AppThemeGridData {
   const AppThemeGridData({required this.multiple});
 
-  static AppThemeGridData fallback = _AppThemeGridDataInstance();
+  static final AppThemeGridData fallback = _AppThemeGridDataInstance();
 
   final AppThemeGridMultipleData multiple;
+
+  Map<String, AppThemeGridMultipleData> reflect() => {
+        'multiple': multiple,
+      };
 }
 
 class _AppThemeGridDataInstance implements AppThemeGridData {
@@ -551,25 +775,37 @@ class _AppThemeGridDataInstance implements AppThemeGridData {
 
   @override
   late final multiple = AppThemeGridMultipleData.fallback;
+
+  Map<String, AppThemeGridMultipleData> reflect() => {
+        'multiple': multiple,
+      };
 }
 
 class AppThemeGridMultipleData {
   const AppThemeGridMultipleData();
 
-  static AppThemeGridMultipleData fallback =
+  static final AppThemeGridMultipleData fallback =
       _AppThemeGridMultipleDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class _AppThemeGridMultipleDataInstance implements AppThemeGridMultipleData {
   _AppThemeGridMultipleDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class AppThemeFontData {
   const AppThemeFontData({required this.body});
 
-  static AppThemeFontData fallback = _AppThemeFontDataInstance();
+  static final AppThemeFontData fallback = _AppThemeFontDataInstance();
 
   final AppThemeFontBodyData body;
+
+  Map<String, AppThemeFontBodyData> reflect() => {
+        'body': body,
+      };
 }
 
 class _AppThemeFontDataInstance implements AppThemeFontData {
@@ -577,6 +813,10 @@ class _AppThemeFontDataInstance implements AppThemeFontData {
 
   @override
   late final body = AppThemeFontBodyData.fallback;
+
+  Map<String, AppThemeFontBodyData> reflect() => {
+        'body': body,
+      };
 }
 
 class AppThemeFontBodyData {
@@ -588,7 +828,7 @@ class AppThemeFontBodyData {
       required this.mediumExtendedItalic,
       required this.super$});
 
-  static AppThemeFontBodyData fallback = _AppThemeFontBodyDataInstance();
+  static final AppThemeFontBodyData fallback = _AppThemeFontBodyDataInstance();
 
   final TextStyle h3;
 
@@ -601,6 +841,15 @@ class AppThemeFontBodyData {
   final TextStyle mediumExtendedItalic;
 
   final TextStyle super$;
+
+  Map<String, TextStyle> reflect() => {
+        'h3': h3,
+        'h4StrikeThrough': h4StrikeThrough,
+        'italic': italic,
+        'extraBoldCondensedItalic': extraBoldCondensedItalic,
+        'mediumExtendedItalic': mediumExtendedItalic,
+        'super\$': super$,
+      };
 }
 
 class _AppThemeFontBodyDataInstance implements AppThemeFontBodyData {
@@ -665,14 +914,27 @@ class _AppThemeFontBodyDataInstance implements AppThemeFontBodyData {
     decoration: TextDecoration.none,
     fontStyle: FontStyle.normal,
   );
+
+  Map<String, TextStyle> reflect() => {
+        'h3': h3,
+        'h4StrikeThrough': h4StrikeThrough,
+        'italic': italic,
+        'extraBoldCondensedItalic': extraBoldCondensedItalic,
+        'mediumExtendedItalic': mediumExtendedItalic,
+        'super\$': super$,
+      };
 }
 
 class AppThemeEffectData {
   const AppThemeEffectData({required this.innerShadowMultiple});
 
-  static AppThemeEffectData fallback = _AppThemeEffectDataInstance();
+  static final AppThemeEffectData fallback = _AppThemeEffectDataInstance();
 
   final AppThemeEffectInnerShadowMultipleData innerShadowMultiple;
+
+  Map<String, AppThemeEffectInnerShadowMultipleData> reflect() => {
+        'innerShadowMultiple': innerShadowMultiple,
+      };
 }
 
 class _AppThemeEffectDataInstance implements AppThemeEffectData {
@@ -681,50 +943,71 @@ class _AppThemeEffectDataInstance implements AppThemeEffectData {
   @override
   late final innerShadowMultiple =
       AppThemeEffectInnerShadowMultipleData.fallback;
+
+  Map<String, AppThemeEffectInnerShadowMultipleData> reflect() => {
+        'innerShadowMultiple': innerShadowMultiple,
+      };
 }
 
 class AppThemeEffectInnerShadowMultipleData {
   const AppThemeEffectInnerShadowMultipleData();
 
-  static AppThemeEffectInnerShadowMultipleData fallback =
+  static final AppThemeEffectInnerShadowMultipleData fallback =
       _AppThemeEffectInnerShadowMultipleDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class _AppThemeEffectInnerShadowMultipleDataInstance
     implements AppThemeEffectInnerShadowMultipleData {
   _AppThemeEffectInnerShadowMultipleDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class AppThemeEffectLayerBlurData {
   const AppThemeEffectLayerBlurData();
 
-  static AppThemeEffectLayerBlurData fallback =
+  static final AppThemeEffectLayerBlurData fallback =
       _AppThemeEffectLayerBlurDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class _AppThemeEffectLayerBlurDataInstance
     implements AppThemeEffectLayerBlurData {
   _AppThemeEffectLayerBlurDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class AppThemeEffectBackgroundBlurData {
   const AppThemeEffectBackgroundBlurData();
 
-  static AppThemeEffectBackgroundBlurData fallback =
+  static final AppThemeEffectBackgroundBlurData fallback =
       _AppThemeEffectBackgroundBlurDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class _AppThemeEffectBackgroundBlurDataInstance
     implements AppThemeEffectBackgroundBlurData {
   _AppThemeEffectBackgroundBlurDataInstance();
+
+  Map<String, Object?> reflect() => {};
 }
 
 class AppThemeTypographyData {
   const AppThemeTypographyData({required this.body});
 
-  static AppThemeTypographyData fallback = _AppThemeTypographyDataInstance();
+  static final AppThemeTypographyData fallback =
+      _AppThemeTypographyDataInstance();
 
   final AppThemeTypographyBodyData body;
+
+  Map<String, AppThemeTypographyBodyData> reflect() => {
+        'body': body,
+      };
 }
 
 class _AppThemeTypographyDataInstance implements AppThemeTypographyData {
@@ -732,6 +1015,10 @@ class _AppThemeTypographyDataInstance implements AppThemeTypographyData {
 
   @override
   late final body = AppThemeTypographyBodyData.fallback;
+
+  Map<String, AppThemeTypographyBodyData> reflect() => {
+        'body': body,
+      };
 }
 
 class AppThemeTypographyBodyData {
@@ -743,7 +1030,7 @@ class AppThemeTypographyBodyData {
       required this.mediumExtendedItalic,
       required this.super$});
 
-  static AppThemeTypographyBodyData fallback =
+  static final AppThemeTypographyBodyData fallback =
       _AppThemeTypographyBodyDataInstance();
 
   final AppThemeTypographyBodyH3Data h3;
@@ -758,6 +1045,15 @@ class AppThemeTypographyBodyData {
   final AppThemeTypographyBodyMediumExtendedItalicData mediumExtendedItalic;
 
   final AppThemeTypographyBodySuperData super$;
+
+  Map<String, Object?> reflect() => {
+        'h3': h3,
+        'h4StrikeThrough': h4StrikeThrough,
+        'italic': italic,
+        'extraBoldCondensedItalic': extraBoldCondensedItalic,
+        'mediumExtendedItalic': mediumExtendedItalic,
+        'super\$': super$,
+      };
 }
 
 class _AppThemeTypographyBodyDataInstance
@@ -784,6 +1080,15 @@ class _AppThemeTypographyBodyDataInstance
 
   @override
   late final super$ = AppThemeTypographyBodySuperData.fallback;
+
+  Map<String, Object?> reflect() => {
+        'h3': h3,
+        'h4StrikeThrough': h4StrikeThrough,
+        'italic': italic,
+        'extraBoldCondensedItalic': extraBoldCondensedItalic,
+        'mediumExtendedItalic': mediumExtendedItalic,
+        'super\$': super$,
+      };
 }
 
 class AppThemeTypographyBodyH3Data {
@@ -794,7 +1099,7 @@ class AppThemeTypographyBodyH3Data {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyH3Data fallback =
+  static final AppThemeTypographyBodyH3Data fallback =
       _AppThemeTypographyBodyH3DataInstance();
 
   final double fontSize;
@@ -806,6 +1111,14 @@ class AppThemeTypographyBodyH3Data {
   final double paragraphIndent;
 
   final double paragraphSpacing;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class _AppThemeTypographyBodyH3DataInstance
@@ -826,6 +1139,14 @@ class _AppThemeTypographyBodyH3DataInstance
 
   @override
   late final paragraphSpacing = 8.0;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class AppThemeTypographyBodyH4StrikeThroughData {
@@ -836,7 +1157,7 @@ class AppThemeTypographyBodyH4StrikeThroughData {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyH4StrikeThroughData fallback =
+  static final AppThemeTypographyBodyH4StrikeThroughData fallback =
       _AppThemeTypographyBodyH4StrikeThroughDataInstance();
 
   final double fontSize;
@@ -848,6 +1169,14 @@ class AppThemeTypographyBodyH4StrikeThroughData {
   final double paragraphIndent;
 
   final double paragraphSpacing;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class _AppThemeTypographyBodyH4StrikeThroughDataInstance
@@ -868,6 +1197,14 @@ class _AppThemeTypographyBodyH4StrikeThroughDataInstance
 
   @override
   late final paragraphSpacing = 0.0;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class AppThemeTypographyBodyItalicData {
@@ -878,7 +1215,7 @@ class AppThemeTypographyBodyItalicData {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyItalicData fallback =
+  static final AppThemeTypographyBodyItalicData fallback =
       _AppThemeTypographyBodyItalicDataInstance();
 
   final double fontSize;
@@ -890,6 +1227,14 @@ class AppThemeTypographyBodyItalicData {
   final double paragraphIndent;
 
   final double paragraphSpacing;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class _AppThemeTypographyBodyItalicDataInstance
@@ -910,6 +1255,14 @@ class _AppThemeTypographyBodyItalicDataInstance
 
   @override
   late final paragraphSpacing = 0.0;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class AppThemeTypographyBodyExtraBoldCondensedItalicData {
@@ -920,7 +1273,7 @@ class AppThemeTypographyBodyExtraBoldCondensedItalicData {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyExtraBoldCondensedItalicData fallback =
+  static final AppThemeTypographyBodyExtraBoldCondensedItalicData fallback =
       _AppThemeTypographyBodyExtraBoldCondensedItalicDataInstance();
 
   final double fontSize;
@@ -932,6 +1285,14 @@ class AppThemeTypographyBodyExtraBoldCondensedItalicData {
   final double paragraphIndent;
 
   final double paragraphSpacing;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class _AppThemeTypographyBodyExtraBoldCondensedItalicDataInstance
@@ -952,6 +1313,14 @@ class _AppThemeTypographyBodyExtraBoldCondensedItalicDataInstance
 
   @override
   late final paragraphSpacing = 0.0;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class AppThemeTypographyBodyMediumExtendedItalicData {
@@ -962,7 +1331,7 @@ class AppThemeTypographyBodyMediumExtendedItalicData {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodyMediumExtendedItalicData fallback =
+  static final AppThemeTypographyBodyMediumExtendedItalicData fallback =
       _AppThemeTypographyBodyMediumExtendedItalicDataInstance();
 
   final double fontSize;
@@ -974,6 +1343,14 @@ class AppThemeTypographyBodyMediumExtendedItalicData {
   final double paragraphIndent;
 
   final double paragraphSpacing;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class _AppThemeTypographyBodyMediumExtendedItalicDataInstance
@@ -994,6 +1371,14 @@ class _AppThemeTypographyBodyMediumExtendedItalicDataInstance
 
   @override
   late final paragraphSpacing = 0.0;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class AppThemeTypographyBodySuperData {
@@ -1004,7 +1389,7 @@ class AppThemeTypographyBodySuperData {
       required this.paragraphIndent,
       required this.paragraphSpacing});
 
-  static AppThemeTypographyBodySuperData fallback =
+  static final AppThemeTypographyBodySuperData fallback =
       _AppThemeTypographyBodySuperDataInstance();
 
   final double fontSize;
@@ -1016,6 +1401,14 @@ class AppThemeTypographyBodySuperData {
   final double paragraphIndent;
 
   final double paragraphSpacing;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class _AppThemeTypographyBodySuperDataInstance
@@ -1036,6 +1429,14 @@ class _AppThemeTypographyBodySuperDataInstance
 
   @override
   late final paragraphSpacing = 0.0;
+
+  Map<String, double> reflect() => {
+        'fontSize': fontSize,
+        'letterSpacing': letterSpacing,
+        'lineHeight': lineHeight,
+        'paragraphIndent': paragraphIndent,
+        'paragraphSpacing': paragraphSpacing,
+      };
 }
 
 class AppThemeIconsData {
@@ -1047,7 +1448,7 @@ class AppThemeIconsData {
       required this.pageTree,
       required this.phone});
 
-  static AppThemeIconsData fallback = _AppThemeIconsDataInstance();
+  static final AppThemeIconsData fallback = _AppThemeIconsDataInstance();
 
   final PathIconData propagation;
 
@@ -1060,6 +1461,15 @@ class AppThemeIconsData {
   final PathIconData pageTree;
 
   final PathIconData phone;
+
+  Map<String, PathIconData> reflect() => {
+        'propagation': propagation,
+        'productMenuClosed': productMenuClosed,
+        'pasteWord': pasteWord,
+        'paperclip': paperclip,
+        'pageTree': pageTree,
+        'phone': phone,
+      };
 }
 
 class _AppThemeIconsDataInstance implements AppThemeIconsData {
@@ -1067,42 +1477,47 @@ class _AppThemeIconsDataInstance implements AppThemeIconsData {
 
   @override
   late final propagation = PathIconData(
-    path: Path()
-      ..addPath(
+    path: Path.combine(
+      PathOperation.union,
+      Path.combine(
+        PathOperation.union,
+        Path.combine(
+          PathOperation.union,
+          Path()
+            ..fillType = PathFillType.nonZero
+            ..moveTo(11.5, 3.5)
+            ..cubicTo(11.5, 5.43299674987793, 9.93299674987793, 7.0, 8.0, 7.0)
+            ..cubicTo(6.06700325012207, 7.0, 4.5, 5.43299674987793, 4.5, 3.5)
+            ..cubicTo(4.5, 1.5670033693313599, 6.06700325012207, 0.0, 8.0, 0.0)
+            ..cubicTo(
+                9.93299674987793, 0.0, 11.5, 1.5670033693313599, 11.5, 3.5)
+            ..close(),
+          Path()
+            ..fillType = PathFillType.nonZero
+            ..moveTo(1.0, 10.299994468688965)
+            ..lineTo(4.143750190734863, 7.159369468688965)
+            ..cubicTo(4.596875190734863, 6.712494373321533, 5.3125,
+                7.331244468688965, 4.849999904632568, 7.86561918258667)
+            ..lineTo(1.715625047683716, 10.999994277954102)
+            ..lineTo(2.075000047683716, 10.999994277954102)
+            ..cubicTo(
+                2.7218751907348633,
+                11.006244659423828,
+                2.7531251907348633,
+                11.974994659423828,
+                2.075000047683716,
+                11.999994277954102)
+            ..lineTo(0.5, 11.999994277954102)
+            ..cubicTo(0.22499999403953558, 11.999994277954102, 0.0,
+                11.774993896484375, 0.0, 11.499994277954102)
+            ..lineTo(0.0, 9.924994468688965)
+            ..cubicTo(0.015625000000000003, 9.262495040893555, 1.0,
+                9.265619277954102, 1.0, 9.924994468688965)
+            ..lineTo(1.0, 10.299994468688965)
+            ..close(),
+        ),
         Path()
-          ..fillType = PathFillType.evenOdd
-          ..moveTo(11.5, 3.5)
-          ..cubicTo(11.5, 5.43299674987793, 9.93299674987793, 7.0, 8.0, 7.0)
-          ..cubicTo(6.06700325012207, 7.0, 4.5, 5.43299674987793, 4.5, 3.5)
-          ..cubicTo(4.5, 1.5670033693313599, 6.06700325012207, 0.0, 8.0, 0.0)
-          ..cubicTo(9.93299674987793, 0.0, 11.5, 1.5670033693313599, 11.5, 3.5)
-          ..close(),
-        Offset.zero,
-      )
-      ..addPath(
-        Path()
-          ..fillType = PathFillType.evenOdd
-          ..moveTo(1.0, 10.299994468688965)
-          ..lineTo(4.143750190734863, 7.159369468688965)
-          ..cubicTo(4.596875190734863, 6.712494373321533, 5.3125,
-              7.331244468688965, 4.849999904632568, 7.86561918258667)
-          ..lineTo(1.715625047683716, 10.999994277954102)
-          ..lineTo(2.075000047683716, 10.999994277954102)
-          ..cubicTo(2.7218751907348633, 11.006244659423828, 2.7531251907348633,
-              11.974994659423828, 2.075000047683716, 11.999994277954102)
-          ..lineTo(0.5, 11.999994277954102)
-          ..cubicTo(0.22499999403953558, 11.999994277954102, 0.0,
-              11.774993896484375, 0.0, 11.499994277954102)
-          ..lineTo(0.0, 9.924994468688965)
-          ..cubicTo(0.015625000000000003, 9.262495040893555, 1.0,
-              9.265619277954102, 1.0, 9.924994468688965)
-          ..lineTo(1.0, 10.299994468688965)
-          ..close(),
-        Offset.zero,
-      )
-      ..addPath(
-        Path()
-          ..fillType = PathFillType.evenOdd
+          ..fillType = PathFillType.nonZero
           ..moveTo(14.999682426452637, 10.299994468688965)
           ..lineTo(11.855941772460938, 7.159369468688965)
           ..cubicTo(11.402817726135254, 6.712494373321533, 10.68719482421875,
@@ -1119,80 +1534,73 @@ class _AppThemeIconsDataInstance implements AppThemeIconsData {
               9.265619277954102, 14.999682426452637, 9.924994468688965)
           ..lineTo(14.999682426452637, 10.299994468688965)
           ..close(),
-        Offset.zero,
-      )
-      ..addPath(
-        Path()
-          ..fillType = PathFillType.evenOdd
-          ..moveTo(7.5065741539001465, 9.506209373474121)
-          ..lineTo(7.5065741539001465, 14.299959182739258)
-          ..lineTo(7.2409491539001465, 14.034334182739258)
-          ..cubicTo(6.775323867797852, 13.568708419799805, 6.075324535369873,
-              14.262458801269531, 6.534699440002441, 14.740583419799805)
-          ..lineTo(7.6471991539001465, 15.853082656860352)
-          ..cubicTo(7.840949058532715, 16.046833038330078, 8.159698486328125,
-              16.046833038330078, 8.353448867797852, 15.853082656860352)
-          ..lineTo(9.465949058532715, 14.740583419799805)
-          ..cubicTo(9.928448677062988, 14.243708610534668, 9.222198486328125,
-              13.581209182739258, 8.759698867797852, 14.034334182739258)
-          ..lineTo(8.506574630737305, 14.287458419799805)
-          ..lineTo(8.506574630737305, 9.506209373474121)
-          ..cubicTo(8.453449249267578, 8.803084373474121, 7.50969934463501,
-              8.868708610534668, 7.5065741539001465, 9.506209373474121)
-          ..close(),
-        Offset.zero,
       ),
+      Path()
+        ..fillType = PathFillType.nonZero
+        ..moveTo(7.5065741539001465, 9.506209373474121)
+        ..lineTo(7.5065741539001465, 14.299959182739258)
+        ..lineTo(7.2409491539001465, 14.034334182739258)
+        ..cubicTo(6.775323867797852, 13.568708419799805, 6.075324535369873,
+            14.262458801269531, 6.534699440002441, 14.740583419799805)
+        ..lineTo(7.6471991539001465, 15.853082656860352)
+        ..cubicTo(7.840949058532715, 16.046833038330078, 8.159698486328125,
+            16.046833038330078, 8.353448867797852, 15.853082656860352)
+        ..lineTo(9.465949058532715, 14.740583419799805)
+        ..cubicTo(9.928448677062988, 14.243708610534668, 9.222198486328125,
+            13.581209182739258, 8.759698867797852, 14.034334182739258)
+        ..lineTo(8.506574630737305, 14.287458419799805)
+        ..lineTo(8.506574630737305, 9.506209373474121)
+        ..cubicTo(8.453449249267578, 8.803084373474121, 7.50969934463501,
+            8.868708610534668, 7.5065741539001465, 9.506209373474121)
+        ..close(),
+    ),
     viewBox: Offset.zero & Size(15.999679565429688, 15.998395919799805),
   );
 
   @override
   late final productMenuClosed = PathIconData(
-    path: Path()
-      ..addPath(
-        Path()
-          ..fillType = PathFillType.evenOdd
-          ..moveTo(0.0, 0.9687500000000001)
-          ..cubicTo(0.0, 0.4343872070312501, 0.43457031250000006, 0.0,
-              0.9687500000000001, 0.0)
-          ..cubicTo(1.505859375, 0.0, 1.9404296875, 0.4343872070312501, 1.9375,
-              0.9687500000000001)
-          ..lineTo(1.9375, 15.03125)
-          ..cubicTo(1.9375, 15.56561279296875, 1.5029296875, 16.0,
-              0.9687500000000001, 16.0)
-          ..cubicTo(
-              0.43457031250000006, 16.0, 0.0, 15.56561279296875, 0.0, 15.03125)
-          ..lineTo(0.0, 0.9687500000000001)
-          ..close(),
-        Offset.zero,
-      )
-      ..addPath(
-        Path()
-          ..fillType = PathFillType.evenOdd
-          ..moveTo(14.5, 16.0)
-          ..lineTo(4.5, 16.0)
-          ..cubicTo(3.671875, 16.0, 3.0, 15.328125, 3.0, 14.5)
-          ..lineTo(3.0, 1.5)
-          ..cubicTo(3.0, 0.6749877929687501, 3.671875, 0.0, 4.5, 0.0)
-          ..lineTo(14.5, 0.0)
-          ..cubicTo(15.328125, 0.0, 16.0, 0.6718750000000002, 16.0, 1.5)
-          ..lineTo(16.0, 14.5)
-          ..cubicTo(16.0, 15.32501220703125, 15.3251953125, 16.0, 14.5, 16.0)
-          ..close()
-          ..moveTo(5.0, 14.0)
-          ..lineTo(14.0, 14.0)
-          ..lineTo(14.0, 2.0)
-          ..lineTo(5.0, 2.0)
-          ..lineTo(5.0, 14.0)
-          ..close(),
-        Offset.zero,
-      ),
+    path: Path.combine(
+      PathOperation.union,
+      Path()
+        ..fillType = PathFillType.nonZero
+        ..moveTo(0.0, 0.9687500000000001)
+        ..cubicTo(0.0, 0.4343872070312501, 0.43457031250000006, 0.0,
+            0.9687500000000001, 0.0)
+        ..cubicTo(1.505859375, 0.0, 1.9404296875, 0.4343872070312501, 1.9375,
+            0.9687500000000001)
+        ..lineTo(1.9375, 15.03125)
+        ..cubicTo(1.9375, 15.56561279296875, 1.5029296875, 16.0,
+            0.9687500000000001, 16.0)
+        ..cubicTo(
+            0.43457031250000006, 16.0, 0.0, 15.56561279296875, 0.0, 15.03125)
+        ..lineTo(0.0, 0.9687500000000001)
+        ..close(),
+      Path()
+        ..fillType = PathFillType.evenOdd
+        ..moveTo(14.5, 16.0)
+        ..lineTo(4.5, 16.0)
+        ..cubicTo(3.671875, 16.0, 3.0, 15.328125, 3.0, 14.5)
+        ..lineTo(3.0, 1.5)
+        ..cubicTo(3.0, 0.6749877929687501, 3.671875, 0.0, 4.5, 0.0)
+        ..lineTo(14.5, 0.0)
+        ..cubicTo(15.328125, 0.0, 16.0, 0.6718750000000002, 16.0, 1.5)
+        ..lineTo(16.0, 14.5)
+        ..cubicTo(16.0, 15.32501220703125, 15.3251953125, 16.0, 14.5, 16.0)
+        ..close()
+        ..moveTo(5.0, 14.0)
+        ..lineTo(14.0, 14.0)
+        ..lineTo(14.0, 2.0)
+        ..lineTo(5.0, 2.0)
+        ..lineTo(5.0, 14.0)
+        ..close(),
+    ),
     viewBox: Offset.zero & Size(16.0, 16.0),
   );
 
   @override
   late final pasteWord = PathIconData(
     path: Path()
-      ..fillType = PathFillType.evenOdd
+      ..fillType = PathFillType.nonZero
       ..moveTo(12.0, 5.0)
       ..lineTo(10.0, 5.0)
       ..lineTo(10.0, 1.8709375858306885)
@@ -1246,7 +1654,7 @@ class _AppThemeIconsDataInstance implements AppThemeIconsData {
   @override
   late final paperclip = PathIconData(
     path: Path()
-      ..fillType = PathFillType.evenOdd
+      ..fillType = PathFillType.nonZero
       ..moveTo(15.069059371948242, 0.8989979624748232)
       ..cubicTo(14.489018619060516, 0.3189898133277894, 13.718345820903778, 0.0,
           12.898663520812988, 0.0)
@@ -1305,7 +1713,7 @@ class _AppThemeIconsDataInstance implements AppThemeIconsData {
   @override
   late final pageTree = PathIconData(
     path: Path()
-      ..fillType = PathFillType.evenOdd
+      ..fillType = PathFillType.nonZero
       ..moveTo(2.0125787258148193, 9.0)
       ..lineTo(5.974842548370361, 9.0)
       ..cubicTo(5.974842548370361, 9.550000011920929, 6.427672922611237, 10.0,
@@ -1435,4 +1843,13 @@ class _AppThemeIconsDataInstance implements AppThemeIconsData {
       ..close(),
     viewBox: Offset.zero & Size(16.0, 16.0),
   );
+
+  Map<String, PathIconData> reflect() => {
+        'propagation': propagation,
+        'productMenuClosed': productMenuClosed,
+        'pasteWord': pasteWord,
+        'paperclip': paperclip,
+        'pageTree': pageTree,
+        'phone': phone,
+      };
 }
