@@ -1,5 +1,13 @@
 
+## 0.0.24+alpha
+
+* Fixed svg path offset.
+
 ## 0.0.23+alpha
+
+* Fixed svg path data parsing.
+
+## 0.0.22+alpha
 
 * Fixed path combine.
 

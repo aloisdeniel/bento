@@ -29,14 +29,15 @@ String emitData(Offset offset, IconPath path) {
   final result = StringBuffer('Path()');
 
   result.writeln('..fillType = ${path.windingRule}');
-  writeSvgPathDataToPath(path.data, PathDartCodeProxy(result));
+  writeSvgPathDataToPath(path.data, PathDartCodeProxy(offset, result));
 
   return result.toString();
 }
 
 class PathDartCodeProxy extends PathProxy {
-  PathDartCodeProxy(this.result);
+  PathDartCodeProxy(this.offset, this.result);
   final StringBuffer result;
+  final Offset offset;
 
   @override
   void cubicTo(
@@ -48,28 +49,28 @@ class PathDartCodeProxy extends PathProxy {
     double y3,
   ) {
     result.writeln('..cubicTo('
-        '${x1}'
+        '${offset.dx + x1}'
         ','
-        '${y1}'
+        '${offset.dy + y1}'
         ','
-        '${x2}'
+        '${offset.dx + x2}'
         ','
-        '${y2}'
+        '${offset.dy + y2}'
         ','
-        '${x3}'
+        '${offset.dx + x3}'
         ','
-        '${y3}'
+        '${offset.dy + y3}'
         ')');
   }
 
   @override
   void lineTo(double x, double y) {
-    result.writeln('..lineTo(${x},${y})');
+    result.writeln('..lineTo(${offset.dx + x},${offset.dy + y})');
   }
 
   @override
   void moveTo(double x, double y) {
-    result.writeln('..moveTo(${x},${y})');
+    result.writeln('..moveTo(${offset.dx + x},${offset.dy + y})');
   }
 
   @override
